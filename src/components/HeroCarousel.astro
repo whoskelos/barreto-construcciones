@@ -1,0 +1,65 @@
+---
+import heroImage1 from "../assets/img/carousel/edificacion.webp";
+import heroImage2 from "../assets/img/carousel/obra_civil.webp";
+import heroImage3 from "../assets/img/carousel/rehabilitación.webp";
+import heroImage4 from "../assets/img/carousel/reforma.webp";
+import heroImage5 from "../assets/img/carousel/mantenimiento.webp";
+const slides = [
+    {
+        id: 1,
+        image: heroImage1,
+        alt: "Edificación de gasolinera moderna",
+    },
+    {
+        id: 2,
+        image: heroImage2,
+        alt: "Obra Civil aeroportuaria - asfaltado de pista de aterrizaje",
+    },
+    {
+        id: 3,
+        image: heroImage3,
+        alt: "Rehabilitación de piscina natural",
+    },
+    {
+        id: 4,
+        image: heroImage4,
+        alt: "Reforma de cocina moderna y elegante",
+    },
+    {
+        id: 5,
+        image: heroImage5,
+        alt: "Mantenimiento y pintura deposito industrial",
+    },
+];
+---
+
+<section class="relative w-full h-screen overflow-hidden">
+    <div class="embla h-full">
+        <div class="embla__container h-full flex">
+            {
+                slides.map((slide) => (
+                    <div class="embla__slide relative min-w-0 flex-[0_0_100%]">
+                        <img
+                            src={slide.image.src}
+                            alt={slide.alt}
+                            class="object-cover w-full h-full"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-r from-[hsl(var(--hero-overlay))] via-[hsl(var(--hero-overlay))]/80 to-transparent" />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import EmblaCarousel from "embla-carousel";
+    import Autoplay from "embla-carousel-autoplay";
+
+    const emblaNode = document.querySelector(".embla");
+    const options = { loop: true };
+    const plugins = [Autoplay()];
+    if (emblaNode instanceof HTMLElement) {
+        const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+    }
+</script>

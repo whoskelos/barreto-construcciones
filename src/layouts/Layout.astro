@@ -1,22 +1,40 @@
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>Barreto Construcciones</title>
+        <meta name="description" content="Barreto Construcciones" />
+        <meta
+            name="keywords"
+            content="Barreto Construcciones ofrece soluciones profesionales en obra civil, edificación y rehabilitación de edificios en Madrid y Toledo. Expertos en proyectos corporativos e industriales, garantizando calidad, seguridad y cumplimiento en cada obra."
+        />
+        <meta name="author" content="Barreto Construcciones" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+    </head>
+    <body>
+        <slot />
+    </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+<style is:global>
+    @import "tailwindcss";
+	@import '@fontsource-variable/roboto';
+
+	:root {
+		--hero-overlay: 210 15% 10%;
 	}
+</style>
+
+<style>
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+		font-family: 'Roboto', sans-serif;
+    }
 </style>
