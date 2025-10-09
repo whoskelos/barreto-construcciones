@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/roboto':
         specifier: 5.2.8
         version: 5.2.8
+      '@midudev/tailwind-animations':
+        specifier: ^0.2.0
+        version: 0.2.0(tailwindcss@4.1.14)
       '@tailwindcss/vite':
         specifier: 4.1.14
         version: 4.1.14(vite@6.3.6(@types/node@24.7.0)(jiti@2.6.1)(lightningcss@1.30.1))
@@ -21,7 +24,7 @@ importers:
         specifier: 8.6.0
         version: 8.6.0
       embla-carousel-autoplay:
-        specifier: ^8.6.0
+        specifier: 8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
       tailwindcss:
         specifier: 4.1.14
@@ -373,6 +376,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@midudev/tailwind-animations@0.2.0':
+    resolution: {integrity: sha512-4mktb060dA7SZz0LjMfhBT30HWPmQENwF4AJC7/etESWohe4pukST0ohC2yAePS5GNinhY3MXmZZ8//2ywafOQ==}
+    peerDependencies:
+      tailwindcss: ^3.0.0 || ^4.0.0
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -1966,6 +1974,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@midudev/tailwind-animations@0.2.0(tailwindcss@4.1.14)':
+    dependencies:
+      tailwindcss: 4.1.14
 
   '@oslojs/encoding@1.1.0': {}
 
