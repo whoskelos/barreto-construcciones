@@ -1,18 +1,7 @@
 ---
 import { services } from '@data';
-import building from '../assets/svg/building.svg';
-import construction from '../assets/svg/construction.svg';
-import factory from '../assets/svg/factory.svg';
-import hammer from '../assets/svg/hammer.svg';
-import wrench from '../assets/svg/wrench.svg';
 
-const ICON_MAP = {
-    'building': building,
-    'construction': construction,
-    'factory': factory,
-    'hammer': hammer,
-    'wrench': wrench
-};
+import ServiceCard from 'src/components/ServiceCard.astro';
 ---
 <section class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
     <h2 class="text-3xl text-neutral-900 font-semibold text-center pb-4">Nuestros servicios</h2>
@@ -20,17 +9,7 @@ const ICON_MAP = {
     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
             services.map((service) => (
-                <article class="w-full bg-white rounded-md shadow-md">
-                    <header class="p-6">
-                        <span class="inline-block p-4 bg-primary-50 rounded-sm mb-4 text-primary-500">{<ICON_MAP[service.icon] />}</span>
-                        <h2 class="text-xl text-neutral-900 font-bold">
-                            {service.name}
-                        </h2>
-                    </header>
-                    <div class="px-6 pb-6">
-                        <p class="text-sm text-neutral-800">{service.description}</p>
-                    </div>
-                </article>
+                <ServiceCard name={service.name} description={service.description} icon={service.icon} />
             ))
         }
     </div>
