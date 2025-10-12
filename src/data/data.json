@@ -65,5 +65,41 @@
             "description": "Servicios integrales de mantenimiento de infraestructuras para garantizar su óptimo funcionamiento y durabilidad.",
             "icon": "wrench"
         }
+    ],
+    "contact": [
+        {
+            "city": "Toledo",
+            "address": "Yuncos - 45210 - Toledo",
+            "phone": "925 090 798"
+        },
+        {
+            "city": "Getafe",
+            "address": "Calle Gutenberg 2 - 1º Planta- 28906 - Getafe",
+            "phone": "911 460 524"
+        }
+    ],
+    "social": [
+        {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/barretoconstrucciones/"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/company/barreto-construcciones/"
+        }
+    ],
+    "legal": [
+        {
+            "name": "Política de Privacidad",
+            "url": "/politica-de-privacidad"
+        },
+        {
+            "name": "Aviso Legal",
+            "url": "/aviso-legal"
+        },
+        {
+            "name": "Política de Cookies",
+            "url": "/politica-de-cookies"
+        }
     ]
 }

@@ -1,1 +1,95 @@
-<footer>Footer</footer>
+---
+import { Image } from "astro:assets";
+
+import logo from "../assets/img/logo.webp";
+import LinkedIn from "../assets/svg/linkedin.svg";
+import Instagram from "../assets/svg/instagram.svg";
+import Phone from "../assets/svg/phone.svg";
+import Pin from "../assets/svg/pin.svg";
+
+import { contact, social, legal } from "@data";
+
+const year = new Date().getFullYear();
+
+const ICON_MAP: Record<string, any> = {
+    Instagram,
+    LinkedIn,
+};
+
+//TODO: FOOTER
+---
+
+<footer class="bg-neutral-400 pt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3">
+        <div class="flex items-center justify-start md:items-start mb-8">
+            <Image
+                src={logo}
+                alt="Logo"
+                decoding="async"
+                loading="lazy"
+                alt="Logo de Barreto Construcciones"
+                width={200}
+                height={150}
+            />
+        </div>
+        <div class="flex flex-col gap-8 mb-8">
+            {
+                contact.map((item) => (
+                    <div>
+                        <h4 class="text-lg font-semibold tracking-wide">
+                            {item.city}
+                        </h4>
+                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                            <Pin />
+                            <p class="text-md">{item.address}</p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                            <Phone />
+                            <p class="text-md hover:text-neutral-950 transition-colors">
+                                <a href={`tel:${item.phone}`}>{item.phone}</a>
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <div class="flex flex-col gap-2 mb-8">
+            {
+                legal.map((item) => (
+                    <div>
+                        <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-neutral-900 hover:text-neutral-950 transition-colors"
+                        >
+                            {item.name}
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+    <div
+        class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center md:flex-row md:justify-between gap-2 border-t-1 border-neutral-600 py-12"
+    >
+        <p class="text-neutral-800">© {year} Todos los derechos reservados</p>
+        <div class="flex gap-3">
+            {
+                social.map(({url, name}) => {
+                    const Icon = ICON_MAP[name];
+                    return (
+                    <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-neutral-500 rounded-full p-2 text-neutral-800 hover:text-neutral-950 hover:bg-neutral-600 transition-colors"
+                    >
+                        <Icon />
+                    </a>
+                    )
+                })
+            }
+        </div>
+    </div>
+</footer>
