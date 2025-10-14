@@ -43,27 +43,37 @@
         {
             "name": "Reformas y Rehabilitación",
             "description": "Especialistas en reformas y rehabilitación de edificios, incluyendo fachadas, tejados, estructuras, aparcamientos, instituciones educativas, hoteles, oficinas y clínicas.",
-            "icon": "hammer"
+            "icon": "hammer",
+            "image": "reformas",
+            "url": "/servicios/reformas-y-rehabilitacion"
         },
         {
             "name": "Edificación",
             "description": "Construcción de viviendas unifamiliares y en altura, naves industriales, plantas industriales y promociones inmobiliarias.",
-            "icon": "building"
+            "icon": "building",
+            "image": "edificacion",
+            "url": "/servicios/edificacion"
         },
         {
             "name": "Obra Civil",
             "description": "Servicios de urbanización, pavimentación, asfaltado, canalizaciones, cimentaciones, muros de contención, infraestructuras eléctricas y cargadores.",
-            "icon": "construction"
+            "icon": "construction",
+            "image": "obra_civil",
+            "url": "/servicios/obra-civil"
         },
         {
             "name": "Proyectos Corporativos e Industriales",
             "description": "Especialización en reformas y construcción para sectores clave como gasolineras, colegios, clínicas, restaurantes y farmacias.",
-            "icon": "factory"
+            "icon": "factory",
+            "image": "proyectos_corporativos",
+            "url": "/servicios/proyectos-corporativos"
         },
         {
             "name": "Mantenimiento",
             "description": "Servicios integrales de mantenimiento de infraestructuras para garantizar su óptimo funcionamiento y durabilidad.",
-            "icon": "wrench"
+            "icon": "wrench",
+            "image": "mantenimiento",
+            "url": "/servicios/mantenimiento"
         }
     ],
     "contact": [
