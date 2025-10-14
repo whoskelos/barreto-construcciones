@@ -1,0 +1,229 @@
+---
+import { Image } from "astro:assets";
+// Edificación
+import edificacion1 from "../assets/img/featured/edificacion/1.webp";
+import edificacion2 from "../assets/img/featured/edificacion/2.webp";
+import edificacion3 from "../assets/img/featured/edificacion/3.webp";
+import edificacion4 from "../assets/img/featured/edificacion/4.webp";
+
+// Mantenimiento
+import mantenimiento1 from "../assets/img/featured/mantenimiento/1.webp";
+import mantenimiento2 from "../assets/img/featured/mantenimiento/2.webp";
+
+// Obra Civil
+import obraCivil1 from "../assets/img/featured/obra_civil/1.webp";
+import obraCivil2 from "../assets/img/featured/obra_civil/2.webp";
+import obraCivil3 from "../assets/img/featured/obra_civil/3.webp";
+import obraCivil4 from "../assets/img/featured/obra_civil/4.webp";
+import obraCivil5 from "../assets/img/featured/obra_civil/5.webp";
+
+// Reformas
+import reformas1 from "../assets/img/featured/reformas/1.webp";
+import reformas2 from "../assets/img/featured/reformas/2.webp";
+import reformas3 from "../assets/img/featured/reformas/3.webp";
+
+// Rehabilitación
+import rehabilitacion1 from "../assets/img/featured/rehabilitacion/1.webp";
+import rehabilitacion2 from "../assets/img/featured/rehabilitacion/2.webp";
+import rehabilitacion3 from "../assets/img/featured/rehabilitacion/3.webp";
+import rehabilitacion4 from "../assets/img/featured/rehabilitacion/4.webp";
+
+const featuredProjects1 = [
+    {
+        title: "Edificación",
+        image: edificacion1,
+        description: "Edificación",
+    },
+    {
+        title: "Edificación",
+        image: edificacion2,
+        description: "Edificación",
+    },
+    {
+        title: "Edificación",
+        image: edificacion3,
+        description: "Edificación",
+    },
+    {
+        title: "Edificación",
+        image: edificacion4,
+        description: "Edificación",
+    },
+    {
+        title: "Mantenimiento",
+        image: mantenimiento1,
+        description: "Mantenimiento",
+    },
+    {
+        title: "Mantenimiento",
+        image: mantenimiento2,
+        description: "Mantenimiento",
+    },
+];
+
+const featuredProjects2 = [
+    {
+        title: "Obra Civil",
+        image: obraCivil1,
+        description: "Obra Civil",
+    },
+    {
+        title: "Obra Civil",
+        image: obraCivil2,
+        description: "Obra Civil",
+    },
+    {
+        title: "Obra Civil",
+        image: obraCivil3,
+        description: "Obra Civil",
+    },
+    {
+        title: "Obra Civil",
+        image: obraCivil4,
+        description: "Obra Civil",
+    },
+    {
+        title: "Obra Civil",
+        image: obraCivil5,
+        description: "Obra Civil",
+    },
+    {
+        title: "Reformas",
+        image: reformas1,
+        description: "Reformas",
+    },
+];
+
+const featuredProjects3 = [
+    {
+        title: "Reformas",
+        image: reformas2,
+        description: "Reformas",
+    },
+    {
+        title: "Reformas",
+        image: reformas3,
+        description: "Reformas",
+    },
+    {
+        title: "Rehabilitación",
+        image: rehabilitacion1,
+        description: "Rehabilitación",
+    },
+    {
+        title: "Rehabilitación",
+        image: rehabilitacion2,
+        description: "Rehabilitación",
+    },
+    {
+        title: "Rehabilitación",
+        image: rehabilitacion3,
+        description: "Rehabilitación",
+    },
+    {
+        title: "Rehabilitación",
+        image: rehabilitacion4,
+        description: "Rehabilitación",
+    },
+];
+---
+
+<section class="bg-neutral-100 py-16 md:py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+            class="text-3xl sm:text-4xl md:text-5xl text-neutral-900 font-bold mb-4"
+        >
+            Proyectos destacados
+        </h2>
+        <p class="text-md text-neutral-800 pb-12">
+            Descubre algunos de nuestros trabajos más representativos que
+            demuestran nuestra experiencia y compromiso con la excelencia.
+        </p>
+        <!-- TODO: Scroll animated slider GSAP -->
+        <div class="featured-projects-container space-y-4">
+            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+                {
+                    featuredProjects1.map((project) => (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                width={500}
+                                height={500}
+                                decoding="async"
+                                loading="lazy"
+                                class="featured-project-1 w-full h-full object-cover aspect-[16/9] rounded-md"
+                            />
+                    ))
+                }
+            </div>
+            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+                {
+                    featuredProjects2.map((project) => (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                width={500}
+                                height={500}
+                                decoding="async"
+                                loading="lazy"
+                                class="featured-project-2 w-full h-full object-cover aspect-[16/9] rounded-md"
+                            />
+                    ))
+                }
+            </div>
+            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+                {
+                    featuredProjects3.map((project) => (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                width={500}
+                                height={500}
+                                decoding="async"
+                                loading="lazy"
+                                class="featured-project-3 w-full h-full object-cover aspect-[16/9] rounded-md"
+                            />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    const container = document.querySelector(".featured-projects-container");
+    
+    if (container) {
+        const tl = gsap.timeline({
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".featured-projects-container",
+                start: "top 50%",
+                end: "+=1000",
+                scrub: 2,
+                // markers: true,
+                toggleActions: "restart pause reverse pause"
+            },
+        });
+
+        let projects = gsap.utils.toArray(".featured-project-1");
+        let projects2 = gsap.utils.toArray(".featured-project-2");
+        let projects3 = gsap.utils.toArray(".featured-project-3");
+
+        tl.to(projects, {
+            xPercent: -100 * (projects.length - 1),
+        }, "<")
+        .to(projects3, {
+            xPercent: -100 * (projects3.length - 1),
+        }, "<")
+            
+
+        tl.from(projects2, {
+            xPercent: -100 * (projects2.length - 1),
+        }, "<")
+    }
+</script>
