@@ -6,8 +6,10 @@ import obra_civil from "../../assets/img/services/obra-civil.webp";
 import proyectos_corporativos from "../../assets/img/services/proyectos-corporativos.webp";
 import mantenimiento from "../../assets/img/services/mantenimiento.webp";
 import reformas from "../../assets/img/services/reformas.webp";
+import MoveRight from "../../assets/svg/move-right.svg";
 
 interface Props {
+    imageSrc?: ImageMetadata;
     name: string;
     description: string;
     image: string;
@@ -21,24 +23,35 @@ const imageSrc = {
     obra_civil,
     proyectos_corporativos,
     mantenimiento,
-    reformas
+    reformas,
 }[image];
-
 ---
 
-<article class="w-full bg-white rounded-md group">
-    <header>
-        <Image
-            src={imageSrc}
-            alt={name}
-            class="w-full h-full object-cover aspect-[16/9] rounded-t-md"
-        />
-    </header>
-    <div class="p-6">
-        <h3 class="text-xl font-semibold mb-2">{name}</h3>
-        <p class="text-gray-600">{description}</p>
-    </div>
-    <footer>
-        <a href={url} class="absolute inset-0" />
-    </footer>
-</article>
+<a href={url} class="inline-grid hover:drop-shadow-2xl transition-shadow group">
+    <article class="w-full bg-white rounded-md border border-neutral-200 flex flex-col justify-between">
+        <header class="overflow-hidden rounded-t-md">
+            {
+                imageSrc && (
+                    <Image
+                        src={imageSrc}
+                        alt={name}
+                        class="w-full h-full object-cover aspect-[16/9] rounded-t-md group-hover:scale-105 transition-transform duration-300"
+                        decoding="async"
+                        loading="lazy"
+                    />
+                )
+            }
+        </header>
+        <div class="p-6">
+            <h3 class="text-xl text-neutral-900 group-hover:text-primary-500 font-semibold mb-2">{name}</h3>
+            <p class="text-neutral-800">{description}</p>
+        </div>
+        <footer class="p-6">
+            <span
+                class="inline-flex items-center gap-2 text-md font-semibold tracking-wider text-primary-500"
+                >Leer más
+                <MoveRight class="size-4 shrink-0 group-hover:translate-x-1 transition-transform" />
+            </span>
+        </footer>
+    </article>
+</a>
