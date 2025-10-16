@@ -58,7 +58,7 @@ import { services } from "@data";
       <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
             services.map((service) => (
-                <ServiceCard name={service.name} description={service.description} image={service.image} url={service.url} />
+                <ServiceCard name={service.name} description={service.fullDescription} image={service.image} url={service.url} />
             ))
         }
     </div>

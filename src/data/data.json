@@ -43,6 +43,7 @@
         {
             "name": "Reformas y Rehabilitación",
             "description": "Especialistas en reformas y rehabilitación de edificios, incluyendo fachadas, tejados, estructuras, aparcamientos, instituciones educativas, hoteles, oficinas y clínicas.",
+            "fullDescription": "Transformamos espacios con soluciones integrales de reforma y rehabilitación, adaptándonos a las necesidades específicas de cada proyecto.",
             "icon": "hammer",
             "image": "reformas",
             "url": "/servicios/reformas-y-rehabilitacion"
@@ -50,6 +51,7 @@
         {
             "name": "Edificación",
             "description": "Construcción de viviendas unifamiliares y en altura, naves industriales, plantas industriales y promociones inmobiliarias.",
+            "fullDescription": "Construcción de edificios con los más altos estándares de calidad, desde la planificación hasta la entrega final.",
             "icon": "building",
             "image": "edificacion",
             "url": "/servicios/edificacion"
@@ -57,6 +59,7 @@
         {
             "name": "Obra Civil",
             "description": "Servicios de urbanización, pavimentación, asfaltado, canalizaciones, cimentaciones, muros de contención, infraestructuras eléctricas y cargadores.",
+            "fullDescription": "Desarrollo de infraestructuras civiles con expertise técnico y compromiso con la excelencia en cada proyecto.",
             "icon": "construction",
             "image": "obra_civil",
             "url": "/servicios/obra-civil"
@@ -64,6 +67,7 @@
         {
             "name": "Proyectos Corporativos e Industriales",
             "description": "Especialización en reformas y construcción para sectores clave como gasolineras, colegios, clínicas, restaurantes y farmacias.",
+            "fullDescription": "Soluciones especializadas para espacios corporativos e industriales, optimizando funcionalidad y diseño.",
             "icon": "factory",
             "image": "proyectos_corporativos",
             "url": "/servicios/proyectos-corporativos"
@@ -71,6 +75,7 @@
         {
             "name": "Mantenimiento",
             "description": "Servicios integrales de mantenimiento de infraestructuras para garantizar su óptimo funcionamiento y durabilidad.",
+            "fullDescription": "Servicios de mantenimiento integral para preservar y optimizar el valor de sus instalaciones.",
             "icon": "wrench",
             "image": "mantenimiento",
             "url": "/servicios/mantenimiento"
