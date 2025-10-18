@@ -38,6 +38,7 @@ const imageSrc = {
             {
                 imageSrc && (
                     <Image
+                        transition:name={`img-${image}`}
                         src={imageSrc}
                         alt={name}
                         class="w-full h-full object-cover aspect-[16/9] rounded-t-md group-hover:scale-105 transition-transform duration-200 ease-in-out"

@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    HeroImage: ImageMetadata;
+    title: string;
+    nameTransition: string;
+}
+
+const { HeroImage, title, nameTransition } = Astro.props;
+---
+
+<section
+    class="relative h-[30vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden"
+>
+    <div class="absolute inset-0">
+        <Image
+            transition:name={`img-${nameTransition}`}
+            src={HeroImage}
+            alt="Foto tomando medidas en obra civil"
+            class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/70"></div>
+    </div>
+
+    <div
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start animate-fade-in-up"
+    >
+        <div class="max-w-3xl">
+            <p
+                class="text-accent text-sm sm:text-md md:text-lg text-primary-500 font-semibold uppercase tracking-wider mb-3 md:mb-4"
+            >
+                Barreto Infraestructuras
+            </p>
+            <p
+                class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white"
+            >
+                {title}
+            </p>
+        </div>
+    </div>
+</section>
