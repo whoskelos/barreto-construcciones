@@ -9,8 +9,8 @@
             "link": "/servicios",
             "submenu": [
                 {
-                    "name": "Reformas y Rehabilitación",
-                    "link": "/servicios/reformas-y-rehabilitacion"
+                    "name": "Proyectos Corporativos e Industriales",
+                    "link": "/servicios/proyectos-corporativos"
                 },
                 {
                     "name": "Edificación",
@@ -21,8 +21,8 @@
                     "link": "/servicios/obra-civil"
                 },
                 {
-                    "name": "Proyectos Corporativos e Industriales",
-                    "link": "/servicios/proyectos-corporativos"
+                    "name": "Reformas y Rehabilitación",
+                    "link": "/servicios/reformas-y-rehabilitacion"
                 },
                 {
                     "name": "Mantenimiento",
@@ -41,12 +41,12 @@
     ],
     "services": [
         {
-            "name": "Reformas y Rehabilitación",
-            "description": "Especialistas en reformas y rehabilitación de edificios, incluyendo fachadas, tejados, estructuras, aparcamientos, instituciones educativas, hoteles, oficinas y clínicas.",
-            "fullDescription": "Transformamos espacios con soluciones integrales de reforma y rehabilitación, adaptándonos a las necesidades específicas de cada proyecto.",
-            "icon": "hammer",
-            "image": "reformas",
-            "url": "/servicios/reformas-y-rehabilitacion"
+            "name": "Proyectos Corporativos e Industriales",
+            "description": "Especialización en reformas y construcción para sectores clave como gasolineras, colegios, clínicas, restaurantes y farmacias.",
+            "fullDescription": "Soluciones especializadas para espacios corporativos e industriales, optimizando funcionalidad y diseño.",
+            "icon": "factory",
+            "image": "proyectos_corporativos",
+            "url": "/servicios/proyectos-corporativos"
         },
         {
             "name": "Edificación",
@@ -65,12 +65,12 @@
             "url": "/servicios/obra-civil"
         },
         {
-            "name": "Proyectos Corporativos e Industriales",
-            "description": "Especialización en reformas y construcción para sectores clave como gasolineras, colegios, clínicas, restaurantes y farmacias.",
-            "fullDescription": "Soluciones especializadas para espacios corporativos e industriales, optimizando funcionalidad y diseño.",
-            "icon": "factory",
-            "image": "proyectos_corporativos",
-            "url": "/servicios/proyectos-corporativos"
+            "name": "Reformas y Rehabilitación",
+            "description": "Especialistas en reformas y rehabilitación de edificios, incluyendo fachadas, tejados, estructuras, aparcamientos, instituciones educativas, hoteles, oficinas y clínicas.",
+            "fullDescription": "Transformamos espacios con soluciones integrales de reforma y rehabilitación, adaptándonos a las necesidades específicas de cada proyecto.",
+            "icon": "hammer",
+            "image": "reformas",
+            "url": "/servicios/reformas-y-rehabilitacion"
         },
         {
             "name": "Mantenimiento",
