@@ -106,15 +106,15 @@
     "legal": [
         {
             "name": "Política de Privacidad",
-            "url": "/politica-de-privacidad"
+            "url": "/legal/politica-de-privacidad"
         },
         {
             "name": "Aviso Legal",
-            "url": "/aviso-legal"
+            "url": "/legal/aviso-legal"
         },
         {
             "name": "Política de Cookies",
-            "url": "/politica-de-cookies"
+            "url": "/legal/politica-de-cookies"
         }
     ]
 }

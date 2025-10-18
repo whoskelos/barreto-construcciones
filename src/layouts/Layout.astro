@@ -1,10 +1,17 @@
+---
+interface Props {
+  title: string | 'Barreto Construcciones';
+}
+
+const { title } = Astro.props;
+---
 <!doctype html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <title>Barreto Construcciones</title>
+        <title>{title}</title>
         <meta name="description" content="Barreto Construcciones" />
         <meta
             name="keywords"
