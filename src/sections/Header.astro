@@ -1,1 +1,30 @@
-<header></header>
+---
+import { Image } from "astro:assets";
+
+import Logo from "../assets/img/logo.webp";
+---
+<header class="w-full h-20 bg-transparent fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-8 py-4">
+    <nav class="w-full h-full flex flex-row justify-between items-center mx-auto">
+        <div class="w-full h-full">
+            <Image
+                class="w-36 h-auto"
+                src={Logo}
+                alt="Logo de Barreto Construcciones"
+                loading="lazy"
+            />
+        </div>
+        <div class="h-full">
+            <ul class="h-full flex flex-row gap-4">
+                <li class="h-full flex items-center justify-center">
+                    <a class="h-full flex items-center" href="/servicios">Servicios</a>
+                </li>
+                <li class="h-full flex items-center justify-center">
+                    <a class="h-full flex items-center" href="/proyectos">Proyectos</a>
+                </li>
+                <li class="h-full flex items-center justify-center">
+                    <a class="h-full flex items-center" href="/contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
