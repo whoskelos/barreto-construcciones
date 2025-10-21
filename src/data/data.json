@@ -9,10 +9,6 @@
             "link": "/servicios",
             "submenu": [
                 {
-                    "name": "Proyectos Corporativos e Industriales",
-                    "link": "/servicios/proyectos-corporativos"
-                },
-                {
                     "name": "Edificación",
                     "link": "/servicios/edificacion"
                 },
@@ -21,8 +17,12 @@
                     "link": "/servicios/obra-civil"
                 },
                 {
-                    "name": "Reformas y Rehabilitación",
-                    "link": "/servicios/reformas-y-rehabilitacion"
+                    "name": "Reformas",
+                    "link": "/servicios/reformas"
+                },
+                {
+                    "name": "Rehabilitación",
+                    "link": "/servicios/rehabilitacion"
                 },
                 {
                     "name": "Mantenimiento",
@@ -41,17 +41,9 @@
     ],
     "services": [
         {
-            "name": "Proyectos Corporativos e Industriales",
-            "description": "Especialización en reformas y construcción para sectores clave como gasolineras, colegios, clínicas, restaurantes y farmacias.",
-            "fullDescription": "Soluciones especializadas para espacios corporativos e industriales, optimizando funcionalidad y diseño.",
-            "icon": "factory",
-            "image": "proyectos_corporativos",
-            "url": "/servicios/proyectos-corporativos"
-        },
-        {
             "name": "Edificación",
-            "description": "Construcción de viviendas unifamiliares y en altura, naves industriales, plantas industriales y promociones inmobiliarias.",
-            "fullDescription": "Construcción de edificios con los más altos estándares de calidad, desde la planificación hasta la entrega final.",
+            "description": "Construcción de viviendas, naves y proyectos industriales en Madrid y Toledo.",
+            "fullDescription": "Construcción con los más altos estándares de calidad, desde la planificación hasta la entrega final.",
             "icon": "building",
             "image": "edificacion",
             "url": "/servicios/edificacion"
@@ -65,12 +57,20 @@
             "url": "/servicios/obra-civil"
         },
         {
-            "name": "Reformas y Rehabilitación",
-            "description": "Especialistas en reformas y rehabilitación de edificios, incluyendo fachadas, tejados, estructuras, aparcamientos, instituciones educativas, hoteles, oficinas y clínicas.",
-            "fullDescription": "Transformamos espacios con soluciones integrales de reforma y rehabilitación, adaptándonos a las necesidades específicas de cada proyecto.",
+            "name": "Reformas",
+            "description": "Reformas profesionales para negocios, oficinas e industrias.",
+            "fullDescription": "Transformamos espacios con soluciones integrales de reforma, adaptándonos a las necesidades específicas de cada proyecto.",
             "icon": "hammer",
             "image": "reformas",
-            "url": "/servicios/reformas-y-rehabilitacion"
+            "url": "/servicios/reformas"
+        },
+        {
+            "name": "Rehabilitación",
+            "description": "Rehabilitación técnica y estructural de edificios.",
+            "fullDescription": "Servicios especializados en la recuperación y refuerzo estructural de edificios.",
+            "icon": "hammer",
+            "image": "rehabilitacion",
+            "url": "/servicios/rehabilitacion"
         },
         {
             "name": "Mantenimiento",

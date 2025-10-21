@@ -3,9 +3,9 @@ import Image from "astro/components/Image.astro";
 
 import edificacion from "../../assets/img/services/edificacion.webp";
 import obra_civil from "../../assets/img/services/obra-civil.webp";
-import proyectos_corporativos from "../../assets/img/services/proyectos-corporativos.webp";
 import mantenimiento from "../../assets/img/services/mantenimiento.webp";
 import reformas from "../../assets/img/services/reformas.webp";
+import rehabilitacion from "../../assets/img/services/rehabilitacion.webp";
 import MoveRight from "../../assets/svg/move-right.svg";
 
 interface Props {
@@ -21,9 +21,9 @@ const { name, description, image, url } = Astro.props;
 const imageSrc = {
     edificacion,
     obra_civil,
-    proyectos_corporativos,
     mantenimiento,
     reformas,
+    rehabilitacion
 }[image];
 ---
 
@@ -43,7 +43,7 @@ const imageSrc = {
                         alt={name}
                         class="w-full h-full object-cover aspect-[16/9] rounded-t-md group-hover:scale-105 transition-transform duration-200 ease-in-out"
                         decoding="async"
-                        loading="lazy"
+                        loading="eager"
                     />
                 )
             }

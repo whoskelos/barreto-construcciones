@@ -1,31 +1,32 @@
 ---
 import { Image } from "astro:assets";
 
+import Layout from "src/layouts/Layout.astro";
+import Header from "src/sections/Header.astro";
+import Footer from "src/sections/Footer.astro";
+
 import CallToAction from "src/components/CallToAction.astro";
 import ServiceHero from "src/components/services/ServiceHero.astro";
-import Layout from "src/layouts/Layout.astro";
-import Footer from "src/sections/Footer.astro";
-import Header from "src/sections/Header.astro";
 
-import HeroImage from "../../assets/img/services/edificacion.webp";
-import CorporativoImage from "../../assets/img/services/corporativo.webp";
-import CheckIcon from "../../assets/svg/check-circle.svg";
-import FileIcon from "../../assets/svg/file-text.svg";
-import KeyIcon from "../../assets/svg/key.svg";
+import HeroImage from "../../assets/img/services/mantenimiento.webp";
+import CorporativoImage from "../../assets/img/featured/mantenimiento/3.webp";
+
+import EyeIcon from "../../assets/svg/eye.svg";
+import FileCheckIcon from "../../assets/svg/file-check.svg";
 import ShieldIcon from "../../assets/svg/shield.svg";
-
+import FileIcon from "../../assets/svg/file-text.svg";
 ---
 
-<Layout title="Edificación">
+<Layout title="Mantenimiento">
     <Header />
     <main>
         <ServiceHero
-            title="Edificación"
+            title="Mantenimiento"
             HeroImage={HeroImage}
-            nameTransition="edificacion"
+            nameTransition="mantenimiento"
         />
         <section
-            class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
         >
             <div class="space-y-6 md:space-y-8">
                 <span
@@ -40,25 +41,25 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                 <p
                     class="text-muted-foreground text-sm sm:text-base leading-relaxed"
                 >
-                    Enfocada en la construcción de nuevos proyectos residenciales, industriales y educativos.
+                    Proyectos de infraestructura y urbanización, tanto públicos
+                    como privados.
                 </p>
                 <ul class="flex flex-col space-y-6 md:space-y-8">
                     <li class="flex gap-4 items-start animate-fade-in">
                         <div
                             class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                         >
-                            <CheckIcon
+                            <EyeIcon
                                 class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
                             />
                         </div>
                         <div class="flex-1">
                             <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Prespuesto Gratuito
+                                Visita gratuita
                             </h4>
                             <p class="text-neutral-800 text-sm leading-relaxed">
-                                Ofrecemos presupuestos detallados sin ningún
-                                compromiso para que puedas tomar la mejor
-                                decisión.
+                                Visitamos tu espacio sin compromiso para evaluar
+                                el proyecto.
                             </p>
                         </div>
                     </li>
@@ -66,36 +67,17 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                         <div
                             class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                         >
-                            <FileIcon
+                            <FileCheckIcon
                                 class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
                             />
                         </div>
                         <div class="flex-1">
                             <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Plazos cerrados por escrito
+                                Gestión de permisos y licencias *
                             </h4>
                             <p class="text-neutral-800 text-sm leading-relaxed">
-                                Todos nuestros proyectos incluyen plazos de
-                                entrega garantizados y documentados formalmente.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="flex gap-4 items-start animate-fade-in">
-                        <div
-                            class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
-                        >
-                            <KeyIcon
-                                class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
-                            />
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Llave en mano
-                            </h4>
-                            <p class="text-neutral-800 text-sm leading-relaxed">
-                                Nos encargamos de todo el proceso, desde el
-                                diseño hasta la entrega final del proyecto
-                                completado.
+                                Nos encargamos de toda la tramitación
+                                administrativa necesaria.
                             </p>
                         </div>
                     </li>
@@ -109,15 +91,24 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                         </div>
                         <div class="flex-1">
                             <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Garantía con seguros de construcción
+                                Garantía
                             </h4>
                             <p class="text-neutral-800 text-sm leading-relaxed">
-                                Todos nuestros proyectos cuentan con seguros de
-                                construcción para tu tranquilidad y protección.
+                                Respaldamos nuestro trabajo con garantías
+                                completas.
                             </p>
                         </div>
                     </li>
                 </ul>
+                <div
+                    class="bg-primary-100/50 mt-8 p-4 rounded-lg border border-primary-200"
+                >
+                    <p class="text-sm text-neutral-900">
+                        * Los ítems con asterisco están sujetos a una única
+                        condición de que se contrate la reforma completa de la
+                        vivienda.
+                    </p>
+                </div>
             </div>
             <div
                 class="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl"

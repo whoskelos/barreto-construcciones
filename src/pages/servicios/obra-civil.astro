@@ -7,11 +7,10 @@ import Layout from "src/layouts/Layout.astro";
 import Footer from "src/sections/Footer.astro";
 import Header from "src/sections/Header.astro";
 
-import HeroImage from "../../assets/img/services/edificacion.webp";
-import CorporativoImage from "../../assets/img/services/corporativo.webp";
+import HeroImage from "../../assets/img/services/obra-civil.webp";
+import CorporativoImage from "../../assets/img/featured/obra_civil/4.webp";
 import CheckIcon from "../../assets/svg/check-circle.svg";
 import FileIcon from "../../assets/svg/file-text.svg";
-import KeyIcon from "../../assets/svg/key.svg";
 import ShieldIcon from "../../assets/svg/shield.svg";
 
 ---
@@ -20,9 +19,9 @@ import ShieldIcon from "../../assets/svg/shield.svg";
     <Header />
     <main>
         <ServiceHero
-            title="Edificación"
+            title="Obra Civil"
             HeroImage={HeroImage}
-            nameTransition="edificacion"
+            nameTransition="obra_civil"
         />
         <section
             class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
@@ -40,7 +39,7 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                 <p
                     class="text-muted-foreground text-sm sm:text-base leading-relaxed"
                 >
-                    Enfocada en la construcción de nuevos proyectos residenciales, industriales y educativos.
+                    Proyectos de infraestructura y urbanización, tanto públicos como privados.
                 </p>
                 <ul class="flex flex-col space-y-6 md:space-y-8">
                     <li class="flex gap-4 items-start animate-fade-in">
@@ -77,25 +76,6 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                             <p class="text-neutral-800 text-sm leading-relaxed">
                                 Todos nuestros proyectos incluyen plazos de
                                 entrega garantizados y documentados formalmente.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="flex gap-4 items-start animate-fade-in">
-                        <div
-                            class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
-                        >
-                            <KeyIcon
-                                class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
-                            />
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Llave en mano
-                            </h4>
-                            <p class="text-neutral-800 text-sm leading-relaxed">
-                                Nos encargamos de todo el proceso, desde el
-                                diseño hasta la entrega final del proyecto
-                                completado.
                             </p>
                         </div>
                     </li>

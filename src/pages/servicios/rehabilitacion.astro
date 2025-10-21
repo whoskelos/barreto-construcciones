@@ -7,12 +7,16 @@ import Layout from "src/layouts/Layout.astro";
 import Footer from "src/sections/Footer.astro";
 import Header from "src/sections/Header.astro";
 
-import HeroImage from "../../assets/img/services/edificacion.webp";
-import CorporativoImage from "../../assets/img/services/corporativo.webp";
+import HeroImage from "../../assets/img/services/rehabilitacion.webp";
+import CorporativoImage from "../../assets/img/featured/rehabilitacion/1.webp";
 import CheckIcon from "../../assets/svg/check-circle.svg";
 import FileIcon from "../../assets/svg/file-text.svg";
-import KeyIcon from "../../assets/svg/key.svg";
+import EyeIcon from "../../assets/svg/eye.svg";
+import FileCheckIcon from "../../assets/svg/file-check.svg";
+import PanelsIcon from "../../assets/svg/panels.svg";
+import CreditCardIcon from "../../assets/svg/credit-card.svg";
 import ShieldIcon from "../../assets/svg/shield.svg";
+import BankNoteIcon from "../../assets/svg/banknote.svg";
 
 ---
 
@@ -20,9 +24,9 @@ import ShieldIcon from "../../assets/svg/shield.svg";
     <Header />
     <main>
         <ServiceHero
-            title="Edificación"
+            title="Rehabilitación"
             HeroImage={HeroImage}
-            nameTransition="edificacion"
+            nameTransition="rehabilitacion"
         />
         <section
             class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
@@ -40,9 +44,28 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                 <p
                     class="text-muted-foreground text-sm sm:text-base leading-relaxed"
                 >
-                    Enfocada en la construcción de nuevos proyectos residenciales, industriales y educativos.
+                    Orientadas a la modernización de instalaciones y espacios
+                    corporativos.
                 </p>
                 <ul class="flex flex-col space-y-6 md:space-y-8">
+                    <li class="flex gap-4 items-start animate-fade-in">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        >
+                            <EyeIcon
+                                class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
+                            />
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-lg sm:text-xl font-semibold mb-2">
+                                1º Visita gratuita
+                            </h4>
+                            <p class="text-neutral-800 text-sm leading-relaxed">
+                                Visitamos tu espacio sin compromiso para evaluar
+                                el proyecto.
+                            </p>
+                        </div>
+                    </li>
                     <li class="flex gap-4 items-start animate-fade-in">
                         <div
                             class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
@@ -59,6 +82,24 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                                 Ofrecemos presupuestos detallados sin ningún
                                 compromiso para que puedas tomar la mejor
                                 decisión.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4 items-start animate-fade-in">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        >
+                            <FileCheckIcon
+                                class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
+                            />
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-lg sm:text-xl font-semibold mb-2">
+                                Gestión de permisos y licencias *
+                            </h4>
+                            <p class="text-neutral-800 text-sm leading-relaxed">
+                                Nos encargamos de toda la tramitación
+                                administrativa necesaria.
                             </p>
                         </div>
                     </li>
@@ -84,18 +125,16 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                         <div
                             class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                         >
-                            <KeyIcon
+                            <ShieldIcon
                                 class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
                             />
                         </div>
                         <div class="flex-1">
                             <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Llave en mano
+                                Garantía
                             </h4>
                             <p class="text-neutral-800 text-sm leading-relaxed">
-                                Nos encargamos de todo el proceso, desde el
-                                diseño hasta la entrega final del proyecto
-                                completado.
+                                Respaldamos nuestro trabajo con garantías completas.
                             </p>
                         </div>
                     </li>
@@ -103,21 +142,29 @@ import ShieldIcon from "../../assets/svg/shield.svg";
                         <div
                             class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                         >
-                            <ShieldIcon
+                            <BankNoteIcon
                                 class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
                             />
                         </div>
                         <div class="flex-1">
                             <h4 class="text-lg sm:text-xl font-semibold mb-2">
-                                Garantía con seguros de construcción
+                                Financiación propia o externa
                             </h4>
                             <p class="text-neutral-800 text-sm leading-relaxed">
-                                Todos nuestros proyectos cuentan con seguros de
-                                construcción para tu tranquilidad y protección.
+                                Ofrecemos opciones de financiación adaptadas a tus necesidades.
                             </p>
                         </div>
                     </li>
                 </ul>
+                <div
+                    class="bg-primary-100/50 mt-8 p-4 rounded-lg border border-primary-200"
+                >
+                    <p class="text-sm text-neutral-900">
+                        * Los ítems con asterisco están sujetos a una única
+                        condición de que se contrate la reforma completa de la
+                        vivienda.
+                    </p>
+                </div>
             </div>
             <div
                 class="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl"
