@@ -7,7 +7,8 @@ import { menu } from "@data";
 ---
 
 <header
-    class="w-full h-20 bg-transparent fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 md:px-8 py-4"
+    id="header"
+    class="w-full h-20 bg-transparent fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 md:px-8 py-4 animate-blur-scroll"
 >
     <nav
         class="w-full h-full hidden md:flex flex-row justify-between items-center mx-auto"
@@ -28,7 +29,7 @@ import { menu } from "@data";
                     menu.map((item) => (
                         <li class="relative group">
                             <a
-                                class="h-10 inline-flex w-max items-center justify-center px-4 py-2 text-sm hover:bg-[#dd6c3c4f] rounded-md"
+                                class="h-10 inline-flex w-max items-center justify-center px-4 py-2 text-md font-medium hover:bg-[#dd6c3c4f] rounded-md"
                                 href={item.link}
                             >
                                 {item.name}
@@ -38,7 +39,7 @@ import { menu } from "@data";
                                     {item.submenu.map((subitem) => (
                                         <li>
                                             <a
-                                                class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f]"
+                                                class="block px-4 py-2 text-md font-medium text-neutral-900 hover:bg-[#dd6c3c4f]"
                                                 href={subitem.link}
                                             >
                                                 {subitem.name}
@@ -65,33 +66,40 @@ import { menu } from "@data";
         </div>
         <div class="flex items-center justify-center">
             <button
-                id="mobile-menu-button"
+                type="button"
+                id="menu__button"
                 class="text-neutral-50 focus:outline-1 outline-neutral-50 p-2 hover:bg-[#dd6c3c4f] rounded-md"
             >
                 <MenuIcon />
             </button>
-            <div class="hidden w-full absolute top-12 left-0 z-20 bg-neutral-50 rounded-md" id="menu-items">
+            <div
+                class="hidden w-full absolute top-12 left-0 z-20 bg-neutral-50 rounded-md"
+                id="menu__items"
+            >
                 <ul class="w-full">
                     {
                         menu.map((item) => (
                             <li>
-                                <a href={item.link} class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f] font-semibold">
+                                <a
+                                    href={item.link}
+                                    class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f] font-semibold"
+                                >
                                     {item.name}
                                 </a>
-                                {
-                                    item?.submenu ? (
-                                        <ul class="ml-8">
-                                            {
-                                                item.submenu.map((subItem) => (
-                                                    <li>
-                                                        <a class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f]" href={subItem.link}>{subItem.name}</a>
-                                                    </li>
-                                                ))
-                                            }
-                                        </ul>
-                                    )
-                                    : null
-                                }
+                                {item?.submenu ? (
+                                    <ul class="ml-8">
+                                        {item.submenu.map((subItem) => (
+                                            <li>
+                                                <a
+                                                    class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f]"
+                                                    href={subItem.link}
+                                                >
+                                                    {subItem.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : null}
                             </li>
                         ))
                     }
@@ -101,15 +109,21 @@ import { menu } from "@data";
     </nav>
 </header>
 
+<style>
+    #header {
+        animation-timeline: scroll();
+        animation-range: 0 350px;
+    }
+</style>
+
 <script>
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menuItems = document.getElementById('menu-items');
-
-    if (menuButton && menuItems) {
-        menuItems.style.display = 'none';
-
-        menuButton.addEventListener('click', (e) => {
-        console.log(e.currentTarget);
-        menuItems?.classList.toggle('hidden');
+    const menuButton = document.querySelector(
+        "#menu__button"
+    ) as HTMLButtonElement;
+    const menuItems = document.querySelector("#menu__items") as HTMLDivElement;
+    
+    menuButton.addEventListener("click", (e) => {
+        menuItems.classList.toggle("hidden");
     });
+    
 </script>

@@ -1,8 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import Header from "src/sections/Header.astro";
-import Footer from "src/sections/Footer.astro";
 
 export async function getStaticPaths() {
     const legalDocs = await getCollection("legal");
@@ -21,12 +19,12 @@ const { Content } = await render(doc);
 ---
 
 <Layout title={title}>
-    <Header />
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl max-w-4xl mx-auto text-neutral-900 font-bold mb-8">{title}</h1>
-        <section class="max-w-4xl mx-auto prose">
-            <Content />
-        </section>
-    </main>
-    <Footer />
+    <h1
+        class="text-3xl sm:text-4xl md:text-5xl max-w-4xl mx-auto text-neutral-900 font-bold mb-8"
+    >
+        {title}
+    </h1>
+    <section class="max-w-4xl mx-auto prose">
+        <Content />
+    </section>
 </Layout>
