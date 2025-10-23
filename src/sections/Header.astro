@@ -1,1 +1,129 @@
-<header></header>
+---
+import { Image } from "astro:assets";
+
+import Logo from "../assets/img/logo.webp";
+import MenuIcon from "../assets/svg/menu.svg";
+import { menu } from "@data";
+---
+
+<header
+    id="header"
+    class="w-full h-20 bg-transparent fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-3 md:px-8 py-4 animate-blur-scroll"
+>
+    <nav
+        class="w-full h-full hidden md:flex flex-row justify-between items-center mx-auto"
+    >
+        <div class="w-full h-full">
+            <Image
+                class="w-36 h-auto"
+                src={Logo}
+                alt="Logo de Barreto Construcciones"
+                loading="lazy"
+            />
+        </div>
+        <div class="h-full">
+            <ul
+                class="h-full flex flex-row items-center text-neutral-50 font-medium tracking-wider"
+            >
+                {
+                    menu.map((item) => (
+                        <li class="relative group">
+                            <a
+                                class="h-10 inline-flex w-max items-center justify-center px-4 py-2 text-md font-medium hover:bg-[#dd6c3c4f] rounded-md"
+                                href={item.link}
+                            >
+                                {item.name}
+                            </a>
+                            {item?.submenu ? (
+                                <ul class="absolute top-8 left-0 z-20 bg-neutral-50 shadow-lg mt-2 rounded-md overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+                                    {item.submenu.map((subitem) => (
+                                        <li>
+                                            <a
+                                                class="block px-4 py-2 text-md font-medium text-neutral-900 hover:bg-[#dd6c3c4f]"
+                                                href={subitem.link}
+                                            >
+                                                {subitem.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : null}
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </nav>
+    {/* Mobile Navigation */}
+    <nav class="w-full flex md:hidden items-center justify-between relative">
+        <div class="w-full h-full">
+            <Image
+                class="w-30 h-auto"
+                src={Logo}
+                alt="Logo de Barreto Construcciones"
+                loading="lazy"
+            />
+        </div>
+        <div class="flex items-center justify-center">
+            <button
+                type="button"
+                id="menu__button"
+                class="text-neutral-50 focus:outline-1 outline-neutral-50 p-2 hover:bg-[#dd6c3c4f] rounded-md"
+            >
+                <MenuIcon />
+            </button>
+            <div
+                class="hidden w-full absolute top-12 left-0 z-20 bg-neutral-50 rounded-md"
+                id="menu__items"
+            >
+                <ul class="w-full">
+                    {
+                        menu.map((item) => (
+                            <li>
+                                <a
+                                    href={item.link}
+                                    class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f] font-semibold"
+                                >
+                                    {item.name}
+                                </a>
+                                {item?.submenu ? (
+                                    <ul class="ml-8">
+                                        {item.submenu.map((subItem) => (
+                                            <li>
+                                                <a
+                                                    class="block px-4 py-2 text-sm text-neutral-900 hover:bg-[#dd6c3c4f]"
+                                                    href={subItem.link}
+                                                >
+                                                    {subItem.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : null}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+    #header {
+        animation-timeline: scroll();
+        animation-range: 0 350px;
+    }
+</style>
+
+<script>
+    const menuButton = document.querySelector(
+        "#menu__button"
+    ) as HTMLButtonElement;
+    const menuItems = document.querySelector("#menu__items") as HTMLDivElement;
+    
+    menuButton.addEventListener("click", (e) => {
+        menuItems.classList.toggle("hidden");
+    });
+    
+</script>

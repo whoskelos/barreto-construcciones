@@ -1,12 +1,35 @@
 ---
+import HeroCarousel from "src/components/HeroCarousel.astro";
 import Layout from "../layouts/Layout.astro";
-import Header from "../sections/Header.astro";
-import Main from "../sections/Main.astro";
-import Footer from "../sections/Footer.astro";
+import ServiceCard from "src/components/ServiceCard.astro";
+
+import { services } from "@data";
 ---
 
-<Layout title="Servicios">
-    <Header />
-    <Main />
-    <Footer />
+<Layout title="Barreto Construcciones - Inicio">
+    <HeroCarousel />
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <h2
+            class="text-3xl sm:text-4xl md:text-5xl text-neutral-900 text-center font-bold"
+        >
+            Nuestros servicios
+        </h2>
+        <p class="text-md text-neutral-800 text-center pb-12">
+            Soluciones integrales de construcción y rehabilitación adaptadas a
+            sus necesidades
+        </p>
+        <div
+            class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            {
+                services.map((service) => (
+                    <ServiceCard
+                        name={service.name}
+                        description={service.description}
+                        icon={service.icon}
+                    />
+                ))
+            }
+        </div>
+    </section>
 </Layout>

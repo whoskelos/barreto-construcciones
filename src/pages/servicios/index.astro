@@ -2,8 +2,6 @@
 import Image from "astro/components/Image.astro";
 
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../sections/Header.astro";
-import Footer from "../../sections/Footer.astro";
 
 import HeroImage from "../../assets/img/featured/edificacion/3.webp";
 import ServiceCard from "../../components/services/ServiceCard.astro";
@@ -12,58 +10,60 @@ import { services } from "@data";
 ---
 
 <Layout title="Barreto Construcciones">
-  <Header />
-  <main>
     <section
-      class="relative h-[30vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden"
+        class="relative h-[30vh] min-h-[200px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden"
     >
-      <div class="absolute inset-0">
-        <Image
-          src={HeroImage}
-          alt="Foto tomando medidas en obra civil"
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-black/70"></div>
-      </div>
-
-      <div
-        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start animate-fade-in-up"
-      >
-        <div class="max-w-3xl">
-          <p
-            class="text-accent text-sm sm:text-md md:text-lg text-primary-500 font-semibold uppercase tracking-wider mb-3 md:mb-4"
-          >
-            Barreto Infraestructuras
-          </p>
-          <p
-            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white"
-          >
-            Nuestros servicios
-          </p>
+        <div class="absolute inset-0">
+            <Image
+                src={HeroImage}
+                alt="Foto tomando medidas en obra civil"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/70"></div>
         </div>
-      </div>
+
+        <div
+            class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start animate-fade-in-up"
+        >
+            <div class="max-w-3xl">
+                <p
+                    class="text-accent text-sm sm:text-md md:text-lg text-primary-500 font-semibold uppercase tracking-wider mb-3 md:mb-4"
+                >
+                    Barreto Infraestructuras
+                </p>
+                <p
+                    class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white"
+                >
+                    Nuestros servicios
+                </p>
+            </div>
+        </div>
     </section>
 
     <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <h1
-        class="text-3xl sm:text-4xl md:text-5xl max-w-4xl mx-auto text-neutral-900 text-center font-bold mb-8"
-      >
-        Servicios integrales de construcción para empresas e instituciones
-      </h1>
-      <p class="text-md text-neutral-800 text-center pb-12 max-w-3xl mx-auto">
-        Barreto Infraestructuras cuenta con un equipo multidisciplinar altamente
-        cualificado.
-      </p>
+        <h1
+            class="text-3xl sm:text-4xl md:text-5xl max-w-4xl mx-auto text-neutral-900 text-center font-bold mb-8"
+        >
+            Servicios integrales de construcción para empresas e instituciones
+        </h1>
+        <p class="text-md text-neutral-800 text-center pb-12 max-w-3xl mx-auto">
+            Barreto Infraestructuras cuenta con un equipo multidisciplinar
+            altamente cualificado.
+        </p>
 
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {
-            services.map((service) => (
-                <ServiceCard name={service.name} description={service.fullDescription} image={service.image} url={service.url} />
-            ))
-        }
-    </div>
-
+        <div
+            class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+            {
+                services.map((service) => (
+                    <ServiceCard
+                        name={service.name}
+                        description={service.fullDescription}
+                        image={service.image}
+                        url={service.url}
+                    />
+                ))
+            }
+        </div>
     </section>
-  </main>
-  <Footer />
 </Layout>
