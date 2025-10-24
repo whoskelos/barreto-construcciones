@@ -11,13 +11,13 @@ import factory from '@assets/svg/factory.svg';
 import hammer from '@assets/svg/hammer.svg';
 import wrench from '@assets/svg/wrench.svg';
 
-const ICON_MAP: any = {
-    building: building,
-    construction: construction,
-    factory: factory,
-    hammer: hammer,
-    wrench: wrench
-};
+const ICON_MAP: Record<string, any> = {
+    building,
+    construction,
+    factory,
+    hammer,
+    wrench
+} as const;
 
 const { name, description, icon } = Astro.props;
 
