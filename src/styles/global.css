@@ -35,16 +35,4 @@
     --color-neutral-700: #9b897d;
     --color-neutral-800: #776765;
     --color-neutral-900: #4f4443;
-
-    --animate-blur-scroll: blur-scroll linear both;
-
-    @keyframes blur-scroll {
-        to {
-            box-shadow:
-                0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-                0px 5px 50px rgba(0, 0, 0, 0.1);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-    }
 }

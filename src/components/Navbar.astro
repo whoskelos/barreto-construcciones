@@ -1,0 +1,247 @@
+---
+import { Image } from "astro:assets";
+import { menu } from "@data";
+
+import Logo from "../assets/img/logo.webp";
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="w-full fixed left-0 top-0 z-20 bg-white shadow-sm border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="/" class="flex items-center">
+                    <Image
+                        src={Logo}
+                        alt="Barreto Construcciones Logo"
+                        width={150}
+                        height={50}
+                    />
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex lg:items-center lg:space-x-1">
+                {
+                    menu.map((item) => (
+                        <div class="relative group">
+                            <a
+                                href={item.link}
+                                class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-1
+                ${
+                    currentPath === item.link
+                        ? "text-primary-600 bg-primary-50"
+                        : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                }`}
+                            >
+                                {item.name}
+                                {item.submenu && (
+                                    <svg
+                                        class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                )}
+                            </a>
+
+                            {item.submenu && (
+                                <div class="absolute left-0 mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    <div class="bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+                                        {item.submenu.map((subitem) => (
+                                            <a
+                                                href={subitem.link}
+                                                class={`block px-4 py-2.5 text-sm transition-colors duration-150
+                        ${
+                            currentPath === subitem.link
+                                ? "text-primary-600 bg-primary-50 border-l-3 border-primary-600"
+                                : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 border-l-3 border-transparent"
+                        }`}
+                                            >
+                                                {subitem.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- CTA Button Desktop -->
+            <div class="hidden lg:flex lg:items-center">
+                <a
+                    href="/contacto"
+                    class="px-6 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors duration-200 shadow-sm"
+                >
+                    Solicitar Presupuesto
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="lg:hidden">
+                <button
+                    id="mobile-menu-button"
+                    type="button"
+                    class="inline-flex items-center justify-center p-2 rounded-lg text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 transition-colors duration-200"
+                    aria-expanded="false"
+                >
+                    <span class="sr-only">Abrir menú</span>
+                    <svg
+                        id="menu-icon"
+                        class="block h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg
+                        id="close-icon"
+                        class="hidden h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-neutral-200">
+        <div class="px-4 py-4 space-y-1">
+            {
+                menu.map((item) => (
+                    <div>
+                        {item.submenu ? (
+                            <div>
+                                <button
+                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-medium text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                                    data-submenu={item.name.toLowerCase()}
+                                >
+                                    {item.name}
+                                    <svg
+                                        class="submenu-arrow w-5 h-5 transition-transform duration-200"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="mobile-submenu hidden pl-4 mt-1 space-y-1"
+                                    data-submenu={item.name.toLowerCase()}
+                                >
+                                    {item.submenu.map((subitem) => (
+                                        <a
+                                            href={subitem.link}
+                                            class={`block px-4 py-2.5 text-sm rounded-lg transition-colors duration-200
+                      ${
+                          currentPath === subitem.link
+                              ? "text-primary-600 bg-primary-50"
+                              : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                      }`}
+                                        >
+                                            {subitem.name}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <a
+                                href={item.link}
+                                class={`block px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200
+                ${
+                    currentPath === item.link
+                        ? "text-primary-600 bg-primary-50"
+                        : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                }`}
+                            >
+                                {item.name}
+                            </a>
+                        )}
+                    </div>
+                ))
+            }
+
+            <div class="pt-4">
+                <a
+                    href="/contacto"
+                    class="block w-full px-4 py-3 bg-primary-600 text-white text-center text-base font-medium rounded-lg hover:bg-primary-700 transition-colors duration-200 shadow-sm"
+                >
+                    Solicitar Presupuesto
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    menuButton?.addEventListener("click", () => {
+        const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", (!isExpanded).toString());
+        mobileMenu?.classList.toggle("hidden");
+        menuIcon?.classList.toggle("hidden");
+        closeIcon?.classList.toggle("hidden");
+    });
+
+    // Mobile submenu toggles
+    const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
+    submenuButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const submenuName = button.getAttribute("data-submenu");
+            const submenu = document.querySelector(
+                `.mobile-submenu[data-submenu="${submenuName}"]`
+            );
+            const arrow = button.querySelector(".submenu-arrow");
+
+            submenu?.classList.toggle("hidden");
+            arrow?.classList.toggle("rotate-180");
+        });
+    });
+</script>
+
+<style>
+    /* Smooth transitions for dropdowns */
+    .group:hover > div {
+        display: block;
+    }
+
+    /* Custom border width for active state */
+    .border-l-3 {
+        border-left-width: 3px;
+    }
+</style>
