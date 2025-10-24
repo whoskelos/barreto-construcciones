@@ -141,48 +141,50 @@ const featuredProjects3 = [
         </p>
 
         <div class="featured-projects-container space-y-4">
-            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
                 {
                     featuredProjects1.map((project) => (
                             <Image
                                 src={project.image}
                                 alt={project.title}
-                                width={500}
-                                height={500}
+                                width={400}
+                                height={225}
                                 decoding="async"
                                 loading="eager"
-                                priority={true}
-                                class="featured-project-1 object-cover aspect-[16/9] rounded-md"
+                                quality={85}
+                                class="featured-project featured-project-1 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
             </div>
-            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
                 {
                     featuredProjects2.map((project) => (
                             <Image
                                 src={project.image}
                                 alt={project.title}
-                                width={500}
-                                height={500}
+                                width={400}
+                                height={225}
                                 decoding="async"
                                 loading="lazy"
-                                class="featured-project-2 object-cover aspect-[16/9] rounded-md"
+                                quality={85}
+                                class="featured-project featured-project-2 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
             </div>
-            <div class="featured-projects w-full flex gap-4 overflow-hidden rounded-md">
+            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
                 {
                     featuredProjects3.map((project) => (
                             <Image
                                 src={project.image}
                                 alt={project.title}
-                                width={500}
-                                height={500}
+                                width={400}
+                                height={225}
                                 decoding="async"
                                 loading="lazy"
-                                class="featured-project-3 object-cover aspect-[16/9] rounded-md"
+                                quality={85}
+                                class="featured-project featured-project-3 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
@@ -191,45 +193,89 @@ const featuredProjects3 = [
     </div>
 </section>
 
+<style>
+    .featured-projects-container {
+        contain: layout style paint;
+    }
+
+    .featured-row {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    .featured-project {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        width: clamp(250px, 30vw, 400px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .featured-project,
+        .featured-row {
+            will-change: auto;
+        }
+    }
+</style>
+
 <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
     gsap.registerPlugin(ScrollTrigger);
 
-    const container = document.querySelector(".featured-projects-container");
-    
-    if (container) {
+    // Esperar a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector(".featured-projects-container");
+        
+        if (!container) return;
+
         const projects = gsap.utils.toArray(".featured-project-1");
         const projects2 = gsap.utils.toArray(".featured-project-2");
         const projects3 = gsap.utils.toArray(".featured-project-3");
 
-        // Establecer posiciones iniciales antes de la animación
-        gsap.set(projects, { xPercent: 0 });
-        gsap.set(projects2, { xPercent: -100 * (projects2.length - 1) });
-        gsap.set(projects3, { xPercent: 0 });
+        // Establecer posiciones iniciales
+        gsap.set(projects, { x: 0, force3D: true });
+        gsap.set(projects2, { x: () => -100 * (projects2.length - 1) + "%", force3D: true });
+        gsap.set(projects3, { x: 0, force3D: true });
 
+        // Crear timeline con configuración optimizada
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: ".featured-projects-container",
+                trigger: container,
                 start: "top 80%",
                 end: "bottom 20%",
-                scrub: 1,
-                // markers: true,
+                scrub: 0.5,
+                invalidateOnRefresh: true,
             },
         });
 
-        // Animaciones simultáneas con ease suave
+        // Animaciones usando x en lugar de xPercent para mejor rendimiento
         tl.to(projects, {
-            xPercent: -100 * (projects.length - 1),
-            ease: "none"
+            x: () => -100 * (projects.length - 1) + "%",
+            ease: "none",
+            force3D: true,
         }, 0)
         .to(projects2, {
-            xPercent: 0,
-            ease: "none"
+            x: 0,
+            ease: "none",
+            force3D: true,
         }, 0)
         .to(projects3, {
-            xPercent: -100 * (projects3.length - 1),
-            ease: "none"
+            x: () => -100 * (projects3.length - 1) + "%",
+            ease: "none",
+            force3D: true,
         }, 0);
-    }
+
+        // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                ScrollTrigger.getAll().forEach(st => st.disable());
+            } else {
+                ScrollTrigger.getAll().forEach(st => st.enable());
+            }
+        });
+    });
 </script>
