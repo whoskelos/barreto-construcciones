@@ -7,7 +7,7 @@
       "@data": ["src/data/data.json"],
       "@components/*": ["./src/components/*"],
       "@sections/*": ["./src/sections/*"],
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["./src/assets/*"],
     }
   }
 }
