@@ -7,7 +7,7 @@ import Logo from "@assets/img/logo.webp";
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="w-full fixed left-0 top-0 z-20 bg-white shadow-sm border-b border-neutral-200">
+<nav class="w-full bg-white shadow-sm border-b border-neutral-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
@@ -18,22 +18,26 @@ const currentPath = Astro.url.pathname;
                         alt="Barreto Construcciones Logo"
                         width={150}
                         height={50}
+                        transition:persist="logo"
+                        loading="eager"
                     />
                 </a>
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden lg:flex lg:items-center lg:space-x-1">
+            <div class="hidden lg:flex lg:items-center lg:space-x-1 relative" id="desktop-nav">
+                <div class="nav-bg-slider absolute rounded-lg bg-primary-50 transition-all duration-300 ease-out opacity-0"></div>
                 {
-                    menu.map((item) => (
+                    menu.map((item, index) => (
                         <div class="relative group">
                             <a
                                 href={item.link}
-                                class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-1
+                                data-nav-index={index}
+                                class={`nav-link relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-1
                 ${
                     currentPath === item.link
-                        ? "text-primary-600 bg-primary-50"
-                        : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                        ? "text-primary-600"
+                        : "text-neutral-900 hover:text-primary-600"
                 }`}
                             >
                                 {item.name}
@@ -204,33 +208,150 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 <script>
-    // Mobile menu toggle
-    const menuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuIcon = document.getElementById("menu-icon");
-    const closeIcon = document.getElementById("close-icon");
+    function initNavSlider() {
+        const desktopNav = document.getElementById('desktop-nav');
+        const slider = desktopNav?.querySelector('.nav-bg-slider') as HTMLElement;
+        const navLinks = desktopNav?.querySelectorAll('.nav-link') as NodeListOf<HTMLElement>;
 
-    menuButton?.addEventListener("click", () => {
-        const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-        menuButton.setAttribute("aria-expanded", (!isExpanded).toString());
-        mobileMenu?.classList.toggle("hidden");
-        menuIcon?.classList.toggle("hidden");
-        closeIcon?.classList.toggle("hidden");
+        if (!slider || !navLinks || navLinks.length === 0) return;
+
+        // Encontrar el link activo
+        const activeLink = Array.from(navLinks).find(link => 
+            link.classList.contains('text-primary-600')
+        );
+
+        // Función para mover el slider
+        const moveSlider = (link: HTMLElement) => {
+            const rect = link.getBoundingClientRect();
+            const navRect = desktopNav!.getBoundingClientRect();
+            
+            slider.style.width = `${rect.width}px`;
+            slider.style.height = `${rect.height}px`;
+            slider.style.left = `${rect.left - navRect.left}px`;
+            slider.style.top = `${rect.top - navRect.top}px`;
+            slider.style.opacity = '1';
+        };
+
+        // Posicionar el slider en el elemento activo al cargar
+        if (activeLink) {
+            moveSlider(activeLink);
+        }
+
+        // Añadir event listeners a cada link
+        navLinks.forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                moveSlider(link);
+            });
+        });
+
+        // Volver al elemento activo cuando el mouse sale del nav
+        desktopNav?.addEventListener('mouseleave', () => {
+            if (activeLink) {
+                moveSlider(activeLink);
+            } else {
+                slider.style.opacity = '0';
+            }
+        });
+    }
+
+    function initMobileMenu() {
+        // Mobile menu toggle
+        const menuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+
+        // Function to close mobile menu
+        const closeMobileMenu = () => {
+            const currentMenuButton = document.getElementById("mobile-menu-button");
+            const currentMobileMenu = document.getElementById("mobile-menu");
+            const currentMenuIcon = document.getElementById("menu-icon");
+            const currentCloseIcon = document.getElementById("close-icon");
+            
+            if (currentMenuButton && currentMobileMenu && currentMenuIcon && currentCloseIcon) {
+                currentMenuButton.setAttribute("aria-expanded", "false");
+                currentMobileMenu.classList.add("hidden");
+                currentMenuIcon.classList.remove("hidden");
+                currentCloseIcon.classList.add("hidden");
+            }
+        };
+
+        if (menuButton && mobileMenu && menuIcon && closeIcon) {
+            // Remove any existing listeners by cloning the node
+            const newMenuButton = menuButton.cloneNode(true) as HTMLElement;
+            menuButton.parentNode?.replaceChild(newMenuButton, menuButton);
+
+            newMenuButton.addEventListener("click", () => {
+                const currentMobileMenu = document.getElementById("mobile-menu");
+                const currentMenuIcon = document.getElementById("menu-icon");
+                const currentCloseIcon = document.getElementById("close-icon");
+                
+                const isExpanded = newMenuButton.getAttribute("aria-expanded") === "true";
+                newMenuButton.setAttribute("aria-expanded", (!isExpanded).toString());
+                currentMobileMenu?.classList.toggle("hidden");
+                currentMenuIcon?.classList.toggle("hidden");
+                currentCloseIcon?.classList.toggle("hidden");
+            });
+        }
+
+        // Mobile submenu toggles
+        const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
+        submenuButtons.forEach((button) => {
+            // Remove any existing listeners by cloning the node
+            const newButton = button.cloneNode(true) as HTMLElement;
+            button.parentNode?.replaceChild(newButton, button);
+
+            newButton.addEventListener("click", () => {
+                const submenuName = newButton.getAttribute("data-submenu");
+                const submenu = document.querySelector(
+                    `.mobile-submenu[data-submenu="${submenuName}"]`
+                );
+                const arrow = newButton.querySelector(".submenu-arrow");
+
+                submenu?.classList.toggle("hidden");
+                arrow?.classList.toggle("rotate-180");
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        const currentMobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = currentMobileMenu?.querySelectorAll('a');
+        mobileLinks?.forEach((link) => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        initNavSlider();
+        initMobileMenu();
+    });
+    
+    // Initialize immediately if DOM is already loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            initNavSlider();
+            initMobileMenu();
+        });
+    } else {
+        initNavSlider();
+        initMobileMenu();
+    }
+
+    // Re-initialize after view transitions
+    document.addEventListener('astro:after-swap', () => {
+        setTimeout(() => {
+            initNavSlider();
+            initMobileMenu();
+        }, 0);
     });
 
-    // Mobile submenu toggles
-    const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
-    submenuButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const submenuName = button.getAttribute("data-submenu");
-            const submenu = document.querySelector(
-                `.mobile-submenu[data-submenu="${submenuName}"]`
-            );
-            const arrow = button.querySelector(".submenu-arrow");
-
-            submenu?.classList.toggle("hidden");
-            arrow?.classList.toggle("rotate-180");
-        });
+    // Re-initialize after page show (for back/forward navigation)
+    document.addEventListener('astro:page-load', () => {
+        initNavSlider();
+        initMobileMenu();
     });
 </script>
 

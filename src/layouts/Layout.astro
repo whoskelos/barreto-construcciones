@@ -1,41 +1,114 @@
 ---
 import Footer from "@sections/Footer.astro";
 import Header from "@sections/Header.astro";
-
-// import { ClientRouter } from 'astro:transitions';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
-    title: string | "Barreto Construcciones";
+    title?: string;
+    description?: string;
+    keywords?: string;
+    ogImage?: string;
+    ogType?: string;
+    canonical?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title = "Barreto Construcciones - Empresa de Construcción en Madrid y Toledo",
+    description = "Empresa líder en construcción, edificación, obra civil, reformas y rehabilitación en Madrid y Toledo. +20 años de experiencia. Proyectos corporativos, industriales y residenciales con garantía de calidad.",
+    keywords = "construcción Madrid, construcción Toledo, obra civil, edificación, reformas, rehabilitación, mantenimiento industrial, empresa construcción, construcción industrial, reformas empresas, proyectos construcción",
+    ogImage = "/logo.webp",
+    ogType = "website",
+    canonical = Astro.url.pathname
+} = Astro.props;
+
+const siteUrl = "https://barretoconstrucciones.es";
+const canonicalURL = new URL(canonical, siteUrl).href;
+const fullOgImage = new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+        <!-- Primary Meta Tags -->
         <title>{title}</title>
-        <meta name="description" content="Barreto Construcciones" />
-        <meta
-            name="keywords"
-            content="Barreto Construcciones ofrece soluciones profesionales en obra civil, edificación y rehabilitación de edificios en Madrid y Toledo. Expertos en proyectos corporativos e industriales, garantizando calidad, seguridad y cumplimiento en cada obra."
-        />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
         <meta name="author" content="Barreto Construcciones" />
-        <meta
-            property="og:description"
-            content="Barreto Construcciones ofrece soluciones integrales en construcción, edificación, obra civil, reformas y rehabilitación en Madrid y Toledo. Expertos en proyectos corporativos, industriales y residenciales con garantía, calidad y cumplimiento."
-        />
-        <meta property="og:image" content="/logo.webp" />
-        <meta property="og:url" content="https://barretoconstrucciones.es" />
-        <meta property="og:type" content="website" />
-        <!-- <ClientRouter /> -->
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={canonicalURL} />
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.webp" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={fullOgImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="Barreto Construcciones" />
+        
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalURL} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={fullOgImage} />
+        
+        <!-- Additional SEO -->
+        <meta name="geo.region" content="ES-M" />
+        <meta name="geo.placename" content="Madrid, Toledo" />
+        <meta name="geo.position" content="40.416775;-3.703790" />
+        <meta name="ICBM" content="40.416775, -3.703790" />
+        
+        <!-- Schema.org JSON-LD -->
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "GeneralContractor",
+            "name": "Barreto Construcciones",
+            "description": "Empresa de construcción especializada en edificación, obra civil, reformas y rehabilitación",
+            "url": siteUrl,
+            "logo": fullOgImage,
+            "telephone": ["+34925090798", "+34911460524"],
+            "address": [
+                {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Yuncos",
+                    "addressRegion": "Toledo",
+                    "postalCode": "45210",
+                    "addressCountry": "ES"
+                },
+                {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Calle Gutenberg 2 - 1º Planta",
+                    "addressLocality": "Getafe",
+                    "addressRegion": "Madrid",
+                    "postalCode": "28906",
+                    "addressCountry": "ES"
+                }
+            ],
+            "areaServed": ["Madrid", "Toledo"],
+            "priceRange": "€€€",
+            "sameAs": [
+                "https://www.instagram.com/barretoconstrucciones/",
+                "https://www.linkedin.com/company/barreto-construcciones/"
+            ]
+        })} />
+        
+        <ViewTransitions />
     </head>
     <body>
         <Header />
-        <main>
+        <main class="pt-20">
             <slot />
         </main>
         <Footer />
@@ -51,15 +124,156 @@ const { title } = Astro.props;
         --hero-overlay: 210 15% 10%;
         --hero-text: 0 0% 100%;
     }
+
+    /* View Transitions personalizadas - Solo Fade */
+    @view-transition {
+        navigation: auto;
+    }
+
+    /* Transiciones globales suaves con fade */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0.3s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    ::view-transition-old(root) {
+        animation-name: fade-out-smooth;
+    }
+
+    ::view-transition-new(root) {
+        animation-name: fade-in-smooth;
+    }
+
+    /* Animaciones de fade profesionales y suaves */
+    @keyframes fade-out-smooth {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fade-in-smooth {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Transiciones para header y footer - Sin animación para evitar parpadeo */
+    ::view-transition-old(header),
+    ::view-transition-new(header),
+    ::view-transition-old(footer),
+    ::view-transition-new(footer) {
+        animation: none;
+    }
+
+    ::view-transition-group(header),
+    ::view-transition-group(footer) {
+        animation-duration: 0s;
+        z-index: 9999;
+    }
+
+    ::view-transition-group(header) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    /* Transiciones para imágenes - Solo fade */
+    ::view-transition-old(img-edificacion),
+    ::view-transition-new(img-edificacion),
+    ::view-transition-old(img-obra-civil),
+    ::view-transition-new(img-obra-civil),
+    ::view-transition-old(img-reformas),
+    ::view-transition-new(img-reformas),
+    ::view-transition-old(img-rehabilitacion),
+    ::view-transition-new(img-rehabilitacion),
+    ::view-transition-old(img-mantenimiento),
+    ::view-transition-new(img-mantenimiento) {
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        /* Mantener la posición fija durante la transición */
+        mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(img-edificacion),
+    ::view-transition-old(img-obra-civil),
+    ::view-transition-old(img-reformas),
+    ::view-transition-old(img-rehabilitacion),
+    ::view-transition-old(img-mantenimiento) {
+        animation-name: fade-out-smooth;
+    }
+
+    ::view-transition-new(img-edificacion),
+    ::view-transition-new(img-obra-civil),
+    ::view-transition-new(img-reformas),
+    ::view-transition-new(img-rehabilitacion),
+    ::view-transition-new(img-mantenimiento) {
+        animation-name: fade-in-smooth;
+    }
+
+    /* Prevenir el parpadeo blanco durante las transiciones */
+    ::view-transition-group(img-edificacion),
+    ::view-transition-group(img-obra-civil),
+    ::view-transition-group(img-reformas),
+    ::view-transition-group(img-rehabilitacion),
+    ::view-transition-group(img-mantenimiento) {
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+    }
+
+    /* Mejora de rendimiento para View Transitions */
+    @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root),
+        ::view-transition-new(root),
+        ::view-transition-old(img-edificacion),
+        ::view-transition-new(img-edificacion),
+        ::view-transition-old(img-obra-civil),
+        ::view-transition-new(img-obra-civil),
+        ::view-transition-old(img-reformas),
+        ::view-transition-new(img-reformas),
+        ::view-transition-old(img-rehabilitacion),
+        ::view-transition-new(img-rehabilitacion),
+        ::view-transition-old(img-mantenimiento),
+        ::view-transition-new(img-mantenimiento) {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+        }
+    }
 </style>
 
 <style>
-    html,
-    body {
+    html {
         margin: 0;
+        padding: 0;
         width: 100%;
         height: 100%;
+        background-color: white;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100vh;
         font-family: "Roboto", sans-serif;
         background-color: var(--color-neutral-50);
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1 0 auto;
+        width: 100%;
+    }
+
+    footer {
+        flex-shrink: 0;
     }
 </style>

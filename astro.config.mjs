@@ -7,6 +7,8 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://barretoconstrucciones.es',
+  
   vite: {
       plugins: [tailwindcss()],
   },

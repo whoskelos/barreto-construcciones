@@ -36,7 +36,7 @@ const slides = [
 ];
 ---
 
-<section class="relative w-full h-screen overflow-hidden">
+<section class="relative w-full h-screen overflow-hidden bg-neutral-900">
     <div class="embla h-full">
         <div class="embla__container h-full flex">
             {
@@ -45,9 +45,10 @@ const slides = [
                         <Image
                             src={slide.image}
                             alt={slide.alt}
-                            class="object-cover w-full h-full"
+                            class="object-cover w-full h-full brightness-[0.5] contrast-[1.1]"
+                            loading="eager"
                         />
-                        <div class="absolute inset-0 bg-gradient-to-r from-[hsl(var(--hero-overlay))] via-[hsl(var(--hero-overlay))]/70 to-transparent" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
                     </div>
                 ))
             }
@@ -55,7 +56,7 @@ const slides = [
     </div>
     <div class="absolute inset-0 flex items-center">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl animate-fade-in-up">
+            <div class="max-w-3xl hero-content">
                 <h1
                     class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-50 leading-tight mb-6 tracking-tight"
                 >
@@ -80,6 +81,49 @@ const slides = [
         </div>
     </div>
 </section>
+
+<style>
+    /* Animación suave para el contenido del hero */
+    .hero-content {
+        animation: fadeInUp 1.2s ease-out 0.4s forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Transición suave para el cambio de slides */
+    .embla__slide {
+        transition: opacity 0.8s ease-out;
+    }
+
+    /* Mejora la transición de las imágenes */
+    .embla__slide img {
+        transition: filter 0.8s ease-out;
+    }
+
+    /* Respeto por preferencias de animación reducida */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-content {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+        
+        .embla__slide,
+        .embla__slide img {
+            transition: none;
+        }
+    }
+</style>
 
 <script>
     import EmblaCarousel from "embla-carousel";

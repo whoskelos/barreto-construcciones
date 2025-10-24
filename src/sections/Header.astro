@@ -2,6 +2,16 @@
 import Navbar from '@components/Navbar.astro';
 ---
 
-<header class="w-full">
+<header class="w-full fixed top-0 left-0 z-50" transition:name="header" transition:animate="none">
     <Navbar />
 </header>
+
+<style>
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+</style>
