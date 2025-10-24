@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 import heroImage1 from "@assets/img/carousel/edificacion.webp";
 import heroImage2 from "@assets/img/carousel/obra_civil.webp";
 import heroImage3 from "@assets/img/carousel/rehabilitación.webp";
 import heroImage4 from "@assets/img/carousel/reforma.webp";
 import heroImage5 from "@assets/img/carousel/mantenimiento.webp";
+
 const slides = [
     {
         id: 1,
@@ -39,8 +42,8 @@ const slides = [
             {
                 slides.map((slide) => (
                     <div class="embla__slide relative min-w-0 flex-[0_0_100%]">
-                        <img
-                            src={slide.image.src}
+                        <Image
+                            src={slide.image}
                             alt={slide.alt}
                             class="object-cover w-full h-full"
                         />
