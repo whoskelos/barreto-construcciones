@@ -40,12 +40,16 @@ const slides = [
     <div class="embla h-full">
         <div class="embla__container h-full flex">
             {
-                slides.map((slide) => (
+                slides.map((slide, index) => (
                     <div class="embla__slide relative min-w-0 flex-[0_0_100%]">
                         <Image
                             src={slide.image}
                             alt={slide.alt}
                             class="object-cover w-full h-full"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding={index === 0 ? "sync" : "async"}
+                            quality={85}
+                            densities={[1, 2]}
                         />
                         <div class="absolute inset-0 bg-gradient-to-r from-[hsl(var(--hero-overlay))] via-[hsl(var(--hero-overlay))]/70 to-transparent" />
                     </div>

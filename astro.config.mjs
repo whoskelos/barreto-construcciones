@@ -9,11 +9,37 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   vite: {
       plugins: [tailwindcss()],
+      build: {
+          cssMinify: 'lightningcss',
+          rollupOptions: {
+              output: {
+                  manualChunks: {
+                      'carousel': ['embla-carousel', 'embla-carousel-autoplay'],
+                      'animations': ['gsap'],
+                  }
+              }
+          }
+      }
   },
 
   image: {
       service: passthroughImageService(),
   },
 
-  adapter: vercel(),
+  prefetch: {
+      prefetchAll: true,
+      defaultStrategy: 'viewport'
+  },
+
+  compressHTML: true,
+
+  build: {
+      inlineStylesheets: 'auto',
+  },
+
+  adapter: vercel({
+      webAnalytics: {
+          enabled: true
+      }
+  }),
 });

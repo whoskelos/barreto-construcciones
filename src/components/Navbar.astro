@@ -218,20 +218,22 @@ const currentPath = Astro.url.pathname;
         closeIcon?.classList.toggle("hidden");
     });
 
-    // Mobile submenu toggles
-    const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
-    submenuButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const submenuName = button.getAttribute("data-submenu");
-            const submenu = document.querySelector(
-                `.mobile-submenu[data-submenu="${submenuName}"]`
-            );
-            const arrow = button.querySelector(".submenu-arrow");
+    // Mobile submenu toggles - Solo cargar si es móvil
+    if (window.innerWidth < 1024) {
+        const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
+        submenuButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const submenuName = button.getAttribute("data-submenu");
+                const submenu = document.querySelector(
+                    `.mobile-submenu[data-submenu="${submenuName}"]`
+                );
+                const arrow = button.querySelector(".submenu-arrow");
 
-            submenu?.classList.toggle("hidden");
-            arrow?.classList.toggle("rotate-180");
+                submenu?.classList.toggle("hidden");
+                arrow?.classList.toggle("rotate-180");
+            });
         });
-    });
+    }
 </script>
 
 <style>

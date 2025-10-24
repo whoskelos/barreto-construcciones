@@ -24,14 +24,28 @@ const { title } = Astro.props;
             content="Barreto Construcciones ofrece soluciones profesionales en obra civil, edificación y rehabilitación de edificios en Madrid y Toledo. Expertos en proyectos corporativos e industriales, garantizando calidad, seguridad y cumplimiento en cada obra."
         />
         <meta name="author" content="Barreto Construcciones" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://barretoconstrucciones.es" />
+        <meta property="og:title" content={title} />
         <meta
             property="og:description"
             content="Barreto Construcciones ofrece soluciones integrales en construcción, edificación, obra civil, reformas y rehabilitación en Madrid y Toledo. Expertos en proyectos corporativos, industriales y residenciales con garantía, calidad y cumplimiento."
         />
         <meta property="og:image" content="/logo.webp" />
-        <meta property="og:url" content="https://barretoconstrucciones.es" />
-        <meta property="og:type" content="website" />
-        <!-- <ClientRouter /> -->
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://barretoconstrucciones.es" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content="Barreto Construcciones ofrece soluciones integrales en construcción, edificación, obra civil, reformas y rehabilitación en Madrid y Toledo." />
+        <meta property="twitter:image" content="/logo.webp" />
+        
+        <!-- Preconnect para fuentes -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        
+        <!-- <!-- <ClientRouter /> -->
     </head>
     <body>
         <Header />
