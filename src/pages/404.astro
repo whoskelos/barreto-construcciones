@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import UnderConstruction from "../assets/svg/under-construction.svg";
+---
+
+<Layout title="Error 404 - Página no encontrada">
+    <section class="h-dvh w-dvw grid place-items-center">
+        <div>
+            <Image
+                src={UnderConstruction}
+                alt="Error 404 - Página no encontrada"
+                width={300}
+                height={300}
+            />
+            <div class="pt-6">
+                <p class="text-xl">Página en construcción...</p>
+                <a
+                    class="inline-flex items-center gap-2 text-md font-semibold tracking-wider text-primary-500 hover:text-primary-600 transition-colors pt-2"
+                    href="/">Volver atrás</a
+                >
+            </div>
+        </div>
+    </section>
+</Layout>
