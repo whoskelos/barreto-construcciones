@@ -199,32 +199,37 @@ const featuredProjects3 = [
     const container = document.querySelector(".featured-projects-container");
     
     if (container) {
+        const projects = gsap.utils.toArray(".featured-project-1");
+        const projects2 = gsap.utils.toArray(".featured-project-2");
+        const projects3 = gsap.utils.toArray(".featured-project-3");
+
+        // Establecer posiciones iniciales antes de la animación
+        gsap.set(projects, { xPercent: 0 });
+        gsap.set(projects2, { xPercent: -100 * (projects2.length - 1) });
+        gsap.set(projects3, { xPercent: 0 });
+
         const tl = gsap.timeline({
-            ease: "power2.out",
             scrollTrigger: {
                 trigger: ".featured-projects-container",
-                start: "top 50%",
-                end: "+=1000",
-                scrub: 2,
+                start: "top 80%",
+                end: "bottom 20%",
+                scrub: 1,
                 // markers: true,
-                toggleActions: "restart pause reverse pause"
             },
         });
 
-        let projects = gsap.utils.toArray(".featured-project-1");
-        let projects2 = gsap.utils.toArray(".featured-project-2");
-        let projects3 = gsap.utils.toArray(".featured-project-3");
-
+        // Animaciones simultáneas con ease suave
         tl.to(projects, {
             xPercent: -100 * (projects.length - 1),
-        }, "<")
+            ease: "none"
+        }, 0)
+        .to(projects2, {
+            xPercent: 0,
+            ease: "none"
+        }, 0)
         .to(projects3, {
             xPercent: -100 * (projects3.length - 1),
-        }, "<")
-            
-
-        tl.from(projects2, {
-            xPercent: -100 * (projects2.length - 1),
-        }, "<")
+            ease: "none"
+        }, 0);
     }
 </script>
