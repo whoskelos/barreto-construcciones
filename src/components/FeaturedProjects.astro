@@ -152,8 +152,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="eager"
                                 quality={85}
-                                densities={[1, 2]}
-                                class="featured-project featured-project-1 object-cover aspect-video rounded-md shrink-0"
+                                class="featured-project featured-project-1 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
@@ -169,8 +168,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="lazy"
                                 quality={85}
-                                densities={[1, 2]}
-                                class="featured-project featured-project-2 object-cover aspect-video rounded-md shrink-0"
+                                class="featured-project featured-project-2 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
@@ -186,8 +184,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="lazy"
                                 quality={85}
-                                densities={[1, 2]}
-                                class="featured-project featured-project-3 object-cover aspect-video rounded-md shrink-0"
+                                class="featured-project featured-project-3 object-cover aspect-[16/9] rounded-md flex-shrink-0"
                             />
                     ))
                 }
@@ -212,28 +209,7 @@ const featuredProjects3 = [
         will-change: transform;
         transform: translateZ(0);
         backface-visibility: hidden;
-        width: clamp(200px, 40vw, 400px);
-        min-width: 200px;
-    }
-
-    /* Optimización para móviles */
-    @media (max-width: 768px) {
-        .featured-project {
-            width: 75vw;
-            min-width: 280px;
-        }
-        
-        .featured-projects-container {
-            padding: 0.5rem 0;
-        }
-    }
-
-    /* Tablets */
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .featured-project {
-            width: 45vw;
-            min-width: 320px;
-        }
+        width: clamp(250px, 30vw, 400px);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -250,23 +226,21 @@ const featuredProjects3 = [
     
     gsap.registerPlugin(ScrollTrigger);
 
-    // Esperar a que el DOM esté completamente cargado
-    document.addEventListener('DOMContentLoaded', () => {
+    function initFeaturedProjects() {
         const container = document.querySelector(".featured-projects-container");
         
         if (!container) return;
+
+        // Limpiar animaciones previas
+        ScrollTrigger.getAll().forEach(st => st.kill());
 
         const projects = gsap.utils.toArray(".featured-project-1");
         const projects2 = gsap.utils.toArray(".featured-project-2");
         const projects3 = gsap.utils.toArray(".featured-project-3");
 
-        // Detectar si es móvil
-        const isMobile = window.innerWidth < 768;
-        const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-        
-        // Ajustar configuración según dispositivo
-        const scrubValue = isMobile ? 0.3 : 0.5;
-        const startPoint = isMobile ? "top 85%" : "top 80%";
+        if (projects.length === 0 || projects2.length === 0 || projects3.length === 0) {
+            return;
+        }
 
         // Establecer posiciones iniciales
         gsap.set(projects, { x: 0, force3D: true });
@@ -277,11 +251,10 @@ const featuredProjects3 = [
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: container,
-                start: startPoint,
+                start: "top 80%",
                 end: "bottom 20%",
-                scrub: scrubValue,
+                scrub: 0.5,
                 invalidateOnRefresh: true,
-                anticipatePin: 1,
             },
         });
 
@@ -301,23 +274,30 @@ const featuredProjects3 = [
             ease: "none",
             force3D: true,
         }, 0);
+    }
 
-        // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                ScrollTrigger.getAll().forEach(st => st.disable());
-            } else {
-                ScrollTrigger.getAll().forEach(st => st.enable());
-            }
-        });
+    // Inicializar en carga inicial
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFeaturedProjects);
+    } else {
+        initFeaturedProjects();
+    }
 
-        // Recalcular en cambio de orientación en móviles
-        if (isMobile || isTablet) {
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    ScrollTrigger.refresh();
-                }, 100);
-            });
+    // Reinicializar después de las view transitions
+    document.addEventListener('astro:after-swap', () => {
+        // Pequeño delay para asegurar que el DOM esté listo
+        setTimeout(initFeaturedProjects, 100);
+    });
+
+    // Reinicializar en page load
+    document.addEventListener('astro:page-load', initFeaturedProjects);
+
+    // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            ScrollTrigger.getAll().forEach(st => st.disable());
+        } else {
+            ScrollTrigger.getAll().forEach(st => st.enable());
         }
     });
 </script>

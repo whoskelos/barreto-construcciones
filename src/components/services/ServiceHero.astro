@@ -11,20 +11,20 @@ const { HeroImage, title, nameTransition } = Astro.props;
 ---
 
 <section
-    class="relative h-[300px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden"
+    class="relative h-[300px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-neutral-900"
 >
     <div class="absolute inset-0">
         <Image
             transition:name={`img-${nameTransition}`}
             src={HeroImage}
             alt="Foto tomando medidas en obra civil"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover brightness-[0.4] contrast-[1.1]"
+            loading="eager"
         />
-        <div class="absolute inset-0 bg-black/70"></div>
     </div>
 
     <div
-        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start animate-fade-in-up"
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start hero-content"
     >
         <div class="max-w-3xl">
             <p
@@ -32,11 +32,44 @@ const { HeroImage, title, nameTransition } = Astro.props;
             >
                 Barreto Infraestructuras
             </p>
-            <p
+            <h1
                 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white"
             >
                 {title}
-            </p>
+            </h1>
         </div>
     </div>
 </section>
+
+<style>
+    /* Animación suave para el contenido del hero */
+    .hero-content {
+        animation: fadeInUp 1s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mejora la transición de la imagen */
+    img {
+        transition: filter 0.5s ease-out;
+    }
+
+    /* Respeto por preferencias de animación reducida */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-content {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

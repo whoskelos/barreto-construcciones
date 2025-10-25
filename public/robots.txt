@@ -1,8 +1,21 @@
+# Robots.txt - Barreto Construcciones
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
 
+# Crawl-delay para ser amigable con los servidores
+Crawl-delay: 1
+
+# Googlebot
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
+# Bingbot
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://barretoconstrucciones.es/sitemap-index.xml
