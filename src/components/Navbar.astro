@@ -131,7 +131,7 @@ const currentPath = Astro.url.pathname;
                         {item.submenu ? (
                             <div>
                                 <button
-                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-medium text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-semibold uppercase tracking-wider text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors duration-200"
                                     data-submenu={item.name.toLowerCase()}
                                 >
                                     {item.name}
@@ -156,7 +156,7 @@ const currentPath = Astro.url.pathname;
                                     {item.submenu.map((subitem) => (
                                         <a
                                             href={subitem.link}
-                                            class={`block px-4 py-2.5 text-sm rounded-lg transition-colors duration-200
+                                            class={`block px-4 py-2.5 text-sm font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
                       ${
                           currentPath === subitem.link
                               ? "text-primary-600 bg-primary-50"
@@ -171,7 +171,7 @@ const currentPath = Astro.url.pathname;
                         ) : (
                             <a
                                 href={item.link}
-                                class={`block px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200
+                                class={`block px-4 py-3 text-base font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
                 ${
                     currentPath === item.link
                         ? "text-primary-600 bg-primary-50"
@@ -184,15 +184,7 @@ const currentPath = Astro.url.pathname;
                     </div>
                 ))
             }
-
-            <div class="pt-4">
-                <a
-                    href="/contacto"
-                    class="block w-full px-4 py-3 bg-primary-600 text-white text-center text-base font-medium rounded-lg hover:bg-primary-700 transition-colors duration-200 shadow-sm"
-                >
-                    Solicitar Presupuesto
-                </a>
-            </div>
+            
         </div>
     </div>
 </nav>
