@@ -24,5 +24,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
-  }
+  },
+  "packageManager": "pnpm@10.18.3+sha1.0202a20aaa3d7ba8bc29b50d95efe1a34dd95773"
 }
