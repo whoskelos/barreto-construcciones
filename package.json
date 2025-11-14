@@ -16,7 +16,7 @@
     "@fontsource-variable/roboto": "5.2.8",
     "@midudev/tailwind-animations": "^0.2.0",
     "@tailwindcss/vite": "4.1.14",
-    "astro": "5.14.1",
+    "astro": "^5.15.7",
     "embla-carousel": "8.6.0",
     "embla-carousel-autoplay": "8.6.0",
     "gsap": "^3.13.0",
@@ -24,6 +24,9 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
+  },
+  "overrides": {
+    "path-to-regexp": "6.3.0"
   },
   "packageManager": "pnpm@10.18.3+sha1.0202a20aaa3d7ba8bc29b50d95efe1a34dd95773"
 }
