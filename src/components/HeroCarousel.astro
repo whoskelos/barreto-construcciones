@@ -134,7 +134,7 @@ const slides = [
 
     const emblaNode = document.querySelector(".embla");
     const options = { loop: true };
-    const plugins = [Autoplay()];
+    const plugins = [Autoplay({ delay: 2000 })];
     if (emblaNode instanceof HTMLElement) {
         const emblaApi = EmblaCarousel(emblaNode, options, plugins);
     }
