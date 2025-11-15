@@ -5,28 +5,28 @@
             "link": "/"
         },
         {
-            "name": "Servicios",
-            "link": "/servicios",
+            "name": "Áreas de negocio",
+            "link": "/areas-de-negocio",
             "submenu": [
                 {
-                    "name": "Edificación",
-                    "link": "/servicios/edificacion"
-                },
-                {
-                    "name": "Obra Civil",
-                    "link": "/servicios/obra-civil"
-                },
-                {
-                    "name": "Reformas",
-                    "link": "/servicios/reformas"
+                    "name": "Industrial",
+                    "link": "/areas-de-negocio/industrial"
                 },
                 {
                     "name": "Rehabilitación",
-                    "link": "/servicios/rehabilitacion"
+                    "link": "/areas-de-negocio/rehabilitacion"
+                },
+                {
+                    "name": "Residencial",
+                    "link": "/areas-de-negocio/residencial"
+                },
+                {
+                    "name": "Obra Civil",
+                    "link": "/areas-de-negocio/obra-civil"
                 },
                 {
                     "name": "Mantenimiento",
-                    "link": "/servicios/mantenimiento"
+                    "link": "/areas-de-negocio/mantenimiento"
                 }
             ]
         },
@@ -41,28 +41,12 @@
     ],
     "services": [
         {
-            "name": "Edificación",
+            "name": "Industrial",
             "description": "Construcción de viviendas, naves y proyectos industriales en Madrid y Toledo.",
             "fullDescription": "Construcción con los más altos estándares de calidad, desde la planificación hasta la entrega final.",
             "icon": "building",
             "image": "edificacion",
-            "url": "/servicios/edificacion"
-        },
-        {
-            "name": "Obra Civil",
-            "description": "Servicios de urbanización, pavimentación, asfaltado, canalizaciones, cimentaciones, muros de contención, infraestructuras eléctricas y cargadores.",
-            "fullDescription": "Desarrollo de infraestructuras civiles con expertise técnico y compromiso con la excelencia en cada proyecto.",
-            "icon": "construction",
-            "image": "obra_civil",
-            "url": "/servicios/obra-civil"
-        },
-        {
-            "name": "Reformas",
-            "description": "Reformas profesionales para negocios, oficinas e industrias.",
-            "fullDescription": "Transformamos espacios con soluciones integrales de reforma, adaptándonos a las necesidades específicas de cada proyecto.",
-            "icon": "hammer",
-            "image": "reformas",
-            "url": "/servicios/reformas"
+            "url": "/areas-de-negocio/industrial"
         },
         {
             "name": "Rehabilitación",
@@ -70,7 +54,23 @@
             "fullDescription": "Servicios especializados en la recuperación y refuerzo estructural de edificios.",
             "icon": "hammer",
             "image": "rehabilitacion",
-            "url": "/servicios/rehabilitacion"
+            "url": "/areas-de-negocio/rehabilitacion"
+        },
+        {
+            "name": "Residencial",
+            "description": "Reformas profesionales para negocios, oficinas e industrias.",
+            "fullDescription": "Transformamos espacios con soluciones integrales de reforma, adaptándonos a las necesidades específicas de cada proyecto.",
+            "icon": "house",
+            "image": "reformas",
+            "url": "/areas-de-negocio/residencial"
+        },
+        {
+            "name": "Obra Civil",
+            "description": "Servicios de urbanización, pavimentación, asfaltado, canalizaciones, cimentaciones, muros de contención, infraestructuras eléctricas y cargadores.",
+            "fullDescription": "Desarrollo de infraestructuras civiles con expertise técnico y compromiso con la excelencia en cada proyecto.",
+            "icon": "construction",
+            "image": "obra_civil",
+            "url": "/areas-de-negocio/obra-civil"
         },
         {
             "name": "Mantenimiento",
@@ -78,7 +78,7 @@
             "fullDescription": "Servicios de mantenimiento integral para preservar y optimizar el valor de sus instalaciones.",
             "icon": "wrench",
             "image": "mantenimiento",
-            "url": "/servicios/mantenimiento"
+            "url": "/areas-de-negocio/mantenimiento"
         }
     ],
     "contact": [
