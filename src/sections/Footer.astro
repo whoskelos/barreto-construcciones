@@ -6,6 +6,8 @@ import LinkedIn from "@assets/svg/linkedin.svg";
 import Instagram from "@assets/svg/instagram.svg";
 import Phone from "@assets/svg/phone.svg";
 import Pin from "@assets/svg/pin.svg";
+import PinHouse from "@assets/svg/pin-house.svg";
+import Mail from "@assets/svg/mail.svg";
 
 import { contact, social, legal } from "@data";
 
@@ -36,16 +38,26 @@ const ICON_MAP: Record<string, any> = {
                 contact.map((item) => (
                     <div>
                         <h4 class="text-lg font-semibold tracking-wide">
-                            {item.city}
+                            {item.delegation}
                         </h4>
                         <div class="flex items-center gap-2 mt-3 text-neutral-900">
                             <Pin />
                             <p class="text-md">{item.address}</p>
                         </div>
                         <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                            <PinHouse />
+                            <p class="text-md">{item.city}</p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
                             <Phone />
                             <p class="text-md hover:text-neutral-950 transition-colors">
                                 <a href={`tel:${item.phone}`}>{item.phone}</a>
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                            <Mail />
+                            <p class="text-md hover:text-neutral-950 transition-colors">
+                                <a href={`mailto:${item.email}`}>{item.email}</a>
                             </p>
                         </div>
                     </div>

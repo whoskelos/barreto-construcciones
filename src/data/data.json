@@ -83,14 +83,18 @@
     ],
     "contact": [
         {
-            "city": "Toledo",
-            "address": "Yuncos - 45210 - Toledo",
-            "phone": "925 090 798"
+            "delegation": "DELEGACION TOLEDO",
+            "address": "Calle Valencia, Yuncos",
+            "city": "45210, Toledo",
+            "phone": "+34 925 09 07 98",
+            "email": "contacto@barretoconstrucciones.es"
         },
         {
-            "city": "Getafe",
-            "address": "Calle Gutenberg 2 - 1º Planta- 28906 - Getafe",
-            "phone": "911 460 524"
+            "delegation": "DELEGACION MADRID",
+            "address": "Paseo John Lennon 12",
+            "city": "28960, Getafe",
+            "phone": "+34 911 46 05 24",
+            "email": "contacto@barretoconstrucciones.es"
         }
     ],
     "social": [
