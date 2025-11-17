@@ -2,6 +2,17 @@
 @plugin "@tailwindcss/typography";
 
 
+/* Fuente Roboto autohospedada para evitar advertencias en build */
+@font-face {
+    font-family: "Roboto";
+    src:
+        url("/files/roboto-latin-ext-wght-normal.woff2") format("woff2-variations"),
+        url("/files/roboto-latin-wght-normal.woff2") format("woff2-variations");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
+
 @theme {
     --color-primary-50: #fde5d5;
     --color-primary-100: #fccaaa;
