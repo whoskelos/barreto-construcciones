@@ -131,7 +131,7 @@ const currentPath = Astro.url.pathname;
                         {item.submenu ? (
                             <div>
                                 <button
-                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-semibold uppercase tracking-wider text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-semibold uppercase tracking-wider text-neutral-900 active:text-primary-600 active:bg-primary-100 rounded-lg transition-colors duration-150"
                                     data-submenu={item.name.toLowerCase()}
                                 >
                                     {item.name}
@@ -156,11 +156,11 @@ const currentPath = Astro.url.pathname;
                                     {item.submenu.map((subitem) => (
                                         <a
                                             href={subitem.link}
-                                            class={`block px-4 py-2.5 text-sm font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
+                                            class={`block px-4 py-2.5 text-sm font-semibold uppercase tracking-wider rounded-lg transition-colors duration-150
                       ${
                           currentPath === subitem.link
                               ? "text-primary-600 bg-primary-50"
-                              : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                              : "text-neutral-900 active:text-primary-600 active:bg-primary-100"
                       }`}
                                         >
                                             {subitem.name}
@@ -171,11 +171,11 @@ const currentPath = Astro.url.pathname;
                         ) : (
                             <a
                                 href={item.link}
-                                class={`block px-4 py-3 text-base font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
+                                class={`block px-4 py-3 text-base font-semibold uppercase tracking-wider rounded-lg transition-colors duration-150
                 ${
                     currentPath === item.link
                         ? "text-primary-600 bg-primary-50"
-                        : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                        : "text-neutral-900 active:text-primary-600 active:bg-primary-100"
                 }`}
                             >
                                 {item.name}
@@ -290,8 +290,37 @@ const currentPath = Astro.url.pathname;
                 );
                 const arrow = newButton.querySelector(".submenu-arrow");
 
+                const isOpen = !submenu?.classList.contains("hidden");
+                
+                // Get all mobile menu links (both direct links and submenu buttons)
+                const mobileMenuElement = document.getElementById("mobile-menu");
+                const allMobileLinks = mobileMenuElement?.querySelectorAll('a:not(.mobile-submenu a)');
+                const allSubmenuButtons = mobileMenuElement?.querySelectorAll('.mobile-submenu-button');
+                
                 submenu?.classList.toggle("hidden");
                 arrow?.classList.toggle("rotate-180");
+                
+                // Toggle active state styling
+                if (isOpen) {
+                    // Closing submenu
+                    newButton.classList.remove("text-primary-600", "bg-primary-50");
+                } else {
+                    // Opening submenu - remove active styling from other items
+                    allMobileLinks?.forEach(link => {
+                        link.classList.remove("text-primary-600", "bg-primary-50");
+                        link.classList.add("text-neutral-900");
+                    });
+                    allSubmenuButtons?.forEach(btn => {
+                        if (btn !== newButton) {
+                            btn.classList.remove("text-primary-600", "bg-primary-50");
+                            btn.classList.add("text-neutral-900");
+                        }
+                    });
+                    
+                    // Add active styling to this button
+                    newButton.classList.remove("text-neutral-900");
+                    newButton.classList.add("text-primary-600", "bg-primary-50");
+                }
             });
         });
 
