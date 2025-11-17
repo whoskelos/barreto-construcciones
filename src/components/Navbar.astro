@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
                 <a href="/" class="flex items-center">
                     <Image
                         src={Logo}
@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
                             </a>
 
                             {item.submenu && (
-                                <div class="absolute left-0 mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <div class="absolute left-0 pt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                     <div class="bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
                                         {item.submenu.map((subitem) => (
                                             <a
@@ -305,32 +305,7 @@ const currentPath = Astro.url.pathname;
         });
     }
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        initNavSlider();
-        initMobileMenu();
-    });
-    
-    // Initialize immediately if DOM is already loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            initNavSlider();
-            initMobileMenu();
-        });
-    } else {
-        initNavSlider();
-        initMobileMenu();
-    }
-
-    // Re-initialize after view transitions
-    document.addEventListener('astro:after-swap', () => {
-        setTimeout(() => {
-            initNavSlider();
-            initMobileMenu();
-        }, 0);
-    });
-
-    // Re-initialize after page show (for back/forward navigation)
+    // Initialize on page load (compatible with view transitions)
     document.addEventListener('astro:page-load', () => {
         initNavSlider();
         initMobileMenu();

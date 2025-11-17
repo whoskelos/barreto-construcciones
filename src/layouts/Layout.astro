@@ -1,7 +1,7 @@
 ---
 import Footer from "@sections/Footer.astro";
 import Header from "@sections/Header.astro";
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
     title?: string;
@@ -107,7 +107,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
             ]
         })} />
         
-        <ViewTransitions />
+        <ClientRouter />
     </head>
     <body>
         <Header />
@@ -120,7 +120,6 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
 
 <style is:global>
     @import "../styles/global.css";
-    @import "@fontsource-variable/roboto";
     @plugin "@midudev/tailwind-animations";
 
     :root {
