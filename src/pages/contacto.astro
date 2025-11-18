@@ -1,0 +1,463 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Phone from "@assets/svg/phone.svg";
+import Mail from "@assets/svg/mail.svg";
+import Pin from "@assets/svg/pin.svg";
+import data from "@data";
+
+const contact = data.contact;
+const contactPage = data.contactPage;
+
+// Verificar que contactPage existe
+if (!contactPage) {
+    throw new Error('contactPage data is missing from data.json');
+}
+
+const { hero, form, info, map } = contactPage;
+
+// reCAPTCHA Site Key (pública, segura para exponer)
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+---
+
+<Layout
+    title="Contacto - Solicita tu presupuesto | Barreto Construcciones"
+    description="Contacta con Barreto Construcciones. Estamos en Madrid y Toledo. Solicita tu presupuesto sin compromiso para tu proyecto de construcción o rehabilitación."
+    keywords="contacto barreto construcciones, presupuesto construcción, contacto Madrid Toledo, solicitar presupuesto obra"
+    canonical="/contacto"
+>
+    <!-- Hero Section -->
+    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center rounded-full border border-primary-200 bg-white px-4 py-1.5 text-sm font-semibold mb-4">
+                    <span class="text-primary-600">{hero.badge}</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 mb-6 tracking-tight">
+                    {hero.title}
+                </h1>
+                <p class="text-xl text-neutral-600 leading-relaxed">
+                    {hero.subtitle}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 md:py-20 lg:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                
+                <!-- Contact Form -->
+                <div class="order-2 lg:order-1">
+                    <div class="rounded-lg border border-neutral-200 bg-white shadow-sm p-6 md:p-8">
+                        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">
+                            {form.title}
+                        </h2>
+                        <p class="text-base text-neutral-600 mb-8">
+                            Los campos marcados con <span class="text-primary-600 font-semibold">*</span> son obligatorios
+                        </p>
+                        
+                        <form id="contactForm" class="space-y-6" method="POST" action="/api/contact">
+                            <!-- Estado del formulario -->
+                            <div id="formMessage" class="hidden rounded-md p-4 text-sm" role="alert"></div>
+
+                            <!-- Honeypot field (campo trampa para bots) -->
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+                            
+                            <!-- Timestamp para validación de tiempo -->
+                            <input type="hidden" name="timestamp" id="timestamp" value="" />
+
+                            <!-- Nombre y Apellido -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label for="nombre" class="block text-sm font-semibold text-neutral-700">
+                                        {form.fields.nombre.label} <span class="text-primary-600">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        name="nombre"
+                                        required
+                                        class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder={form.fields.nombre.placeholder}
+                                    />
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="apellido" class="block text-sm font-semibold text-neutral-700">
+                                        {form.fields.apellido.label} <span class="text-primary-600">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="apellido"
+                                        name="apellido"
+                                        required
+                                        class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder={form.fields.apellido.placeholder}
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Email y Teléfono -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label for="email" class="block text-sm font-semibold text-neutral-700">
+                                        {form.fields.email.label}
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder={form.fields.email.placeholder}
+                                    />
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="telefono" class="block text-sm font-semibold text-neutral-700">
+                                        {form.fields.telefono.label}
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        name="telefono"
+                                        class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder={form.fields.telefono.placeholder}
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Asunto -->
+                            <div class="space-y-2">
+                                <label for="asunto" class="block text-sm font-semibold text-neutral-700">
+                                    {form.fields.asunto.label} <span class="text-primary-600">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="asunto"
+                                    name="asunto"
+                                    required
+                                    class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    placeholder={form.fields.asunto.placeholder}
+                                />
+                                <p class="text-sm text-neutral-600">{form.fields.asunto.hint}</p>
+                            </div>
+
+                            <!-- Mensaje -->
+                            <div class="space-y-2">
+                                <label for="mensaje" class="block text-sm font-semibold text-neutral-700">
+                                    {form.fields.mensaje.label} <span class="text-primary-600">*</span>
+                                </label>
+                                <textarea
+                                    id="mensaje"
+                                    name="mensaje"
+                                    required
+                                    rows="6"
+                                    class="flex min-h-[120px] w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+                                    placeholder={form.fields.mensaje.placeholder}
+                                ></textarea>
+                            </div>
+
+                            <!-- Política de privacidad -->
+                            <div class="flex items-start gap-3">
+                                <input
+                                    type="checkbox"
+                                    id="privacidad"
+                                    name="privacidad"
+                                    required
+                                    class="mt-0.5 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                                />
+                                <label for="privacidad" class="text-sm text-neutral-600 leading-relaxed">
+                                    He leído y acepto la <a href="/legal/politica-de-privacidad" class="font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-4">{form.privacidadLink}</a> en la que se detalla el tratamiento de mis datos personales.
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button
+                                type="submit"
+                                id="submitButton"
+                                class="inline-flex w-full items-center justify-center rounded-md bg-primary-600 px-6 py-3.5 text-base font-bold text-white ring-offset-white transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 shadow-lg hover:shadow-xl"
+                            >
+                                <span id="buttonText">{form.submitButton}</span>
+                                <svg id="loadingSpinner" class="hidden ml-2 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <script define:vars={{ RECAPTCHA_SITE_KEY }}>
+                            const form = document.getElementById('contactForm');
+                            const submitButton = document.getElementById('submitButton');
+                            const buttonText = document.getElementById('buttonText');
+                            const loadingSpinner = document.getElementById('loadingSpinner');
+                            const formMessage = document.getElementById('formMessage');
+                            const timestampField = document.getElementById('timestamp');
+
+                            // Establecer timestamp cuando se carga la página
+                            timestampField.value = Date.now().toString();
+
+                            // Validación del lado del cliente
+                            function validateForm() {
+                                const nombre = form.querySelector('[name="nombre"]').value.trim();
+                                const apellido = form.querySelector('[name="apellido"]').value.trim();
+                                const email = form.querySelector('[name="email"]').value.trim();
+                                const telefono = form.querySelector('[name="telefono"]').value.trim();
+                                const asunto = form.querySelector('[name="asunto"]').value.trim();
+                                const mensaje = form.querySelector('[name="mensaje"]').value.trim();
+
+                                // Validar campos obligatorios
+                                if (!nombre || nombre.length < 2) return 'El nombre debe tener al menos 2 caracteres';
+                                if (!apellido || apellido.length < 2) return 'El apellido debe tener al menos 2 caracteres';
+                                if (!asunto || asunto.length < 5) return 'El asunto debe tener al menos 5 caracteres';
+                                if (!mensaje || mensaje.length < 10) return 'El mensaje debe tener al menos 10 caracteres';
+                                
+                                // Validar que tenga al menos email o teléfono
+                                if (!email && !telefono) return 'Debes proporcionar al menos un email o teléfono';
+
+                                // Validar formato de email si se proporciona
+                                if (email) {
+                                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    if (!emailRegex.test(email)) return 'El formato del email no es válido';
+                                }
+
+                                // Validar longitudes máximas
+                                if (nombre.length > 50) return 'El nombre no puede exceder 50 caracteres';
+                                if (apellido.length > 50) return 'El apellido no puede exceder 50 caracteres';
+                                if (asunto.length > 100) return 'El asunto no puede exceder 100 caracteres';
+                                if (mensaje.length > 2000) return 'El mensaje no puede exceder 2000 caracteres';
+
+                                return null;
+                            }
+
+                            form.addEventListener('submit', async (e) => {
+                                e.preventDefault();
+
+                                // Validación del lado del cliente
+                                const validationError = validateForm();
+                                if (validationError) {
+                                    formMessage.textContent = validationError;
+                                    formMessage.className = 'rounded-md p-4 text-sm bg-red-50 text-red-800 border border-red-200';
+                                    formMessage.classList.remove('hidden');
+                                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    return;
+                                }
+
+                                // Deshabilitar el botón y mostrar loading
+                                submitButton.disabled = true;
+                                buttonText.textContent = 'Verificando...';
+                                loadingSpinner?.classList.remove('hidden');
+                                formMessage.classList.add('hidden');
+
+                                try {
+                                    // Ejecutar reCAPTCHA v3 para obtener token (wrapped en grecaptcha.ready)
+                                    const recaptchaToken = await new Promise((resolve, reject) => {
+                                        window.grecaptcha.ready(() => {
+                                            // Usar la site key del servidor
+                                            window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { 
+                                                action: 'submit_contact_form' 
+                                            }).then(resolve).catch(reject);
+                                        });
+                                    });
+
+                                    // Crear FormData y agregar token de reCAPTCHA
+                                    const formData = new FormData(form);
+                                    formData.append('recaptcha_token', recaptchaToken);
+
+                                    buttonText.textContent = 'Enviando...';
+
+                                    const response = await fetch('/api/contact', {
+                                        method: 'POST',
+                                        body: formData,
+                                    });
+
+                                    const result = await response.json();
+
+                                    if (result.success) {
+                                        // Mostrar mensaje de éxito
+                                        formMessage.textContent = result.message;
+                                        formMessage.className = 'rounded-md p-4 text-sm bg-green-50 text-green-800 border border-green-200';
+                                        formMessage.classList.remove('hidden');
+                                        
+                                        // Resetear formulario
+                                        form.reset();
+
+                                        // Scroll suave al mensaje
+                                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    } else {
+                                        // Mostrar mensaje de error
+                                        formMessage.textContent = result.message || 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+                                        formMessage.className = 'rounded-md p-4 text-sm bg-red-50 text-red-800 border border-red-200';
+                                        formMessage.classList.remove('hidden');
+
+                                        // Scroll suave al mensaje de error
+                                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    }
+                                } catch (error) {
+                                    console.error('Error:', error);
+                                    formMessage.textContent = 'Ocurrió un error al procesar tu solicitud. Por favor, recarga la página e inténtalo de nuevo.';
+                                    formMessage.className = 'rounded-md p-4 text-sm bg-red-50 text-red-800 border border-red-200';
+                                    formMessage.classList.remove('hidden');
+                                } finally {
+                                    // Rehabilitar el botón y ocultar loading
+                                    submitButton.disabled = false;
+                                    buttonText.textContent = 'Enviar mensaje';
+                                    loadingSpinner?.classList.add('hidden');
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="order-1 lg:order-2">
+                    <div class="lg:sticky lg:top-24 space-y-6">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">
+                                {info.title}
+                            </h2>
+                            <p class="text-base text-neutral-600">
+                                {info.subtitle}
+                            </p>
+                        </div>
+
+                        <!-- Contact Cards -->
+                        <div class="space-y-4">
+                            {contact.map((office) => (
+                                <div class="rounded-lg border border-primary-200 bg-linear-to-br from-primary-50 to-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                                    <h3 class="text-base font-bold text-neutral-900 mb-4 uppercase tracking-wide">
+                                        {office.delegation}
+                                    </h3>
+                                    
+                                    <div class="space-y-3">
+                                        <!-- Dirección -->
+                                        <div class="flex items-start gap-3">
+                                            <div class="mt-0.5">
+                                                <Pin class="w-5 h-5 text-primary-600" />
+                                            </div>
+                                            <div>
+                                                <p class="text-neutral-700">{office.address}</p>
+                                                <p class="text-neutral-700">{office.city}</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Teléfono -->
+                                        <div class="flex items-center gap-3">
+                                            <Phone class="w-5 h-5 text-primary-600" />
+                                            <a 
+                                                href={`tel:${office.phone}`}
+                                                class="text-neutral-700 hover:text-primary-600 transition-colors font-medium hover:underline underline-offset-4"
+                                            >
+                                                {office.phone}
+                                            </a>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="flex items-center gap-3">
+                                            <Mail class="w-5 h-5 text-primary-600" />
+                                            <a 
+                                                href={`mailto:${office.email}`}
+                                                class="text-neutral-700 hover:text-primary-600 transition-colors font-medium hover:underline underline-offset-4"
+                                            >
+                                                {office.email}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <!-- Horario -->
+                        <div class="rounded-lg border border-neutral-200 bg-neutral-900 p-6 shadow-sm">
+                            <h3 class="text-base font-bold text-white mb-4">{info.schedule.title}</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-neutral-300">{info.schedule.weekdays}</span>
+                                    <span class="font-semibold text-white">{info.schedule.hours}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section (opcional) -->
+    <section class="border-t border-neutral-200 bg-neutral-100 py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">{map.title}</h2>
+                <p class="text-base text-neutral-600">{map.subtitle}</p>
+            </div>
+            
+            <!-- Mapa de Google Maps -->
+            <div class="rounded-lg overflow-hidden border border-neutral-200 shadow-sm">
+                <div class="embed-map-responsive">
+                    <div class="embed-map-container">
+                        <iframe 
+                            class="embed-map-frame" 
+                            frameborder="0" 
+                            scrolling="no" 
+                            marginheight="0" 
+                            marginwidth="0" 
+                            src="https://maps.google.com/maps?width=1470&height=382&hl=en&q=barreto%20construcciones&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+                            title="Ubicación de Barreto Construcciones"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* Estilos para el mapa responsivo */
+    .embed-map-responsive {
+        position: relative;
+        text-align: right;
+        width: 100%;
+        height: 0;
+        padding-bottom: 25.98639455782313%;
+    }
+    
+    .embed-map-container {
+        overflow: hidden;
+        background: none !important;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .embed-map-frame {
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Animaciones suaves */
+    form {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Respeto por preferencias de animación reducida */
+    @media (prefers-reduced-motion: reduce) {
+        form {
+            animation: none;
+        }
+    }
+</style>

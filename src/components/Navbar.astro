@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
                 <a href="/" class="flex items-center">
                     <Image
                         src={Logo}
@@ -20,6 +20,7 @@ const currentPath = Astro.url.pathname;
                         height={50}
                         transition:persist="logo"
                         loading="eager"
+                        priority={true}
                     />
                 </a>
             </div>
@@ -36,8 +37,8 @@ const currentPath = Astro.url.pathname;
                                 class={`nav-link relative z-10 px-4 py-2 rounded-lg text-sm uppercase font-semibold tracking-wide transition-colors duration-200 flex items-center gap-1
                 ${
                     currentPath === item.link
-                        ? "text-primary-600"
-                        : "text-neutral-900 hover:text-primary-600"
+                        ? "text-primary-800"
+                        : "text-neutral-900 hover:text-primary-800"
                 }`}
                             >
                                 {item.name}
@@ -59,19 +60,26 @@ const currentPath = Astro.url.pathname;
                             </a>
 
                             {item.submenu && (
-                                <div class="absolute left-0 mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                                    <div class="bg-white rounded-lg shadow-lg border border-neutral-200 py-2">
+                                <div class="absolute left-0 pt-1 w-96 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    <div class="bg-white rounded-lg shadow-lg border border-neutral-200 py-2 max-h-[80vh] overflow-y-auto">
                                         {item.submenu.map((subitem) => (
                                             <a
                                                 href={subitem.link}
-                                                class={`block px-4 py-2.5 text-sm uppercase font-semibold tracking-wide transition-colors duration-150
+                                                class={`block px-4 py-3 transition-colors duration-150 border-l-3
                         ${
                             currentPath === subitem.link
-                                ? "text-primary-600 bg-primary-50 border-l-3 border-primary-600"
-                                : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 border-l-3 border-transparent"
+                                ? "text-primary-600 bg-primary-50 border-primary-600"
+                                : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 border-transparent"
                         }`}
                                             >
-                                                {subitem.name}
+                                                <div class="text-sm uppercase font-semibold tracking-wide mb-1">
+                                                    {subitem.name}
+                                                </div>
+                                                {subitem.description && (
+                                                    <div class="text-xs text-neutral-600 normal-case font-normal tracking-normal leading-relaxed">
+                                                        {subitem.description}
+                                                    </div>
+                                                )}
                                             </a>
                                         ))}
                                     </div>
@@ -123,7 +131,7 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-neutral-200">
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-neutral-200 max-h-[70vh] overflow-y-auto">
         <div class="px-4 py-4 space-y-1">
             {
                 menu.map((item) => (
@@ -131,7 +139,7 @@ const currentPath = Astro.url.pathname;
                         {item.submenu ? (
                             <div>
                                 <button
-                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-semibold uppercase tracking-wider text-neutral-900 hover:text-primary-600 hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                                    class="mobile-submenu-button w-full flex items-center justify-between px-4 py-3 text-base font-semibold uppercase tracking-wider text-neutral-900 active:text-primary-600 active:bg-primary-100 rounded-lg transition-colors duration-150"
                                     data-submenu={item.name.toLowerCase()}
                                 >
                                     {item.name}
@@ -156,14 +164,21 @@ const currentPath = Astro.url.pathname;
                                     {item.submenu.map((subitem) => (
                                         <a
                                             href={subitem.link}
-                                            class={`block px-4 py-2.5 text-sm font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
+                                            class={`block px-4 py-3 rounded-lg transition-colors duration-150
                       ${
                           currentPath === subitem.link
                               ? "text-primary-600 bg-primary-50"
-                              : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                              : "text-neutral-900 active:text-primary-600 active:bg-primary-100"
                       }`}
                                         >
-                                            {subitem.name}
+                                            <div class="text-sm font-semibold uppercase tracking-wider mb-1">
+                                                {subitem.name}
+                                            </div>
+                                            {subitem.description && (
+                                                <div class="text-xs text-neutral-600 normal-case font-normal tracking-normal leading-relaxed mt-1">
+                                                    {subitem.description}
+                                                </div>
+                                            )}
                                         </a>
                                     ))}
                                 </div>
@@ -171,11 +186,11 @@ const currentPath = Astro.url.pathname;
                         ) : (
                             <a
                                 href={item.link}
-                                class={`block px-4 py-3 text-base font-semibold uppercase tracking-wider rounded-lg transition-colors duration-200
+                                class={`block px-4 py-3 text-base font-semibold uppercase tracking-wider rounded-lg transition-colors duration-150
                 ${
                     currentPath === item.link
                         ? "text-primary-600 bg-primary-50"
-                        : "text-neutral-900 hover:text-primary-600 hover:bg-neutral-50"
+                        : "text-neutral-900 active:text-primary-600 active:bg-primary-100"
                 }`}
                             >
                                 {item.name}
@@ -192,8 +207,8 @@ const currentPath = Astro.url.pathname;
 <script>
     function initNavSlider() {
         const desktopNav = document.getElementById('desktop-nav');
-        const slider = desktopNav?.querySelector('.nav-bg-slider') as HTMLElement;
-        const navLinks = desktopNav?.querySelectorAll('.nav-link') as NodeListOf<HTMLElement>;
+        const slider = desktopNav?.querySelector('.nav-bg-slider');
+        const navLinks = desktopNav?.querySelectorAll('.nav-link');
 
         if (!slider || !navLinks || navLinks.length === 0) return;
 
@@ -203,7 +218,7 @@ const currentPath = Astro.url.pathname;
         );
 
         // Función para mover el slider
-        const moveSlider = (link: HTMLElement) => {
+        const moveSlider = (link) => {
             const rect = link.getBoundingClientRect();
             const navRect = desktopNav!.getBoundingClientRect();
             
@@ -260,7 +275,7 @@ const currentPath = Astro.url.pathname;
 
         if (menuButton && mobileMenu && menuIcon && closeIcon) {
             // Remove any existing listeners by cloning the node
-            const newMenuButton = menuButton.cloneNode(true) as HTMLElement;
+            const newMenuButton = menuButton.cloneNode(true);
             menuButton.parentNode?.replaceChild(newMenuButton, menuButton);
 
             newMenuButton.addEventListener("click", () => {
@@ -280,7 +295,7 @@ const currentPath = Astro.url.pathname;
         const submenuButtons = document.querySelectorAll(".mobile-submenu-button");
         submenuButtons.forEach((button) => {
             // Remove any existing listeners by cloning the node
-            const newButton = button.cloneNode(true) as HTMLElement;
+            const newButton = button.cloneNode(true);
             button.parentNode?.replaceChild(newButton, button);
 
             newButton.addEventListener("click", () => {
@@ -290,8 +305,37 @@ const currentPath = Astro.url.pathname;
                 );
                 const arrow = newButton.querySelector(".submenu-arrow");
 
+                const isOpen = !submenu?.classList.contains("hidden");
+                
+                // Get all mobile menu links (both direct links and submenu buttons)
+                const mobileMenuElement = document.getElementById("mobile-menu");
+                const allMobileLinks = mobileMenuElement?.querySelectorAll('a:not(.mobile-submenu a)');
+                const allSubmenuButtons = mobileMenuElement?.querySelectorAll('.mobile-submenu-button');
+                
                 submenu?.classList.toggle("hidden");
                 arrow?.classList.toggle("rotate-180");
+                
+                // Toggle active state styling
+                if (isOpen) {
+                    // Closing submenu
+                    newButton.classList.remove("text-primary-600", "bg-primary-50");
+                } else {
+                    // Opening submenu - remove active styling from other items
+                    allMobileLinks?.forEach(link => {
+                        link.classList.remove("text-primary-600", "bg-primary-50");
+                        link.classList.add("text-neutral-900");
+                    });
+                    allSubmenuButtons?.forEach(btn => {
+                        if (btn !== newButton) {
+                            btn.classList.remove("text-primary-600", "bg-primary-50");
+                            btn.classList.add("text-neutral-900");
+                        }
+                    });
+                    
+                    // Add active styling to this button
+                    newButton.classList.remove("text-neutral-900");
+                    newButton.classList.add("text-primary-600", "bg-primary-50");
+                }
             });
         });
 
@@ -305,32 +349,7 @@ const currentPath = Astro.url.pathname;
         });
     }
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        initNavSlider();
-        initMobileMenu();
-    });
-    
-    // Initialize immediately if DOM is already loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            initNavSlider();
-            initMobileMenu();
-        });
-    } else {
-        initNavSlider();
-        initMobileMenu();
-    }
-
-    // Re-initialize after view transitions
-    document.addEventListener('astro:after-swap', () => {
-        setTimeout(() => {
-            initNavSlider();
-            initMobileMenu();
-        }, 0);
-    });
-
-    // Re-initialize after page show (for back/forward navigation)
+    // Initialize on page load (compatible with view transitions)
     document.addEventListener('astro:page-load', () => {
         initNavSlider();
         initMobileMenu();

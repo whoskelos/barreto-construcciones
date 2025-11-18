@@ -1,32 +1,32 @@
 ---
 import { Image } from "astro:assets";
 // Edificación
-import edificacion1 from "@assets/img/featured/edificacion/1.webp";
-import edificacion2 from "@assets/img/featured/edificacion/2.webp";
-import edificacion3 from "@assets/img/featured/edificacion/3.webp";
-import edificacion4 from "@assets/img/featured/edificacion/4.webp";
+import edificacion1 from "@assets/img/featured/edificacion/1-min.webp";
+import edificacion2 from "@assets/img/featured/edificacion/2-min.webp";
+import edificacion3 from "@assets/img/featured/edificacion/3-min.webp";
+import edificacion4 from "@assets/img/featured/edificacion/4-min.webp";
 
 // Mantenimiento
-import mantenimiento1 from "@assets/img/featured/mantenimiento/1.webp";
-import mantenimiento2 from "@assets/img/featured/mantenimiento/2.webp";
+import mantenimiento1 from "@assets/img/featured/mantenimiento/1-min.webp";
+import mantenimiento2 from "@assets/img/featured/mantenimiento/2-min.webp";
 
 // Obra Civil
-import obraCivil1 from "@assets/img/featured/obra_civil/1.webp";
-import obraCivil2 from "@assets/img/featured/obra_civil/2.webp";
-import obraCivil3 from "@assets/img/featured/obra_civil/3.webp";
-import obraCivil4 from "@assets/img/featured/obra_civil/4.webp";
-import obraCivil5 from "@assets/img/featured/obra_civil/5.webp";
+import obraCivil1 from "@assets/img/featured/obra_civil/1-min.webp";
+import obraCivil2 from "@assets/img/featured/obra_civil/2-min.webp";
+import obraCivil3 from "@assets/img/featured/obra_civil/3-min.webp";
+import obraCivil4 from "@assets/img/featured/obra_civil/4-min.webp";
+import obraCivil5 from "@assets/img/featured/obra_civil/5-min.webp";
 
 // Reformas
-import reformas1 from "@assets/img/featured/reformas/1.webp";
-import reformas2 from "@assets/img/featured/reformas/2.webp";
-import reformas3 from "@assets/img/featured/reformas/3.webp";
+import reformas1 from "@assets/img/featured/reformas/1-min.webp";
+import reformas2 from "@assets/img/featured/reformas/2-min.webp";
+import reformas3 from "@assets/img/featured/reformas/3-min.webp";
 
 // Rehabilitación
-import rehabilitacion1 from "@assets/img/featured/rehabilitacion/1.webp";
-import rehabilitacion2 from "@assets/img/featured/rehabilitacion/2.webp";
-import rehabilitacion3 from "@assets/img/featured/rehabilitacion/3.webp";
-import rehabilitacion4 from "@assets/img/featured/rehabilitacion/4.webp";
+import rehabilitacion1 from "@assets/img/featured/rehabilitacion/1-min.webp";
+import rehabilitacion2 from "@assets/img/featured/rehabilitacion/2-min.webp";
+import rehabilitacion3 from "@assets/img/featured/rehabilitacion/3-min.webp";
+import rehabilitacion4 from "@assets/img/featured/rehabilitacion/4-min.webp";
 
 const featuredProjects1 = [
     {
@@ -152,7 +152,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="eager"
                                 quality={85}
-                                class="featured-project featured-project-1 object-cover aspect-[16/9] rounded-md flex-shrink-0"
+                                class="featured-project featured-project-1 object-cover aspect-video rounded-md shrink-0"
                             />
                     ))
                 }
@@ -168,7 +168,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="lazy"
                                 quality={85}
-                                class="featured-project featured-project-2 object-cover aspect-[16/9] rounded-md flex-shrink-0"
+                                class="featured-project featured-project-2 object-cover aspect-video rounded-md shrink-0"
                             />
                     ))
                 }
@@ -184,7 +184,7 @@ const featuredProjects3 = [
                                 decoding="async"
                                 loading="lazy"
                                 quality={85}
-                                class="featured-project featured-project-3 object-cover aspect-[16/9] rounded-md flex-shrink-0"
+                                class="featured-project featured-project-3 object-cover aspect-video rounded-md shrink-0"
                             />
                     ))
                 }
@@ -276,20 +276,7 @@ const featuredProjects3 = [
         }, 0);
     }
 
-    // Inicializar en carga inicial
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initFeaturedProjects);
-    } else {
-        initFeaturedProjects();
-    }
-
-    // Reinicializar después de las view transitions
-    document.addEventListener('astro:after-swap', () => {
-        // Pequeño delay para asegurar que el DOM esté listo
-        setTimeout(initFeaturedProjects, 100);
-    });
-
-    // Reinicializar en page load
+    // Inicializar en carga de página (compatible con view transitions)
     document.addEventListener('astro:page-load', initFeaturedProjects);
 
     // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible

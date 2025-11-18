@@ -51,7 +51,7 @@ const slides = [
                             quality={85}
                             densities={[1, 2]}
                         />
-                        <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+                        <div class="absolute inset-0 bg-linear-to-r from-black/40 via-black/20 to-transparent" />
                     </div>
                 ))
             }
@@ -125,10 +125,15 @@ const slides = [
     import EmblaCarousel from "embla-carousel";
     import Autoplay from "embla-carousel-autoplay";
 
-    const emblaNode = document.querySelector(".embla");
-    const options = { loop: true };
-    const plugins = [Autoplay({ delay: 2000 })];
-    if (emblaNode instanceof HTMLElement) {
-        const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+    function initCarousel() {
+        const emblaNode = document.querySelector(".embla");
+        const options = { loop: true };
+        const plugins = [Autoplay({ delay: 2000 })];
+        if (emblaNode instanceof HTMLElement) {
+            const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+        }
     }
+
+    // Inicializar en carga de página (compatible con view transitions)
+    document.addEventListener('astro:page-load', initCarousel);
 </script>

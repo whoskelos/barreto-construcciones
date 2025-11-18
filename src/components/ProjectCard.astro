@@ -1,0 +1,52 @@
+---
+import PinIcon from "@assets/svg/pin.svg";
+import CalendarIcon from "@assets/svg/calendar.svg";
+import UsersIcon from "@assets/svg/users.svg";
+import ImageIcon from "@assets/svg/image.svg";
+
+interface Props {
+    obra: string;
+    lugar: string;
+    año: string;
+    cliente: string;
+    image?: string;
+}
+
+const { obra, lugar, año, cliente, image = "placeholder" } = Astro.props;
+---
+
+<article class="group">
+    <!-- Imagen con placeholder -->
+    <div class="relative aspect-5/6 sm:aspect-4/5 overflow-hidden rounded-md bg-neutral-100 mb-4">
+        {image === "placeholder" ? (
+            <div class="w-full h-full flex items-center justify-center bg-neutral-100">
+                <ImageIcon class="w-16 h-16 text-neutral-300" />
+            </div>
+        ) : (
+            <img 
+                src={image} 
+                alt={obra}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+        )}
+    </div>
+
+    <!-- Título del proyecto con protagonismo -->
+    <h3 class="text-xl font-bold text-neutral-900 mb-4 leading-tight">{obra}</h3>
+
+    <!-- Información con badges horizontales -->
+    <div class="flex flex-wrap gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 text-primary-900 rounded-full text-xs font-semibold">
+            <PinIcon class="w-3.5 h-3.5" />
+            {lugar}
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-900 rounded-full text-xs font-semibold">
+            <CalendarIcon class="w-3.5 h-3.5" />
+            {año}
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-900 rounded-full text-xs font-semibold">
+            <UsersIcon class="w-3.5 h-3.5" />
+            {cliente}
+        </span>
+    </div>
+</article>
