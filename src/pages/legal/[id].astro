@@ -2,6 +2,8 @@
 import { getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
+export const prerender = false;
+
 // En modo server, obtenemos el entry dinámicamente
 const { id } = Astro.params;
 
