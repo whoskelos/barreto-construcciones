@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -25,7 +25,10 @@ export default defineConfig({
   },
 
   image: {
-      service: passthroughImageService(),
+      // Usar sharp para optimización de imágenes en producción
+      // Vercel lo incluye por defecto
+      domains: ['barretoconstrucciones.es'],
+      remotePatterns: [{ protocol: 'https' }],
   },
 
   prefetch: {
@@ -43,7 +46,7 @@ export default defineConfig({
 
   adapter: vercel({
       webAnalytics: {
-          enabled: true
+          enabled: false
       }
   }),
 });
