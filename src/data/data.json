@@ -267,11 +267,11 @@
     "social": [
         {
             "name": "Instagram",
-            "url": "https://www.instagram.com/barretoconstrucciones/"
+            "url": "https://www.instagram.com/barretoinfraestructuras/"
         },
         {
             "name": "LinkedIn",
-            "url": "https://www.linkedin.com/company/barreto-construcciones/"
+            "url": "https://www.linkedin.com/company/barreto-infraestructuras/"
         }
     ],
     "legal": [
@@ -284,8 +284,46 @@
             "url": "/legal/aviso-legal"
         },
         {
+            "name": "FAQs",
+            "url": "/preguntas-frecuentes"
+        },
+        {
             "name": "Política de Cookies",
             "url": "/legal/politica-de-cookies"
+        }
+    ],
+    "faqs": [
+        {
+            "question": "¿Cuántos años de experiencia tiene Barreto Construcciones?",
+            "answer": "Contamos con más de 20 años de experiencia en el sector de la construcción, especializándonos en obra civil, rehabilitación, construcción industrial y residencial en Madrid y Toledo."
+        },
+        {
+            "question": "¿En qué zonas operan vuestros servicios de construcción?",
+            "answer": "Operamos principalmente en Madrid (Getafe) y Toledo (Yuncos), abarcando toda la Comunidad de Madrid y Castilla-La Mancha. Realizamos proyectos de construcción industrial, rehabilitación de edificios, obra civil y mantenimiento."
+        },
+        {
+            "question": "¿Qué tipos de proyectos de construcción realizáis?",
+            "answer": "Realizamos construcción industrial (naves industriales, almacenes logísticos), rehabilitación de edificios, obra civil (infraestructuras, urbanizaciones), construcción residencial (viviendas unifamiliares, plurifamiliares) y servicios de mantenimiento integral."
+        },
+        {
+            "question": "¿Ofrecéis presupuestos sin compromiso?",
+            "answer": "Sí, ofrecemos presupuestos detallados sin compromiso. Puede contactarnos a través de nuestro formulario web, por teléfono en el 651 10 20 50 o por email en info@barretoconstrucciones.es"
+        },
+        {
+            "question": "¿Realizáis rehabilitaciones de edificios históricos?",
+            "answer": "Sí, somos especialistas en rehabilitación de edificios, incluidos inmuebles históricos. Trabajamos con técnicas de consolidación estructural, restauración de fachadas y mejora de eficiencia energética respetando el patrimonio arquitectónico."
+        },
+        {
+            "question": "¿Qué certificaciones y normativas cumplís en vuestras obras?",
+            "answer": "Cumplimos con todas las normativas vigentes: CTE (Código Técnico de la Edificación), normativa de seguridad y salud en obras, certificaciones ISO de calidad, y normativas específicas para construcción industrial y obra civil. Todos nuestros proyectos cuentan con dirección facultativa y seguros obligatorios."
+        },
+        {
+            "question": "¿Cuánto tiempo tarda un proyecto de construcción?",
+            "answer": "El plazo depende del tipo y magnitud del proyecto. Una rehabilitación puede llevar de 3 a 12 meses, mientras que una nave industrial puede ejecutarse en 6-18 meses. Proporcionamos cronogramas detallados en cada presupuesto."
+        },
+        {
+            "question": "¿Ofrecéis servicios de mantenimiento después de finalizar la obra?",
+            "answer": "Sí, ofrecemos servicios de mantenimiento integral para edificios, naves industriales e infraestructuras. Incluye mantenimiento preventivo, correctivo, limpieza industrial y gestión de instalaciones."
         }
     ],
     "contactPage": {
