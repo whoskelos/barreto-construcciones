@@ -20,7 +20,7 @@ const ICON_MAP: Record<string, any> = {
 
 ---
 
-<footer class="bg-neutral-300 pt-16" transition:name="footer" transition:animate="none">
+<footer class="bg-neutral-200 pt-16" transition:name="footer" transition:animate="none">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3">
         <div class="flex items-center justify-start md:items-start mb-8">
             <Image
@@ -37,9 +37,9 @@ const ICON_MAP: Record<string, any> = {
             {
                 contact.map((item) => (
                     <div>
-                        <h4 class="text-lg font-semibold tracking-wide">
+                        <h3 class="text-lg font-semibold tracking-wide">
                             {item.delegation}
-                        </h4>
+                        </h3>
                         <div class="flex items-center gap-2 mt-3 text-neutral-900">
                             <Pin />
                             <p class="text-md">{item.address}</p>
@@ -82,9 +82,9 @@ const ICON_MAP: Record<string, any> = {
         </div>
     </div>
     <div
-        class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center md:flex-row md:justify-between gap-2 border-t-1 border-neutral-600 py-12"
+        class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center md:flex-row md:justify-between gap-2 border-t border-neutral-600 py-12"
     >
-        <p class="text-neutral-800">© {year} Todos los derechos reservados</p>
+        <p class="text-neutral-900">© {year} Todos los derechos reservados</p>
         <div class="flex gap-3">
             {
                 social.map(({url, name}) => {
@@ -94,6 +94,7 @@ const ICON_MAP: Record<string, any> = {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Visitar nuestro perfil de ${name}`}
                         class="inline-block bg-neutral-500 rounded-full p-2 text-neutral-800 hover:text-neutral-950 hover:bg-neutral-600 transition-colors"
                     >
                         <Icon />

@@ -39,6 +39,8 @@ export default defineConfig({
       inlineStylesheets: 'auto',
   },
 
+  output: 'server',
+
   adapter: vercel({
       webAnalytics: {
           enabled: true

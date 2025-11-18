@@ -12,21 +12,28 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^9.0.0",
+    "@astrojs/vercel": "^9.0.1",
     "@fontsource-variable/roboto": "5.2.8",
     "@midudev/tailwind-animations": "^0.2.0",
-    "@tailwindcss/vite": "4.1.14",
-    "astro": "^5.15.7",
+    "@tailwindcss/vite": "4.1.17",
+    "astro": "^5.15.9",
     "embla-carousel": "8.6.0",
     "embla-carousel-autoplay": "8.6.0",
     "gsap": "^3.13.0",
-    "tailwindcss": "4.1.14"
+    "resend": "^6.4.2",
+    "tailwindcss": "4.1.17",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
   },
-  "overrides": {
-    "path-to-regexp": "6.3.0"
+  "pnpm": {
+    "overrides": {
+      "path-to-regexp": "6.3.0",
+      "glob": ">=11.1.0",
+      "tar": ">=7.5.2",
+      "js-yaml": ">=4.1.1"
+    }
   },
   "packageManager": "pnpm@10.18.3+sha1.0202a20aaa3d7ba8bc29b50d95efe1a34dd95773"
 }

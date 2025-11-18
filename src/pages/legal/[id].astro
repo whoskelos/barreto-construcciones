@@ -1,17 +1,20 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-export async function getStaticPaths() {
-    const legalDocs = await getCollection("legal");
+// En modo server, obtenemos el entry dinámicamente
+const { id } = Astro.params;
 
-    return legalDocs.map((doc) => ({
-        params: { id: doc.slug },
-        props: { doc },
-    }));
+if (!id) {
+    return Astro.redirect('/404');
 }
 
-const { doc } = Astro.props;
+const doc = await getEntry("legal", id);
+
+if (!doc) {
+    return Astro.redirect('/404');
+}
+
 const { data } = doc;
 const { title } = data;
 

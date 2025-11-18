@@ -10,23 +10,28 @@
             "submenu": [
                 {
                     "name": "Industrial",
-                    "link": "/areas-de-negocio/industrial"
+                    "link": "/areas-de-negocio/industrial",
+                    "description": "Nuestro servicio de construcción industrial ofrece soluciones integrales para el desarrollo, ampliación y modernización de instalaciones productivas. Nos especializamos en la ejecución de obras de gran escala bajo los más altos estándares de calidad, seguridad y eficiencia, garantizando que cada proyecto cumpla con las normativas técnicas y ambientales vigentes."
                 },
                 {
                     "name": "Rehabilitación",
-                    "link": "/areas-de-negocio/rehabilitacion"
+                    "link": "/areas-de-negocio/rehabilitacion",
+                    "description": "Nuestro servicio de rehabilitación está enfocado en la recuperación, modernización y optimización de instalaciones existentes, con el objetivo de mejorar su funcionalidad, seguridad y eficiencia operativa."
                 },
                 {
                     "name": "Residencial",
-                    "link": "/areas-de-negocio/residencial"
+                    "link": "/areas-de-negocio/residencial",
+                    "description": "Nuestro servicio de construcción residencial ofrece soluciones completas para el desarrollo de viviendas unifamiliares, edificios y conjuntos habitacionales, combinando diseño arquitectónico, funcionalidad y calidad constructiva."
                 },
                 {
                     "name": "Obra Civil",
-                    "link": "/areas-de-negocio/obra-civil"
+                    "link": "/areas-de-negocio/obra-civil",
+                    "description": "Nuestro servicio de obra civil abarca la planificación, ejecución y supervisión de infraestructuras esenciales que contribuyen al desarrollo urbano, industrial y social. Nos especializamos en la construcción de estructuras duraderas, funcionales y seguras, cumpliendo con las normativas técnicas y ambientales."
                 },
                 {
                     "name": "Mantenimiento",
-                    "link": "/areas-de-negocio/mantenimiento"
+                    "link": "/areas-de-negocio/mantenimiento",
+                    "description": "Nuestro servicio de mantenimiento está orientado a garantizar la operatividad, seguridad y durabilidad de todo tipo de instalaciones e infraestructuras, mediante acciones preventivas, correctivas y de mejora continua."
                 }
             ]
         },
@@ -81,6 +86,168 @@
             "url": "/areas-de-negocio/mantenimiento"
         }
     ],
+    "projects": [
+        {
+            "id": 1,
+            "obra": "Construcción depósito",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "Sertego",
+            "image": "placeholder"
+        },
+        {
+            "id": 2,
+            "obra": "Soleras de hormigón armado",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "Sertego",
+            "image": "placeholder"
+        },
+        {
+            "id": 3,
+            "obra": "Construcción bancadas",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "Sertego",
+            "image": "placeholder"
+        },
+        {
+            "id": 4,
+            "obra": "Acondicionamiento nave industrial",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "Sertego",
+            "image": "placeholder"
+        },
+        {
+            "id": 5,
+            "obra": "Adecuación instalaciones",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "INTA",
+            "image": "placeholder"
+        },
+        {
+            "id": 6,
+            "obra": "Rehabilitación de cubierta",
+            "lugar": "Madrid",
+            "año": "2025",
+            "cliente": "Fúnez",
+            "image": "placeholder"
+        },
+        {
+            "id": 7,
+            "obra": "Reforma vivienda",
+            "lugar": "Tenerife",
+            "año": "2025",
+            "cliente": "Banco de España",
+            "image": "placeholder"
+        },
+        {
+            "id": 8,
+            "obra": "Reforma cocina",
+            "lugar": "Madrid",
+            "año": "2024",
+            "cliente": "Ministerio Defensa",
+            "image": "placeholder"
+        },
+        {
+            "id": 9,
+            "obra": "Reforma farmacia",
+            "lugar": "Madrid",
+            "año": "2024",
+            "cliente": "Lázaro",
+            "image": "placeholder"
+        },
+        {
+            "id": 10,
+            "obra": "Construcción de parada de autobús",
+            "lugar": "Madrid",
+            "año": "2023",
+            "cliente": "Ayuntamiento de Torres de la Alameda",
+            "image": "placeholder"
+        },
+        {
+            "id": 11,
+            "obra": "Mantenimiento depósitos",
+            "lugar": "Madrid",
+            "año": "2023",
+            "cliente": "URBASER",
+            "image": "placeholder"
+        },
+        {
+            "id": 12,
+            "obra": "Rehabilitación de cubierta y lucernarios",
+            "lugar": "Madrid",
+            "año": "2023",
+            "cliente": "Instituto Español de Misiones Extranjeras",
+            "image": "placeholder"
+        },
+        {
+            "id": 13,
+            "obra": "Rehabilitación de viviendas",
+            "lugar": "Madrid",
+            "año": "2022",
+            "cliente": "INVIED",
+            "image": "placeholder"
+        },
+        {
+            "id": 14,
+            "obra": "Mantenimiento Aeropuerto",
+            "lugar": "Alicante",
+            "año": "2022",
+            "cliente": "AENA",
+            "image": "placeholder"
+        },
+        {
+            "id": 15,
+            "obra": "Construcción edificio técnico",
+            "lugar": "Madrid",
+            "año": "2022",
+            "cliente": "ADIF",
+            "image": "placeholder"
+        },
+        {
+            "id": 16,
+            "obra": "Rehabilitación de piscina",
+            "lugar": "Madrid",
+            "año": "2022",
+            "cliente": "Canal Isabel II",
+            "image": "placeholder"
+        },
+        {
+            "id": 17,
+            "obra": "Rehabilitación cafetería y vestuarios",
+            "lugar": "Pantoja - Toledo",
+            "año": "2022",
+            "cliente": "Ayuntamiento de Pantoja",
+            "image": "placeholder"
+        },
+        {
+            "id": 18,
+            "obra": "Rehabilitación de vestuarios",
+            "lugar": "Pantoja",
+            "año": "2022",
+            "cliente": "Ayuntamiento de Pantoja",
+            "image": "placeholder"
+        },
+        {
+            "id": 19,
+            "obra": "Rehabilitación monumento histórico",
+            "lugar": "Madrid",
+            "año": "2022",
+            "cliente": "Ayuntamiento Buitrago de Lozoya",
+            "image": "placeholder"
+        },
+        {
+            "id": 20,
+            "obra": "Instalación fibra óptica",
+            "lugar": "Zaragoza",
+            "año": "2022",
+            "cliente": "Fermalux",
+            "image": "placeholder"
+        }
+    ],
     "contact": [
         {
             "delegation": "DELEGACION TOLEDO",
@@ -120,5 +287,59 @@
             "name": "Política de Cookies",
             "url": "/legal/politica-de-cookies"
         }
-    ]
+    ],
+    "contactPage": {
+        "hero": {
+            "badge": "Contáctanos",
+            "title": "¿Tienes un proyecto en mente?",
+            "subtitle": "Cuéntanos tu idea y te ayudaremos a hacerla realidad. Solicita tu presupuesto sin compromiso."
+        },
+        "form": {
+            "title": "Envíanos un mensaje",
+            "fields": {
+                "nombre": {
+                    "label": "Nombre",
+                    "placeholder": "Tu nombre"
+                },
+                "apellido": {
+                    "label": "Apellido",
+                    "placeholder": "Tu apellido"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "tu@email.com"
+                },
+                "telefono": {
+                    "label": "Teléfono",
+                    "placeholder": "+34 600 000 000"
+                },
+                "asunto": {
+                    "label": "Asunto",
+                    "placeholder": "Presupuesto para reforma integral",
+                    "hint": "Ej: Presupuesto para reforma integral, construcción de nave industrial..."
+                },
+                "mensaje": {
+                    "label": "Mensaje",
+                    "placeholder": "Cuéntanos sobre tu proyecto..."
+                }
+            },
+            "privacidad": "He leído y acepto la {link} en la que se detalla el tratamiento de mis datos personales.",
+            "privacidadLink": "Política de privacidad",
+            "submitButton": "Enviar mensaje"
+        },
+        "info": {
+            "title": "Información de contacto",
+            "subtitle": "Estamos aquí para ayudarte. Contáctanos a través de cualquiera de nuestros canales.",
+            "schedule": {
+                "title": "Horario de atención",
+                "weekdays": "Lunes - Viernes:",
+                "hours": "8:00 - 20:00"
+            }
+        },
+        "map": {
+            "title": "Encuéntranos",
+            "subtitle": "Visítanos en cualquiera de nuestras oficinas",
+            "placeholder": "Mapa de ubicación"
+        }
+    }
 }

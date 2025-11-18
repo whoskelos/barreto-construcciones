@@ -3,6 +3,9 @@ import Footer from "@sections/Footer.astro";
 import Header from "@sections/Header.astro";
 import { ClientRouter } from 'astro:transitions';
 
+// reCAPTCHA Site Key (pública, segura para exponer)
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+
 interface Props {
     title?: string;
     description?: string;
@@ -108,6 +111,11 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         })} />
         
         <ClientRouter />
+        
+        <!-- reCAPTCHA v3 -->
+        {Astro.url.pathname === '/contacto' && (
+            <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} async defer></script>
+        )}
     </head>
     <body>
         <Header />
