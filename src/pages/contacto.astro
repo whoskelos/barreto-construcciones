@@ -26,13 +26,13 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     canonical="/contacto"
 >
     <!-- Hero Section -->
-    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20">
+    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20" aria-labelledby="contact-hero-title">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center">
                 <div class="inline-flex items-center rounded-full border border-primary-200 bg-white px-4 py-1.5 text-sm font-semibold mb-4">
                     <span class="text-primary-600">{hero.badge}</span>
                 </div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 mb-6 tracking-tight">
+                <h1 id="contact-hero-title" class="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 mb-6 tracking-tight">
                     {hero.title}
                 </h1>
                 <p class="text-xl text-neutral-600 leading-relaxed">
@@ -43,7 +43,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     </section>
 
     <!-- Contact Section -->
-    <section class="py-16 md:py-20 lg:py-24">
+    <section class="py-16 md:py-20 lg:py-24" aria-label="Sección de contacto">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                 
@@ -57,7 +57,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                             Los campos marcados con <span class="text-primary-600 font-semibold">*</span> son obligatorios
                         </p>
                         
-                        <form id="contactForm" class="space-y-6" method="POST" action="/api/contact">
+                        <form id="contactForm" class="space-y-6" method="POST" action="/api/contact" role="form" aria-label="Formulario de contacto">
                             <!-- Estado del formulario -->
                             <div id="formMessage" class="hidden rounded-md p-4 text-sm" role="alert"></div>
 
@@ -383,10 +383,10 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     </section>
 
     <!-- Map Section (opcional) -->
-    <section class="border-t border-neutral-200 bg-neutral-100 py-16">
+    <section class="border-t border-neutral-200 bg-neutral-100 py-16" aria-labelledby="map-heading">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">{map.title}</h2>
+                <h2 id="map-heading" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">{map.title}</h2>
                 <p class="text-base text-neutral-600">{map.subtitle}</p>
             </div>
             

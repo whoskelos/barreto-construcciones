@@ -20,51 +20,53 @@ const ICON_MAP: Record<string, any> = {
 
 ---
 
-<footer class="bg-neutral-200 pt-16" transition:name="footer" transition:animate="none">
+<footer class="bg-neutral-200 pt-16" transition:name="footer" transition:animate="none" role="contentinfo">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3">
         <div class="flex items-center justify-start md:items-start mb-8">
             <Image
                 src={logo}
-                alt="Logo"
+                alt="Logotipo de Barreto Construcciones - Empresa de construcción en Madrid y Toledo"
                 decoding="async"
                 loading="eager"
-                alt="Logo de Barreto Construcciones"
                 width={200}
                 height={150}
             />
         </div>
-        <div class="flex flex-col gap-8 mb-8">
+        <section class="flex flex-col gap-8 mb-8" aria-labelledby="contact-info-heading">
+            <h2 id="contact-info-heading" class="sr-only">Información de contacto</h2>
             {
                 contact.map((item) => (
-                    <div>
+                    <article>
                         <h3 class="text-lg font-semibold tracking-wide">
                             {item.delegation}
                         </h3>
-                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
-                            <Pin />
-                            <p class="text-md">{item.address}</p>
-                        </div>
-                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
-                            <PinHouse />
-                            <p class="text-md">{item.city}</p>
-                        </div>
-                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
-                            <Phone />
-                            <p class="text-md hover:text-neutral-950 transition-colors">
-                                <a href={`tel:${item.phone}`}>{item.phone}</a>
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-2 mt-3 text-neutral-900">
-                            <Mail />
-                            <p class="text-md hover:text-neutral-950 transition-colors">
-                                <a href={`mailto:${item.email}`}>{item.email}</a>
-                            </p>
-                        </div>
-                    </div>
+                        <address class="not-italic">
+                            <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                                <Pin aria-hidden="true" />
+                                <p class="text-md">{item.address}</p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                                <PinHouse aria-hidden="true" />
+                                <p class="text-md">{item.city}</p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                                <Phone aria-hidden="true" />
+                                <p class="text-md hover:text-neutral-950 transition-colors">
+                                    <a href={`tel:${item.phone}`} aria-label={`Llamar a ${item.delegation}: ${item.phone}`}>{item.phone}</a>
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-3 text-neutral-900">
+                                <Mail aria-hidden="true" />
+                                <p class="text-md hover:text-neutral-950 transition-colors">
+                                    <a href={`mailto:${item.email}`} aria-label={`Enviar email a ${item.delegation}: ${item.email}`}>{item.email}</a>
+                                </p>
+                            </div>
+                        </address>
+                    </article>
                 ))
             }
-        </div>
-        <div class="flex flex-col gap-2 mb-8">
+        </section>
+        <nav class="flex flex-col gap-2 mb-8" aria-label="Enlaces legales">
             {
                 legal.map((item) => (
                     <div>
@@ -84,24 +86,26 @@ const ICON_MAP: Record<string, any> = {
     <div
         class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center md:flex-row md:justify-between gap-2 border-t border-neutral-600 py-12"
     >
-        <p class="text-neutral-900">© {year} Todos los derechos reservados</p>
-        <div class="flex gap-3">
-            {
-                social.map(({url, name}) => {
-                    const Icon = ICON_MAP[name];
-                    return (
-                    <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Visitar nuestro perfil de ${name}`}
-                        class="inline-block bg-neutral-100 rounded-full p-2 text-neutral-800 hover:text-neutral-950 hover:bg-neutral-300 transition-colors"
-                    >
-                        <Icon />
-                    </a>
-                    )
-                })
-            }
-        </div>
+        <p class="text-neutral-900">© {year} Barreto Construcciones. Todos los derechos reservados</p>
+        <nav aria-label="Redes sociales">
+            <div class="flex gap-3">
+                {
+                    social.map(({url, name}) => {
+                        const Icon = ICON_MAP[name];
+                        return (
+                        <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Visitar nuestro perfil de ${name} (se abre en nueva pestaña)`}
+                            class="inline-block bg-neutral-100 rounded-full p-2 text-neutral-800 hover:text-neutral-950 hover:bg-neutral-300 transition-colors"
+                        >
+                            <Icon aria-hidden="true" />
+                        </a>
+                        )
+                    })
+                }
+            </div>
+        </nav>
     </div>
 </footer>
