@@ -14,9 +14,9 @@ import ShieldIcon from "@assets/svg/shield.svg";
 ---
 
 <Layout 
-    title="Edificación en Madrid y Toledo - Construcción de Naves, Viviendas y Proyectos Industriales | Barreto"
-    description="Servicio profesional de edificación en Madrid y Toledo. Construcción de naves industriales, viviendas residenciales y proyectos corporativos. Llave en mano con garantía. Presupuesto gratuito."
-    keywords="edificación Madrid, construcción naves industriales, construcción viviendas Madrid, edificación Toledo, proyectos industriales, construcción llave en mano, edificación profesional"
+    title="Construcción Industrial en Madrid y Toledo - Naves, Proyectos Industriales | Barreto"
+    description="Construcción industrial especializada en Madrid y Toledo. Naves industriales, proyectos corporativos y viviendas. Más de 20 años ejecutando obras de gran escala. Presupuesto sin compromiso."
+    keywords="construcción industrial Madrid, naves industriales Toledo, proyectos industriales, construcción corporativa, edificación industrial, obras industriales Getafe, construcción llave en mano"
     canonical="/areas-de-negocio/industrial"
 >
     <ServiceHero
@@ -46,7 +46,7 @@ import ShieldIcon from "@assets/svg/shield.svg";
             <ul class="flex flex-col space-y-6 md:space-y-8">
                 <li class="flex gap-4 items-start animate-fade-in">
                     <div
-                        class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        class="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                     >
                         <CheckIcon
                             class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
@@ -64,7 +64,7 @@ import ShieldIcon from "@assets/svg/shield.svg";
                 </li>
                 <li class="flex gap-4 items-start animate-fade-in">
                     <div
-                        class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        class="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                     >
                         <FileIcon
                             class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
@@ -82,7 +82,7 @@ import ShieldIcon from "@assets/svg/shield.svg";
                 </li>
                 <li class="flex gap-4 items-start animate-fade-in">
                     <div
-                        class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        class="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                     >
                         <KeyIcon
                             class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
@@ -100,7 +100,7 @@ import ShieldIcon from "@assets/svg/shield.svg";
                 </li>
                 <li class="flex gap-4 items-start animate-fade-in">
                     <div
-                        class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
+                        class="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-500/10 flex items-center justify-center"
                     >
                         <ShieldIcon
                             class="w-6 h-6 sm:w-7 sm:h-7 text-primary-500"
@@ -125,7 +125,11 @@ import ShieldIcon from "@assets/svg/shield.svg";
                 class="w-full h-full object-cover"
                 src={CorporativoImage}
                 alt="Persona mirando un plano de construcción"
-                loading="eager"
+                loading="lazy"
+                quality={75}
+                widths={[400, 500, 600, 800, 1000]}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 500px, 600px"
+                format="webp"
             />
         </div>
     </section>

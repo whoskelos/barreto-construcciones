@@ -6,6 +6,7 @@ dist/
 
 # dependencies
 node_modules/
+package-lock.json
 
 # logs
 npm-debug.log*
@@ -16,9 +17,23 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+*.env
+
+# secrets and keys
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
 
 # macOS-specific files
 .DS_Store
+
+# security audit reports
+SECURITY_AUDIT_INTERNAL.md
 
 # jetbrains setting folder
 .idea/

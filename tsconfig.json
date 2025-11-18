@@ -4,7 +4,7 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "paths": {
-      "@data": ["src/data/data.json"],
+      "@data": ["./src/data/data.json"],
       "@components/*": ["./src/components/*"],
       "@sections/*": ["./src/sections/*"],
       "@assets/*": ["./src/assets/*"],

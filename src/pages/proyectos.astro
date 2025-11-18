@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import CallToAction from "@components/CallToAction.astro";
+import { projects } from "@data";
+---
+
+<Layout
+    title="Proyectos Realizados - Construcción en Madrid y Toledo | Barreto"
+    description="Descubre nuestros proyectos de construcción, rehabilitación y obra civil en Madrid y Toledo. Experiencia demostrada en infraestructuras industriales, residenciales y comerciales."
+    keywords="proyectos construcción Madrid, obras realizadas Toledo, portfolio construcción, proyectos industriales, obras civiles"
+    canonical="/proyectos"
+>
+    <!-- Hero Section -->
+    <section class="relative h-[300px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-black" aria-labelledby="page-title">
+        <div class="absolute inset-0 bg-black opacity-80"></div>
+        
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start hero-content">
+            <div class="max-w-3xl">
+                <p class="text-base sm:text-lg md:text-xl text-primary-300 font-semibold uppercase tracking-wider mb-3 md:mb-4">
+                    Barreto Infraestructuras
+                </p>
+                <h1 id="page-title" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-white">
+                    Proyectos Realizados
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24" aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="sr-only">Lista de proyectos</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16 lg:gap-20">
+            {projects.map((project) => (
+                <ProjectCard
+                    obra={project.obra}
+                    lugar={project.lugar}
+                    año={project.año}
+                    cliente={project.cliente}
+                    image={project.image}
+                />
+            ))}
+        </div>
+    </section>
+
+    <CallToAction />
+</Layout>
+
+<style>
+    /* Animación suave para el contenido del hero */
+    .hero-content {
+        animation: fadeInUp 1s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Respeto por preferencias de animación reducida */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-content {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

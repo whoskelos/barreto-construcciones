@@ -36,7 +36,7 @@ const slides = [
 ];
 ---
 
-<section class="relative w-full h-[70dvh] overflow-hidden bg-neutral-900">
+<section class="relative w-full h-[70dvh] overflow-hidden bg-neutral-900" role="region" aria-label="Banner principal con carrusel de proyectos">
     <div class="embla h-full">
         <div class="embla__container h-full flex">
             {
@@ -48,10 +48,13 @@ const slides = [
                             class="object-cover w-full h-full brightness-[0.5] contrast-[1.1]"
                             loading={index === 0 ? "eager" : "lazy"}
                             decoding={index === 0 ? "sync" : "async"}
-                            quality={85}
-                            densities={[1, 2]}
+                            quality={75}
+                            widths={[640, 768, 1024, 1280, 1536, 1920]}
+                            sizes="100vw"
+                            format="webp"
+                            priority={index === 0 ? true : false}
                         />
-                        <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+                        <div class="absolute inset-0 bg-linear-to-r from-black/40 via-black/20 to-transparent" />
                     </div>
                 ))
             }
@@ -125,10 +128,15 @@ const slides = [
     import EmblaCarousel from "embla-carousel";
     import Autoplay from "embla-carousel-autoplay";
 
-    const emblaNode = document.querySelector(".embla");
-    const options = { loop: true };
-    const plugins = [Autoplay({ delay: 2000 })];
-    if (emblaNode instanceof HTMLElement) {
-        const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+    function initCarousel() {
+        const emblaNode = document.querySelector(".embla");
+        const options = { loop: true };
+        const plugins = [Autoplay({ delay: 2000 })];
+        if (emblaNode instanceof HTMLElement) {
+            const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+        }
     }
+
+    // Inicializar en carga de página (compatible con view transitions)
+    document.addEventListener('astro:page-load', initCarousel);
 </script>

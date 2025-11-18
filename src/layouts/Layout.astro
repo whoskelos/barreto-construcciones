@@ -1,7 +1,11 @@
 ---
 import Footer from "@sections/Footer.astro";
 import Header from "@sections/Header.astro";
-import { ViewTransitions } from 'astro:transitions';
+import LocalBusinessSchema from "@components/LocalBusinessSchema.astro";
+import { ClientRouter } from 'astro:transitions';
+
+// reCAPTCHA Site Key (pública, segura para exponer)
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
 interface Props {
     title?: string;
@@ -78,10 +82,13 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
             "@context": "https://schema.org",
             "@type": "GeneralContractor",
             "name": "Barreto Construcciones",
-            "description": "Empresa de construcción especializada en edificación, obra civil, reformas y rehabilitación",
+            "alternateName": "Barreto Infraestructuras",
+            "description": "Empresa de construcción especializada en edificación, obra civil, reformas y rehabilitación en Madrid y Toledo",
             "url": siteUrl,
             "logo": fullOgImage,
+            "image": fullOgImage,
             "telephone": ["+34925090798", "+34911460524"],
+            "email": "info@barretoconstrucciones.es",
             "address": [
                 {
                     "@type": "PostalAddress",
@@ -99,19 +106,114 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
                     "addressCountry": "ES"
                 }
             ],
-            "areaServed": ["Madrid", "Toledo"],
+            "areaServed": [
+                {
+                    "@type": "City",
+                    "name": "Madrid"
+                },
+                {
+                    "@type": "City",
+                    "name": "Toledo"
+                },
+                {
+                    "@type": "City",
+                    "name": "Getafe"
+                },
+                {
+                    "@type": "City",
+                    "name": "Yuncos"
+                }
+            ],
             "priceRange": "€€€",
+            "foundingDate": "2000",
+            "numberOfEmployees": {
+                "@type": "QuantitativeValue",
+                "value": "20"
+            },
+            "slogan": "Construimos confianza. Rehabilitamos el futuro.",
+            "knowsAbout": ["Construcción", "Edificación", "Obra Civil", "Rehabilitación", "Reformas", "Mantenimiento Industrial"],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Servicios de Construcción",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Construcción Industrial",
+                            "description": "Construcción de viviendas, naves y proyectos industriales en Madrid y Toledo"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Rehabilitación",
+                            "description": "Rehabilitación técnica y estructural de edificios"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Obra Civil",
+                            "description": "Servicios de urbanización, pavimentación, asfaltado y cimentaciones"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Mantenimiento Industrial",
+                            "description": "Servicios integrales de mantenimiento de infraestructuras"
+                        }
+                    }
+                ]
+            },
             "sameAs": [
                 "https://www.instagram.com/barretoconstrucciones/",
                 "https://www.linkedin.com/company/barreto-construcciones/"
             ]
         })} />
         
-        <ViewTransitions />
+        <!-- Schema.org WebSite para búsqueda -->
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Barreto Construcciones",
+            "alternateName": "Barreto Infraestructuras",
+            "url": siteUrl,
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": `${siteUrl}/proyectos?q={search_term_string}`
+                },
+                "query-input": "required name=search_term_string"
+            },
+            "inLanguage": "es-ES",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Barreto Construcciones",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": fullOgImage
+                }
+            }
+        })} />
+        
+        <ClientRouter />
+        
+        <!-- reCAPTCHA v3 -->
+        {Astro.url.pathname === '/contacto' && (
+            <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} async defer></script>
+        )}
     </head>
     <body>
+        <LocalBusinessSchema />
+        <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
         <Header />
-        <main class="pt-20">
+        <main id="main-content" class="pt-20" role="main">
             <slot />
         </main>
         <Footer />
@@ -120,7 +222,6 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
 
 <style is:global>
     @import "../styles/global.css";
-    @import "@fontsource-variable/roboto";
     @plugin "@midudev/tailwind-animations";
 
     :root {
@@ -278,5 +379,23 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
 
     footer {
         flex-shrink: 0;
+    }
+
+    /* Skip navigation link for accessibility */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: #fff;
+        padding: 8px 16px;
+        text-decoration: none;
+        z-index: 10000;
+        font-weight: bold;
+        border-radius: 0 0 4px 0;
+    }
+
+    .skip-link:focus {
+        top: 0;
     }
 </style>
