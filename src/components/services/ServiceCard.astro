@@ -43,7 +43,11 @@ const imageSrc = {
                         alt={name}
                         class="w-full h-full object-cover aspect-[16/9] rounded-t-md group-hover:scale-105 transition-transform duration-200 ease-in-out"
                         decoding="async"
-                        loading="eager"
+                        loading="lazy"
+                        quality={75}
+                        widths={[300, 400, 600]}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        format="webp"
                     />
                 )
             }

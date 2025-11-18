@@ -116,7 +116,11 @@ import ShieldIcon from "@assets/svg/shield.svg";
                 class="w-full h-full object-cover"
                 src={CorporativoImage}
                 alt="Persona mirando un plano de construcción"
-                loading="eager"
+                loading="lazy"
+                quality={75}
+                widths={[400, 500, 600, 800, 1000]}
+                sizes="(max-width: 640px) 400px, (max-width: 1024px) 500px, 600px"
+                format="webp"
             />
         </div>
     </section>
