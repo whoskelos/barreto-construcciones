@@ -1,0 +1,84 @@
+---
+import { faqs } from "@data";
+
+// Generar Schema.org FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<!-- Schema.org FAQPage JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-16 px-4 bg-gray-50">
+  <div class="max-w-4xl mx-auto">
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="faq-item group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all hover:shadow-md">
+          <summary class="flex justify-between items-center cursor-pointer p-6 font-semibold text-lg text-gray-900 list-none">
+            <span>{faq.question}</span>
+            <svg 
+              class="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            <div class="px-6 pb-6 text-gray-700 leading-relaxed">
+              {faq.answer}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  details[open] summary {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Animación suave para el contenido */
+  .faq-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-content > div {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease-out, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  details[open] .faq-content {
+    grid-template-rows: 1fr;
+  }
+
+  details[open] .faq-content > div {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out 0.1s, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  }
+</style>
