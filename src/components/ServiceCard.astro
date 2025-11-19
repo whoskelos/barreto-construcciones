@@ -26,18 +26,14 @@ const { name, description, icon } = Astro.props;
 const Icon = ICON_MAP[icon];
 ---
 
-<article class="w-full bg-white rounded-md shadow-lg"> 
-    <header class="p-6">
-        <span class="inline-block p-4 bg-primary-50 rounded-sm mb-4 text-primary-500">
-            { 
-                <Icon />
-            }
-        </span>
-        <h2 class="text-xl text-neutral-900 font-bold">
-            {name}
-        </h2>
-    </header>
-    <div class="px-6 pb-6">
-        <p class="text-sm text-neutral-800">{description}</p>
+<article class="w-full h-full flex flex-col justify-start items-center text-center px-6 py-8 border-b border-b-neutral-200 last:border-b-0 md:border-r md:border-r-neutral-200 last:border-r-0 md:border-b-0">
+    <div class="mb-6 p-4 rounded-lg bg-primary-50 text-primary-500">
+        { 
+            <Icon class="w-8 h-8" />
+        }
     </div>
+    <h3 class="text-xl text-neutral-900 font-bold">
+        {name}
+    </h3>
+    <p class="text-sm text-neutral-800 leading-relaxed">{description}</p>
 </article>
