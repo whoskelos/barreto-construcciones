@@ -1,10 +1,47 @@
 ---
 import { Image } from "astro:assets";
 import { menu } from "@data";
+import { getCollection } from "astro:content";
 
 import Logo from "@assets/img/logo.webp";
 
 const currentPath = Astro.url.pathname;
+
+const services = await getCollection("services");
+
+// Ordenar servicios según el orden original del menú si es necesario, o por defecto
+// El orden en data.json era: Industrial, Rehabilitación, Residencial, Obra Civil, Mantenimiento
+const order = ["industrial", "rehabilitacion", "residencial", "obra-civil", "mantenimiento"];
+const sortedServices = services.sort((a, b) => {
+    return order.indexOf(a.id) - order.indexOf(b.id);
+});
+
+interface SubMenuItem {
+    name: string;
+    link: string;
+    description?: string;
+}
+
+interface MenuItem {
+    name: string;
+    link: string;
+    submenu?: SubMenuItem[];
+}
+
+const dynamicMenu: MenuItem[] = menu.map(item => {
+    if (item.name === "Áreas de negocio") {
+        return {
+            name: item.name,
+            link: item.link,
+            submenu: sortedServices.map(service => ({
+                name: service.data.title,
+                link: `/areas-de-negocio/${service.id}`,
+                description: service.data.menuDescription
+            }))
+        };
+    }
+    return item;
+});
 ---
 
 <nav class="w-full bg-white shadow-sm border-b border-neutral-200" role="navigation" aria-label="Navegación principal">
@@ -31,7 +68,7 @@ const currentPath = Astro.url.pathname;
             <div class="hidden lg:flex lg:items-center lg:space-x-1 relative" id="desktop-nav">
                 <div class="nav-bg-slider absolute rounded-lg bg-primary-50 transition-all duration-300 ease-out opacity-0"></div>
                 {
-                    menu.map((item, index) => (
+                    dynamicMenu.map((item, index) => (
                         <div class="relative group">
                             <a
                                 href={item.link}
@@ -64,7 +101,7 @@ const currentPath = Astro.url.pathname;
                             {item.submenu && (
                                 <div class="absolute left-0 pt-1 w-96 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                     <div class="bg-white rounded-lg shadow-lg border border-neutral-200 py-2 max-h-[80vh] overflow-y-auto">
-                                        {item.submenu.map((subitem) => (
+                                        {item.submenu.map((subitem: SubMenuItem) => (
                                             <a
                                                 href={subitem.link}
                                                 class={`block px-4 py-3 transition-colors duration-150 border-l-3
@@ -136,7 +173,7 @@ const currentPath = Astro.url.pathname;
     <div id="mobile-menu" class="hidden lg:hidden border-t border-neutral-200 max-h-[70vh] overflow-y-auto" role="menu" aria-label="Menú de navegación móvil">
         <div class="px-4 py-4 space-y-1">
             {
-                menu.map((item) => (
+                dynamicMenu.map((item) => (
                     <div>
                         {item.submenu ? (
                             <div>
@@ -163,7 +200,7 @@ const currentPath = Astro.url.pathname;
                                     class="mobile-submenu hidden pl-4 mt-1 space-y-1"
                                     data-submenu={item.name.toLowerCase()}
                                 >
-                                    {item.submenu.map((subitem) => (
+                                    {item.submenu.map((subitem: SubMenuItem) => (
                                         <a
                                             href={subitem.link}
                                             class={`block px-4 py-3 rounded-lg transition-colors duration-150
