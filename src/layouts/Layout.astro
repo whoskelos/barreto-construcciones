@@ -3,7 +3,6 @@ import Footer from "@components/sections/Footer.astro";
 import Header from "@components/sections/Header.astro";
 import LocalBusinessSchema from "@components/common/LocalBusinessSchema.astro";
 import CookieConsent from "@components/common/CookieConsent.astro";
-import WhatsAppButton from "@components/common/WhatsAppButton.astro";
 import { ClientRouter } from 'astro:transitions';
 
 // Fuentes para el logo
@@ -223,7 +222,6 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
             <slot />
         </main>
         <Footer />
-        <WhatsAppButton />
         <CookieConsent />
     </body>
 </html>
