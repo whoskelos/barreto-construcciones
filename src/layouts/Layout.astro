@@ -1,7 +1,7 @@
 ---
-import Footer from "@sections/Footer.astro";
-import Header from "@sections/Header.astro";
-import LocalBusinessSchema from "@components/LocalBusinessSchema.astro";
+import Footer from "@components/sections/Footer.astro";
+import Header from "@components/sections/Header.astro";
+import LocalBusinessSchema from "@components/common/LocalBusinessSchema.astro";
 import { ClientRouter } from 'astro:transitions';
 
 // reCAPTCHA Site Key (pública, segura para exponer)
@@ -399,3 +399,4 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         top: 0;
     }
 </style>
+

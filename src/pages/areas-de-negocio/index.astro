@@ -1,12 +1,11 @@
 ---
 import Image from "astro/components/Image.astro";
-
 import Layout from "../../layouts/Layout.astro";
-
 import HeroImage from "@assets/img/featured/edificacion/3.webp";
-import ServiceCard from "@components/services/ServiceCard.astro";
+import ServiceCard from "@components/ui/ServiceImageCard.astro";
+import { getCollection } from "astro:content";
 
-import { services } from "@data";
+const services = await getCollection("services");
 ---
 
 <Layout 
@@ -65,13 +64,15 @@ import { services } from "@data";
             {
                 services.map((service) => (
                     <ServiceCard
-                        name={service.name}
-                        description={service.fullDescription}
-                        image={service.image}
-                        url={service.url}
+                        name={service.data.title}
+                        description={service.data.introDescription}
+                        image={service.data.heroImage}
+                        url={`/areas-de-negocio/${service.id}`}
+                        transitionName={`img-${service.data.nameTransition}`}
                     />
                 ))
             }
         </div>
     </section>
 </Layout>
+

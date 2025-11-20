@@ -353,52 +353,53 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Nuevo mensaje de contacto</title>
         </head>
-        <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">Nuevo mensaje de contacto</h1>
+        <body style="font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #18181b; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f4;">
+          <div style="background-color: #ed6309; padding: 30px; border-radius: 8px 8px 0 0; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 700;">Nuevo mensaje de contacto</h1>
+            <p style="color: #fff7ed; margin: 5px 0 0 0; font-size: 14px;">Barreto Construcciones</p>
           </div>
           
-          <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px;">
-            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-              <h2 style="color: #667eea; margin-top: 0; font-size: 18px;">Información del contacto</h2>
+          <div style="background: white; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <div style="margin-bottom: 25px;">
+              <h2 style="color: #ea580c; margin-top: 0; font-size: 18px; border-bottom: 2px solid #fed7aa; padding-bottom: 10px; display: inline-block;">Información del contacto</h2>
               
-              <table style="width: 100%; border-collapse: collapse;">
+              <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0; font-weight: bold; color: #555; width: 120px;">Nombre:</td>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">${nombre} ${apellido}</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; font-weight: bold; color: #52525b; width: 120px;">Nombre:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; color: #18181b;">${nombre} ${apellido}</td>
                 </tr>
                 ${email ? `
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0; font-weight: bold; color: #555;">Email:</td>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><a href="mailto:${email}" style="color: #667eea; text-decoration: none;">${email}</a></td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; font-weight: bold; color: #52525b;">Email:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4;"><a href="mailto:${email}" style="color: #ea580c; text-decoration: none; font-weight: 500;">${email}</a></td>
                 </tr>
                 ` : ''}
                 ${telefono ? `
                 <tr>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0; font-weight: bold; color: #555;">Teléfono:</td>
-                  <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;"><a href="tel:${telefono}" style="color: #667eea; text-decoration: none;">${telefono}</a></td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; font-weight: bold; color: #52525b;">Teléfono:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4;"><a href="tel:${telefono}" style="color: #ea580c; text-decoration: none; font-weight: 500;">${telefono}</a></td>
                 </tr>
                 ` : ''}
                 <tr>
-                  <td style="padding: 10px; font-weight: bold; color: #555;">Asunto:</td>
-                  <td style="padding: 10px;">${asunto}</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; font-weight: bold; color: #52525b;">Asunto:</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e7e5e4; color: #18181b;">${asunto}</td>
                 </tr>
               </table>
             </div>
             
-            <div style="background: white; padding: 20px; border-radius: 8px;">
-              <h3 style="color: #667eea; margin-top: 0; font-size: 16px;">Mensaje:</h3>
-              <p style="color: #555; white-space: pre-wrap; line-height: 1.6;">${mensaje}</p>
+            <div style="background-color: #fafaf9; padding: 20px; border-radius: 6px; border: 1px solid #e7e5e4;">
+              <h3 style="color: #ea580c; margin-top: 0; font-size: 16px; margin-bottom: 10px;">Mensaje:</h3>
+              <p style="color: #3f3f46; white-space: pre-wrap; line-height: 1.6; margin: 0;">${mensaje}</p>
             </div>
             
-            <div style="margin-top: 20px; padding: 15px; background: #e8f4f8; border-left: 4px solid #667eea; border-radius: 4px;">
-              <p style="margin: 0; font-size: 12px; color: #666;">
+            <div style="margin-top: 25px; padding: 15px; background: #fff7ed; border-left: 4px solid #ed6309; border-radius: 4px;">
+              <p style="margin: 0; font-size: 13px; color: #7c2d12;">
                 <strong>Nota:</strong> Este mensaje fue enviado desde el formulario de contacto de barretoconstrucciones.es
               </p>
             </div>
           </div>
           
-          <div style="margin-top: 20px; text-align: center; color: #999; font-size: 12px;">
+          <div style="margin-top: 20px; text-align: center; color: #78716c; font-size: 12px;">
             <p>© ${new Date().getFullYear()} Barreto Construcciones. Todos los derechos reservados.</p>
           </div>
         </body>
