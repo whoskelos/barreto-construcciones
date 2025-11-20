@@ -1,0 +1,49 @@
+---
+interface Props {
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const { width = 150, height = 50, class: className } = Astro.props;
+---
+
+<svg
+  width={width}
+  height={height}
+  viewBox="0 0 260 90"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  aria-label="Barreto Construcciones Logo"
+  role="img"
+>
+  <g>
+    <text
+      x="255"
+      y="60"
+      font-family="'Source Sans 3', sans-serif"
+      font-weight="600"
+      font-size="82"
+      fill="#F16522"
+      text-anchor="end"
+      letter-spacing="-2px"
+      style="text-transform: lowercase;"
+    >
+      barreto
+    </text>
+
+    <text
+      x="255"
+      y="85"
+      font-family="'Source Sans 3', sans-serif"
+      font-weight="500"
+      font-size="29"
+      fill="#619f13"
+      text-anchor="end"
+      letter-spacing="0.3px"
+    >
+      infraestructuras
+    </text>
+  </g>
+</svg>

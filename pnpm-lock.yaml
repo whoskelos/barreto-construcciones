@@ -20,6 +20,9 @@ importers:
       '@fontsource-variable/roboto':
         specifier: 5.2.8
         version: 5.2.8
+      '@fontsource/source-sans-3':
+        specifier: ^5.2.9
+        version: 5.2.9
       '@midudev/tailwind-animations':
         specifier: ^0.2.0
         version: 0.2.0(tailwindcss@4.1.17)
@@ -261,6 +264,9 @@ packages:
 
   '@fontsource-variable/roboto@5.2.8':
     resolution: {integrity: sha512-UBhCzUXpkZZqBhTnkIhkM3USlSuu2Da6k4mjiRaEnZtvMOMWcQVOV6oV2cY00plUuJZrsnTRtt3ZRRJF09gV5w==}
+
+  '@fontsource/source-sans-3@5.2.9':
+    resolution: {integrity: sha512-u3ymIq4rfmCCyB9MEw/sFR5lPVJ1yTNXmIMbUz+9kVCFIHvNtfzXOEBuvkg3Tk0zhmioPeJ28ZK5smZ7TurezQ==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -2116,6 +2122,8 @@ snapshots:
     optional: true
 
   '@fontsource-variable/roboto@5.2.8': {}
+
+  '@fontsource/source-sans-3@5.2.9': {}
 
   '@img/colour@1.0.0': {}
 

@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
-
-import logo from "@assets/img/logo.webp";
+import Logo from "@components/ui/Logo.astro";
 import LinkedIn from "@assets/svg/linkedin.svg";
 import Instagram from "@assets/svg/instagram.svg";
 import Phone from "@assets/svg/phone.svg";
@@ -23,15 +21,10 @@ const ICON_MAP: Record<string, any> = {
 <footer class="bg-neutral-200 pt-16" transition:name="footer" transition:animate="none" role="contentinfo">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3">
         <div class="flex items-center justify-start md:items-start mb-8">
-            <Image
-                src={logo}
-                alt="Logotipo de Barreto Construcciones - Empresa de construcción en Madrid y Toledo"
-                decoding="async"
-                loading="lazy"
+            <Logo
                 width={200}
-                height={150}
-                quality={80}
-                format="webp"
+                height={67}
+                class="h-auto w-[200px]"
             />
         </div>
         <section class="flex flex-col gap-8 mb-8" aria-labelledby="contact-info-heading">
