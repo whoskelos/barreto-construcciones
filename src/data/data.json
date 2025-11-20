@@ -1,383 +1,118 @@
 {
-    "menu": [
-        {
-            "name": "Inicio",
-            "link": "/"
-        },
-        {
-            "name": "Áreas de negocio",
-            "link": "/areas-de-negocio",
-            "submenu": [
-                {
-                    "name": "Industrial",
-                    "link": "/areas-de-negocio/industrial",
-                    "description": "Nuestro servicio de construcción industrial ofrece soluciones integrales para el desarrollo, ampliación y modernización de instalaciones productivas. Nos especializamos en la ejecución de obras de gran escala bajo los más altos estándares de calidad, seguridad y eficiencia, garantizando que cada proyecto cumpla con las normativas técnicas y ambientales vigentes."
-                },
-                {
-                    "name": "Rehabilitación",
-                    "link": "/areas-de-negocio/rehabilitacion",
-                    "description": "Nuestro servicio de rehabilitación está enfocado en la recuperación, modernización y optimización de instalaciones existentes, con el objetivo de mejorar su funcionalidad, seguridad y eficiencia operativa."
-                },
-                {
-                    "name": "Residencial",
-                    "link": "/areas-de-negocio/residencial",
-                    "description": "Nuestro servicio de construcción residencial ofrece soluciones completas para el desarrollo de viviendas unifamiliares, edificios y conjuntos habitacionales, combinando diseño arquitectónico, funcionalidad y calidad constructiva."
-                },
-                {
-                    "name": "Obra Civil",
-                    "link": "/areas-de-negocio/obra-civil",
-                    "description": "Nuestro servicio de obra civil abarca la planificación, ejecución y supervisión de infraestructuras esenciales que contribuyen al desarrollo urbano, industrial y social. Nos especializamos en la construcción de estructuras duraderas, funcionales y seguras, cumpliendo con las normativas técnicas y ambientales."
-                },
-                {
-                    "name": "Mantenimiento",
-                    "link": "/areas-de-negocio/mantenimiento",
-                    "description": "Nuestro servicio de mantenimiento está orientado a garantizar la operatividad, seguridad y durabilidad de todo tipo de instalaciones e infraestructuras, mediante acciones preventivas, correctivas y de mejora continua."
-                }
-            ]
-        },
-        {
-            "name": "Proyectos",
-            "link": "/proyectos"
-        },
-        {
-            "name": "Contacto",
-            "link": "/contacto"
-        }
-    ],
-    "services": [
-        {
-            "name": "Industrial",
-            "description": "Construcción de viviendas, naves y proyectos industriales en Madrid y Toledo.",
-            "fullDescription": "Construcción con los más altos estándares de calidad, desde la planificación hasta la entrega final.",
-            "icon": "building",
-            "image": "edificacion",
-            "url": "/areas-de-negocio/industrial"
-        },
-        {
-            "name": "Rehabilitación",
-            "description": "Rehabilitación técnica y estructural de edificios.",
-            "fullDescription": "Servicios especializados en la recuperación y refuerzo estructural de edificios.",
-            "icon": "hammer",
-            "image": "rehabilitacion",
-            "url": "/areas-de-negocio/rehabilitacion"
-        },
-        {
-            "name": "Residencial",
-            "description": "Reformas profesionales para negocios, oficinas e industrias.",
-            "fullDescription": "Transformamos espacios con soluciones integrales de reforma, adaptándonos a las necesidades específicas de cada proyecto.",
-            "icon": "house",
-            "image": "reformas",
-            "url": "/areas-de-negocio/residencial"
-        },
-        {
-            "name": "Obra Civil",
-            "description": "Servicios de urbanización, pavimentación, asfaltado, canalizaciones, cimentaciones, muros de contención, infraestructuras eléctricas y cargadores.",
-            "fullDescription": "Desarrollo de infraestructuras civiles con expertise técnico y compromiso con la excelencia en cada proyecto.",
-            "icon": "construction",
-            "image": "obra_civil",
-            "url": "/areas-de-negocio/obra-civil"
-        },
-        {
-            "name": "Mantenimiento",
-            "description": "Servicios integrales de mantenimiento de infraestructuras para garantizar su óptimo funcionamiento y durabilidad.",
-            "fullDescription": "Servicios de mantenimiento integral para preservar y optimizar el valor de sus instalaciones.",
-            "icon": "wrench",
-            "image": "mantenimiento",
-            "url": "/areas-de-negocio/mantenimiento"
-        }
-    ],
-    "projects": [
-        {
-            "id": 1,
-            "obra": "Construcción depósito",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "Sertego",
-            "image": "deposito-sertego.webp"
-        },
-        {
-            "id": 2,
-            "obra": "Soleras de hormigón armado",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "Sertego",
-            "image": "soleras-hormigon-sertego.webp"
-        },
-        {
-            "id": 3,
-            "obra": "Construcción bancadas",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "Sertego",
-            "image": "construccion-bancadas-sertego.webp"
-        },
-        {
-            "id": 4,
-            "obra": "Acondicionamiento nave industrial",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "Sertego",
-            "image": "acondicionamiento-nave-industrial-sertego.webp"
-        },
-        {
-            "id": 5,
-            "obra": "Adecuación instalaciones",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "INTA",
-            "image": "adecuacion-instalaciones-inta.webp"
-        },
-        {
-            "id": 6,
-            "obra": "Rehabilitación de cubierta",
-            "lugar": "Madrid",
-            "año": "2025",
-            "cliente": "Fúnez",
-            "image": "rehabilitacion-cubierta-funez.webp"
-        },
-        {
-            "id": 7,
-            "obra": "Reforma vivienda",
-            "lugar": "Tenerife",
-            "año": "2025",
-            "cliente": "Banco de España",
-            "image": "reforma-vivienda-banco-espanya.webp"
-        },
-        {
-            "id": 8,
-            "obra": "Reforma cocina",
-            "lugar": "Madrid",
-            "año": "2024",
-            "cliente": "Ministerio Defensa",
-            "image": "reforma-cocina-ministerio-defensa.webp"
-        },
-        {
-            "id": 9,
-            "obra": "Reforma farmacia",
-            "lugar": "Madrid",
-            "año": "2024",
-            "cliente": "Lázaro",
-            "image": "reforma-farmacia-lazaro.webp"
-        },
-        {
-            "id": 10,
-            "obra": "Construcción de parada de autobús",
-            "lugar": "Madrid",
-            "año": "2023",
-            "cliente": "Ayuntamiento de Torres de la Alameda",
-            "image": "construccion-parada-autobus-ayto-torres-alameda.webp"
-        },
-        {
-            "id": 11,
-            "obra": "Mantenimiento depósitos",
-            "lugar": "Madrid",
-            "año": "2023",
-            "cliente": "URBASER",
-            "image": "mantenimiento-depositos-urbaser.webp"
-        },
-        {
-            "id": 12,
-            "obra": "Rehabilitación de cubierta y lucernarios",
-            "lugar": "Madrid",
-            "año": "2023",
-            "cliente": "Instituto Español de Misiones Extranjeras",
-            "image": "rehabilitacion-cubierta-instituto-misiones-extranjeras.webp"
-        },
-        {
-            "id": 13,
-            "obra": "Rehabilitación de viviendas",
-            "lugar": "Madrid",
-            "año": "2022",
-            "cliente": "INVIED",
-            "image": "rehabilitacion-viviendas-invied.webp"
-        },
-        {
-            "id": 14,
-            "obra": "Mantenimiento Aeropuerto",
-            "lugar": "Alicante",
-            "año": "2022",
-            "cliente": "AENA",
-            "image": "mantenimiento-aeropuerto-aena.webp"
-        },
-        {
-            "id": 15,
-            "obra": "Construcción edificio técnico",
-            "lugar": "Madrid",
-            "año": "2022",
-            "cliente": "ADIF",
-            "image": "construccion-edificio-tecnico-adif.webp"
-        },
-        {
-            "id": 16,
-            "obra": "Rehabilitación de piscina",
-            "lugar": "Madrid",
-            "año": "2022",
-            "cliente": "Canal Isabel II",
-            "image": "rehabilitacion-piscina-canal-isabel-ii.webp"
-        },
-        {
-            "id": 17,
-            "obra": "Rehabilitación cafetería y vestuarios",
-            "lugar": "Pantoja - Toledo",
-            "año": "2022",
-            "cliente": "Ayuntamiento de Pantoja",
-            "image": "rehabilitacion-cafeteria-vestuarios-ayto-pantoja.webp"
-        },
-        {
-            "id": 18,
-            "obra": "Rehabilitación de vestuarios",
-            "lugar": "Pantoja",
-            "año": "2022",
-            "cliente": "Ayuntamiento de Pantoja",
-            "image": "rehabilitacion-vestuarios-ayto-pantoja.webp"
-        },
-        {
-            "id": 19,
-            "obra": "Rehabilitación monumento histórico",
-            "lugar": "Madrid",
-            "año": "2022",
-            "cliente": "Ayuntamiento Buitrago de Lozoya",
-            "image": "rehabilitacion-monumento-historico-ayto-buitrago.webp"
-        },
-        {
-            "id": 20,
-            "obra": "Instalación fibra óptica",
-            "lugar": "Zaragoza",
-            "año": "2022",
-            "cliente": "Fermalux",
-            "image": "instalacion-fibra-optica-fermalux.webp"
-        }
-    ],
-    "contact": [
-        {
-            "delegation": "DELEGACION TOLEDO",
-            "address": "Calle Valencia, Yuncos",
-            "city": "45210, Toledo",
-            "phone": "+34 925 09 07 98",
-            "email": "contacto@barretoconstrucciones.es"
-        },
-        {
-            "delegation": "DELEGACION MADRID",
-            "address": "Paseo John Lennon 12",
-            "city": "28960, Getafe",
-            "phone": "+34 911 46 05 24",
-            "email": "contacto@barretoconstrucciones.es"
-        }
-    ],
-    "social": [
-        {
-            "name": "Instagram",
-            "url": "https://www.instagram.com/barretoinfraestructuras/"
-        },
-        {
-            "name": "LinkedIn",
-            "url": "https://www.linkedin.com/company/barreto-infraestructuras/"
-        }
-    ],
-    "legal": [
-        {
-            "name": "Política de Privacidad",
-            "url": "/legal/politica-de-privacidad"
-        },
-        {
-            "name": "Aviso Legal",
-            "url": "/legal/aviso-legal"
-        },
-        {
-            "name": "FAQs",
-            "url": "/preguntas-frecuentes"
-        },
-        {
-            "name": "Política de Cookies",
-            "url": "/legal/politica-de-cookies"
-        }
-    ],
-    "faqs": [
-        {
-            "question": "¿Cuántos años de experiencia tiene Barreto Construcciones?",
-            "answer": "Contamos con más de 20 años de experiencia en el sector de la construcción, especializándonos en obra civil, rehabilitación, construcción industrial y residencial en Madrid y Toledo."
-        },
-        {
-            "question": "¿En qué zonas operan vuestros servicios de construcción?",
-            "answer": "Operamos principalmente en Madrid (Getafe) y Toledo (Yuncos), abarcando toda la Comunidad de Madrid y Castilla-La Mancha. Realizamos proyectos de construcción industrial, rehabilitación de edificios, obra civil y mantenimiento."
-        },
-        {
-            "question": "¿Qué tipos de proyectos de construcción realizáis?",
-            "answer": "Realizamos construcción industrial (naves industriales, almacenes logísticos), rehabilitación de edificios, obra civil (infraestructuras, urbanizaciones), construcción residencial (viviendas unifamiliares, plurifamiliares) y servicios de mantenimiento integral."
-        },
-        {
-            "question": "¿Ofrecéis presupuestos sin compromiso?",
-            "answer": "Sí, ofrecemos presupuestos detallados sin compromiso. Puede contactarnos a través de nuestro formulario web, por teléfono en el 651 10 20 50 o por email en info@barretoconstrucciones.es"
-        },
-        {
-            "question": "¿Realizáis rehabilitaciones de edificios históricos?",
-            "answer": "Sí, somos especialistas en rehabilitación de edificios, incluidos inmuebles históricos. Trabajamos con técnicas de consolidación estructural, restauración de fachadas y mejora de eficiencia energética respetando el patrimonio arquitectónico."
-        },
-        {
-            "question": "¿Qué certificaciones y normativas cumplís en vuestras obras?",
-            "answer": "Cumplimos con todas las normativas vigentes: CTE (Código Técnico de la Edificación), normativa de seguridad y salud en obras, certificaciones ISO de calidad, y normativas específicas para construcción industrial y obra civil. Todos nuestros proyectos cuentan con dirección facultativa y seguros obligatorios."
-        },
-        {
-            "question": "¿Cuánto tiempo tarda un proyecto de construcción?",
-            "answer": "El plazo depende del tipo y magnitud del proyecto. Una rehabilitación puede llevar de 3 a 12 meses, mientras que una nave industrial puede ejecutarse en 6-18 meses. Proporcionamos cronogramas detallados en cada presupuesto."
-        },
-        {
-            "question": "¿Ofrecéis servicios de mantenimiento después de finalizar la obra?",
-            "answer": "Sí, ofrecemos servicios de mantenimiento integral para edificios, naves industriales e infraestructuras. Incluye mantenimiento preventivo, correctivo, limpieza industrial y gestión de instalaciones."
-        }
-    ],
-    "contactPage": {
-        "hero": {
-            "badge": "Contáctanos",
-            "title": "¿Tienes un proyecto en mente?",
-            "subtitle": "Cuéntanos tu idea y te ayudaremos a hacerla realidad. Solicita tu presupuesto sin compromiso."
-        },
-        "form": {
-            "title": "Envíanos un mensaje",
-            "fields": {
-                "nombre": {
-                    "label": "Nombre",
-                    "placeholder": "Tu nombre"
-                },
-                "apellido": {
-                    "label": "Apellido",
-                    "placeholder": "Tu apellido"
-                },
-                "email": {
-                    "label": "Email",
-                    "placeholder": "tu@email.com"
-                },
-                "telefono": {
-                    "label": "Teléfono",
-                    "placeholder": "+34 600 000 000"
-                },
-                "asunto": {
-                    "label": "Asunto",
-                    "placeholder": "Presupuesto para reforma integral",
-                    "hint": "Ej: Presupuesto para reforma integral, construcción de nave industrial..."
-                },
-                "mensaje": {
-                    "label": "Mensaje",
-                    "placeholder": "Cuéntanos sobre tu proyecto..."
-                }
-            },
-            "privacidad": "He leído y acepto la {link} en la que se detalla el tratamiento de mis datos personales.",
-            "privacidadLink": "Política de privacidad",
-            "submitButton": "Enviar mensaje"
-        },
-        "info": {
-            "title": "Información de contacto",
-            "subtitle": "Estamos aquí para ayudarte. Contáctanos a través de cualquiera de nuestros canales.",
-            "schedule": {
-                "title": "Horario de atención",
-                "weekdays": "Lunes - Viernes:",
-                "hours": "8:00 - 20:00"
-            }
-        },
-        "map": {
-            "title": "Encuéntranos",
-            "subtitle": "Visítanos en cualquiera de nuestras oficinas",
-            "placeholder": "Mapa de ubicación"
-        }
+  "menu": [
+    {
+      "name": "Inicio",
+      "link": "/"
+    },
+    {
+      "name": "Áreas de negocio",
+      "link": "/areas-de-negocio"
+    },
+    {
+      "name": "Proyectos",
+      "link": "/proyectos"
+    },
+    {
+      "name": "Contacto",
+      "link": "/contacto"
     }
+  ],
+  "contact": [
+    {
+      "delegation": "DELEGACION TOLEDO",
+      "address": "Calle Valencia, Yuncos",
+      "city": "45210, Toledo",
+      "phone": "+34 925 09 07 98",
+      "email": "contacto@barretoconstrucciones.es"
+    },
+    {
+      "delegation": "DELEGACION MADRID",
+      "address": "Paseo John Lennon 12",
+      "city": "28960, Getafe",
+      "phone": "+34 911 46 05 24",
+      "email": "contacto@barretoconstrucciones.es"
+    }
+  ],
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/barretoinfraestructuras/"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/barreto-infraestructuras/"
+    }
+  ],
+  "legal": [
+    {
+      "name": "Política de Privacidad",
+      "url": "/legal/politica-de-privacidad"
+    },
+    {
+      "name": "Aviso Legal",
+      "url": "/legal/aviso-legal"
+    },
+    {
+      "name": "FAQs",
+      "url": "/preguntas-frecuentes"
+    },
+    {
+      "name": "Política de Cookies",
+      "url": "/legal/politica-de-cookies"
+    }
+  ],
+  "contactPage": {
+    "hero": {
+      "badge": "Contáctanos",
+      "title": "¿Tienes un proyecto en mente?",
+      "subtitle": "Cuéntanos tu idea y te ayudaremos a hacerla realidad. Solicita tu presupuesto sin compromiso."
+    },
+    "form": {
+      "title": "Envíanos un mensaje",
+      "fields": {
+        "nombre": {
+          "label": "Nombre",
+          "placeholder": "Tu nombre"
+        },
+        "apellido": {
+          "label": "Apellido",
+          "placeholder": "Tu apellido"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "tu@email.com"
+        },
+        "telefono": {
+          "label": "Teléfono",
+          "placeholder": "+34 600 000 000"
+        },
+        "asunto": {
+          "label": "Asunto",
+          "placeholder": "Presupuesto para reforma integral",
+          "hint": "Ej: Presupuesto para reforma integral, construcción de nave industrial..."
+        },
+        "mensaje": {
+          "label": "Mensaje",
+          "placeholder": "Cuéntanos sobre tu proyecto..."
+        }
+      },
+      "privacidad": "He leído y acepto la {link} en la que se detalla el tratamiento de mis datos personales.",
+      "privacidadLink": "Política de privacidad",
+      "submitButton": "Enviar mensaje"
+    },
+    "info": {
+      "title": "Información de contacto",
+      "subtitle": "Estamos aquí para ayudarte. Contáctanos a través de cualquiera de nuestros canales.",
+      "schedule": {
+        "title": "Horario de atención",
+        "weekdays": "Lunes - Viernes:",
+        "hours": "8:00 - 20:00"
+      }
+    },
+    "map": {
+      "title": "Encuéntranos",
+      "subtitle": "Visítanos en cualquiera de nuestras oficinas",
+      "placeholder": "Mapa de ubicación"
+    }
+  }
 }

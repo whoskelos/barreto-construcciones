@@ -1,5 +1,7 @@
 ---
-import { faqs } from "@data";
+import { getCollection } from "astro:content";
+
+const faqs = await getCollection("faqs");
 
 // Generar Schema.org FAQPage
 const faqSchema = {
@@ -7,10 +9,10 @@ const faqSchema = {
   "@type": "FAQPage",
   "mainEntity": faqs.map(faq => ({
     "@type": "Question",
-    "name": faq.question,
+    "name": faq.data.question,
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": faq.answer
+      "text": faq.data.answer
     }
   }))
 };
@@ -25,7 +27,7 @@ const faqSchema = {
       {faqs.map((faq, index) => (
         <details class="faq-item group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all hover:shadow-md">
           <summary class="flex justify-between items-center cursor-pointer p-6 font-semibold text-lg text-gray-900 list-none">
-            <span>{faq.question}</span>
+            <span>{faq.data.question}</span>
             <svg 
               class="w-5 h-5 text-gray-500 transition-transform duration-300 group-open:rotate-180" 
               fill="none" 
@@ -38,7 +40,7 @@ const faqSchema = {
           </summary>
           <div class="faq-content">
             <div class="px-6 pb-6 text-gray-700 leading-relaxed">
-              {faq.answer}
+              {faq.data.answer}
             </div>
           </div>
         </details>

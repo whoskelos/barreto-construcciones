@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import MoveRight from "@assets/svg/move-right.svg";
+
+interface Props {
+    name: string;
+    description: string;
+    image: ImageMetadata;
+    url: string;
+    transitionName?: string;
+}
+
+const { name, description, image, url, transitionName } = Astro.props;
+---
+
+<a
+    href={url}
+    class="inline-grid hover:drop-shadow-2xl transition-shadow group service-card"
+>
+    <article
+        class="w-full bg-white rounded-md border border-neutral-200 flex flex-col justify-between"
+    >
+        <header class="overflow-hidden rounded-t-md">
+            <Image
+                transition:name={transitionName}
+                src={image}
+                alt={name}
+                class="w-full h-full object-cover aspect-video rounded-t-md group-hover:scale-105 transition-transform duration-200 ease-in-out"
+                decoding="async"
+                loading="lazy"
+                quality={75}
+                widths={[300, 400, 600]}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                format="webp"
+            />
+        </header>
+        <div class="p-6">
+            <h3
+                class="text-xl text-neutral-900 group-hover:text-primary-500 font-semibold mb-2"
+            >
+                {name}
+            </h3>
+            <p class="text-neutral-800">{description}</p>
+        </div>
+        <footer class="p-6">
+            <span
+                class="inline-flex items-center gap-2 text-md font-semibold tracking-wider text-primary-500"
+                >Leer más
+                <MoveRight
+                    class="size-4 shrink-0 group-hover:translate-x-1 transition-transform"
+                />
+            </span>
+        </footer>
+    </article>
+</a>

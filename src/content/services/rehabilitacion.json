@@ -1,0 +1,49 @@
+{
+  "asteriskNote": "* Los ítems con asterisco están sujetos a una única condición de que se contrate la reforma completa de la vivienda.",
+  "features": [
+    {
+      "icon": "eye",
+      "description": "Visitamos tu espacio sin compromiso para evaluar el proyecto.",
+      "title": "1º Visita gratuita"
+    },
+    {
+      "icon": "check-circle",
+      "description": "Ofrecemos presupuestos detallados sin ningún compromiso para que puedas tomar la mejor decisión.",
+      "title": "Prespuesto Gratuito"
+    },
+    {
+      "icon": "file-check",
+      "description": "Nos encargamos de toda la tramitación administrativa necesaria.",
+      "title": "Gestión de permisos y licencias *"
+    },
+    {
+      "icon": "file-text",
+      "description": "Todos nuestros proyectos incluyen plazos de entrega garantizados y documentados formalmente.",
+      "title": "Plazos cerrados por escrito"
+    },
+    {
+      "icon": "shield",
+      "description": "Respaldamos nuestro trabajo con garantías completas.",
+      "title": "Garantía"
+    },
+    {
+      "icon": "banknote",
+      "description": "Ofrecemos opciones de financiación adaptadas a tus necesidades.",
+      "title": "Financiación propia o externa"
+    }
+  ],
+  "heroImage": "../../assets/img/services/rehabilitacion.webp",
+  "slug": "rehabilitacion",
+  "title": "Rehabilitación",
+  "icon": "hammer",
+  "menuDescription": "Nuestro servicio de rehabilitación está enfocado en la recuperación, modernización y optimización de instalaciones existentes, con el objetivo de mejorar su funcionalidad, seguridad y eficiencia operativa.",
+  "nameTransition": "rehabilitacion",
+  "introDescription": "Orientadas a la modernización de instalaciones y espacios corporativos.",
+  "introTitle": "Servicios de Alta Calidad",
+  "seo": {
+    "description": "Expertos en rehabilitación estructural de edificios en Madrid y Toledo. Recuperación, modernización y refuerzo de estructuras. +20 años mejorando funcionalidad y seguridad. Presupuesto gratuito.",
+    "keywords": "rehabilitación edificios Madrid, refuerzo estructural Toledo, rehabilitación estructural, restauración edificios, consolidación estructural Madrid, rehabilitación fachadas, reforma estructural",
+    "title": "Rehabilitación de Edificios en Madrid y Toledo - Refuerzo Estructural | Barreto"
+  },
+  "corporativoImage": "../../assets/img/featured/rehabilitacion/1.webp"
+}

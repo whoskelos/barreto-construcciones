@@ -11,6 +11,9 @@ export default defineConfig({
   
   vite: {
       plugins: [tailwindcss()],
+      ssr: {
+          external: ['sharp']
+      },
       build: {
           cssMinify: 'lightningcss',
           rollupOptions: {
