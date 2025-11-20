@@ -93,7 +93,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "Sertego",
-            "image": "placeholder"
+            "image": "deposito-sertego.webp"
         },
         {
             "id": 2,
@@ -101,7 +101,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "Sertego",
-            "image": "placeholder"
+            "image": "soleras-hormigon-sertego.webp"
         },
         {
             "id": 3,
@@ -109,7 +109,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "Sertego",
-            "image": "placeholder"
+            "image": "construccion-bancadas-sertego.webp"
         },
         {
             "id": 4,
@@ -117,7 +117,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "Sertego",
-            "image": "placeholder"
+            "image": "acondicionamiento-nave-industrial-sertego.webp"
         },
         {
             "id": 5,
@@ -125,7 +125,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "INTA",
-            "image": "placeholder"
+            "image": "adecuacion-instalaciones-inta.webp"
         },
         {
             "id": 6,
@@ -133,7 +133,7 @@
             "lugar": "Madrid",
             "año": "2025",
             "cliente": "Fúnez",
-            "image": "placeholder"
+            "image": "rehabilitacion-cubierta-funez.webp"
         },
         {
             "id": 7,
@@ -141,7 +141,7 @@
             "lugar": "Tenerife",
             "año": "2025",
             "cliente": "Banco de España",
-            "image": "placeholder"
+            "image": "reforma-vivienda-banco-espanya.webp"
         },
         {
             "id": 8,
@@ -149,7 +149,7 @@
             "lugar": "Madrid",
             "año": "2024",
             "cliente": "Ministerio Defensa",
-            "image": "placeholder"
+            "image": "reforma-cocina-ministerio-defensa.webp"
         },
         {
             "id": 9,
@@ -157,7 +157,7 @@
             "lugar": "Madrid",
             "año": "2024",
             "cliente": "Lázaro",
-            "image": "placeholder"
+            "image": "reforma-farmacia-lazaro.webp"
         },
         {
             "id": 10,
@@ -165,7 +165,7 @@
             "lugar": "Madrid",
             "año": "2023",
             "cliente": "Ayuntamiento de Torres de la Alameda",
-            "image": "placeholder"
+            "image": "construccion-parada-autobus-ayto-torres-alameda.webp"
         },
         {
             "id": 11,
@@ -173,7 +173,7 @@
             "lugar": "Madrid",
             "año": "2023",
             "cliente": "URBASER",
-            "image": "placeholder"
+            "image": "mantenimiento-depositos-urbaser.webp"
         },
         {
             "id": 12,
@@ -181,7 +181,7 @@
             "lugar": "Madrid",
             "año": "2023",
             "cliente": "Instituto Español de Misiones Extranjeras",
-            "image": "placeholder"
+            "image": "rehabilitacion-cubierta-instituto-misiones-extranjeras.webp"
         },
         {
             "id": 13,
@@ -189,7 +189,7 @@
             "lugar": "Madrid",
             "año": "2022",
             "cliente": "INVIED",
-            "image": "placeholder"
+            "image": "rehabilitacion-viviendas-invied.webp"
         },
         {
             "id": 14,
@@ -197,7 +197,7 @@
             "lugar": "Alicante",
             "año": "2022",
             "cliente": "AENA",
-            "image": "placeholder"
+            "image": "mantenimiento-aeropuerto-aena.webp"
         },
         {
             "id": 15,
@@ -205,7 +205,7 @@
             "lugar": "Madrid",
             "año": "2022",
             "cliente": "ADIF",
-            "image": "placeholder"
+            "image": "construccion-edificio-tecnico-adif.webp"
         },
         {
             "id": 16,
@@ -213,7 +213,7 @@
             "lugar": "Madrid",
             "año": "2022",
             "cliente": "Canal Isabel II",
-            "image": "placeholder"
+            "image": "rehabilitacion-piscina-canal-isabel-ii.webp"
         },
         {
             "id": 17,
@@ -221,7 +221,7 @@
             "lugar": "Pantoja - Toledo",
             "año": "2022",
             "cliente": "Ayuntamiento de Pantoja",
-            "image": "placeholder"
+            "image": "rehabilitacion-cafeteria-vestuarios-ayto-pantoja.webp"
         },
         {
             "id": 18,
@@ -229,7 +229,7 @@
             "lugar": "Pantoja",
             "año": "2022",
             "cliente": "Ayuntamiento de Pantoja",
-            "image": "placeholder"
+            "image": "rehabilitacion-vestuarios-ayto-pantoja.webp"
         },
         {
             "id": 19,
@@ -237,7 +237,7 @@
             "lugar": "Madrid",
             "año": "2022",
             "cliente": "Ayuntamiento Buitrago de Lozoya",
-            "image": "placeholder"
+            "image": "rehabilitacion-monumento-historico-ayto-buitrago.webp"
         },
         {
             "id": 20,
@@ -245,7 +245,7 @@
             "lugar": "Zaragoza",
             "año": "2022",
             "cliente": "Fermalux",
-            "image": "placeholder"
+            "image": "instalacion-fibra-optica-fermalux.webp"
         }
     ],
     "contact": [
