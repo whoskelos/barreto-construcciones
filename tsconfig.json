@@ -4,10 +4,9 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "paths": {
-      "@data": ["./src/data/data.json"],
+      "@data": ["./src/data/index.ts"],
       "@components/*": ["./src/components/*"],
-      "@sections/*": ["./src/sections/*"],
-      "@assets/*": ["./src/assets/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   }
 }

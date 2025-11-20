@@ -1,0 +1,38 @@
+{
+  "features": [
+    {
+      "icon": "check-circle",
+      "description": "Ofrecemos presupuestos detallados sin ningún compromiso para que puedas tomar la mejor decisión.",
+      "title": "Prespuesto Gratuito"
+    },
+    {
+      "icon": "file-text",
+      "description": "Todos nuestros proyectos incluyen plazos de entrega garantizados y documentados formalmente.",
+      "title": "Plazos cerrados por escrito"
+    },
+    {
+      "icon": "key",
+      "description": "Nos encargamos de todo el proceso, desde el diseño hasta la entrega final del proyecto completado.",
+      "title": "Llave en mano"
+    },
+    {
+      "icon": "shield",
+      "description": "Todos nuestros proyectos cuentan con seguros de construcción para tu tranquilidad y protección.",
+      "title": "Garantía con seguros de construcción"
+    }
+  ],
+  "heroImage": "../../assets/img/services/edificacion.webp",
+  "slug": "industrial",
+  "title": "Industrial",
+  "icon": "building",
+  "menuDescription": "Nuestro servicio de construcción industrial ofrece soluciones integrales para el desarrollo, ampliación y modernización de instalaciones productivas. Nos especializamos en la ejecución de obras de gran escala bajo los más altos estándares de calidad, seguridad y eficiencia, garantizando que cada proyecto cumpla con las normativas técnicas y ambientales vigentes.",
+  "nameTransition": "edificacion",
+  "introDescription": "Enfocada en la construcción de nuevos proyectos residenciales, industriales y educativos.",
+  "introTitle": "Servicios de Alta Calidad",
+  "seo": {
+    "description": "Construcción industrial especializada en Madrid y Toledo. Naves industriales, proyectos corporativos y viviendas. Más de 20 años ejecutando obras de gran escala. Presupuesto sin compromiso.",
+    "keywords": "construcción industrial Madrid, naves industriales Toledo, proyectos industriales, construcción corporativa, edificación industrial, obras industriales Getafe, construcción llave en mano",
+    "title": "Construcción Industrial en Madrid y Toledo - Naves, Proyectos Industriales | Barreto"
+  },
+  "corporativoImage": "../../assets/img/services/corporativo.webp"
+}

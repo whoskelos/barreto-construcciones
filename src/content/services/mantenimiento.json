@@ -1,0 +1,34 @@
+{
+  "asteriskNote": "* Los ítems con asterisco están sujetos a una única condición de que se contrate la reforma completa de la vivienda.",
+  "features": [
+    {
+      "icon": "eye",
+      "description": "Visitamos tu espacio sin compromiso para evaluar el proyecto.",
+      "title": "Visita gratuita"
+    },
+    {
+      "icon": "file-check",
+      "description": "Nos encargamos de toda la tramitación administrativa necesaria.",
+      "title": "Gestión de permisos y licencias *"
+    },
+    {
+      "icon": "shield",
+      "description": "Respaldamos nuestro trabajo con garantías completas.",
+      "title": "Garantía"
+    }
+  ],
+  "heroImage": "../../assets/img/services/mantenimiento.webp",
+  "slug": "mantenimiento",
+  "title": "Mantenimiento",
+  "icon": "wrench",
+  "menuDescription": "Nuestro servicio de mantenimiento está orientado a garantizar la operatividad, seguridad y durabilidad de todo tipo de instalaciones e infraestructuras, mediante acciones preventivas, correctivas y de mejora continua.",
+  "nameTransition": "mantenimiento",
+  "introDescription": "Proyectos de infraestructura y urbanización, tanto públicos como privados.",
+  "introTitle": "Servicios de Alta Calidad",
+  "seo": {
+    "description": "Mantenimiento integral de infraestructuras industriales en Madrid y Toledo. Servicios preventivos, correctivos y de mejora continua. Garantizamos operatividad, seguridad y durabilidad de sus instalaciones.",
+    "keywords": "mantenimiento industrial Madrid, mantenimiento preventivo Toledo, mantenimiento correctivo, mantenimiento infraestructuras, servicios mantenimiento empresas Madrid, mantenimiento instalaciones industriales",
+    "title": "Mantenimiento Industrial Madrid - Preventivo y Correctivo de Infraestructuras | Barreto"
+  },
+  "corporativoImage": "../../assets/img/featured/mantenimiento/3.webp"
+}
