@@ -66,11 +66,13 @@ const iconMap: Record<string, any> = {
             >
                 {data.introTitle}
             </h3>
-            <p
-                class="text-muted-foreground text-sm sm:text-base leading-relaxed"
-            >
-                {data.introDescription}
-            </p>
+            <div class="space-y-4">
+                <p
+                    class="text-neutral-600 text-base sm:text-lg leading-relaxed"
+                >
+                    {data.introDescription}
+                </p>
+            </div>
             <ul class="flex flex-col space-y-6 md:space-y-8">
                 {data.features.map((feature) => {
                     const Icon = iconMap[feature.icon];
@@ -111,7 +113,7 @@ const iconMap: Record<string, any> = {
                 src={data.corporativoImage}
                 alt="Imagen corporativa"
                 loading="lazy"
-                quality={75}
+                quality={100}
                 widths={[400, 500, 600, 800, 1000]}
                 sizes="(max-width: 640px) 400px, (max-width: 1024px) 500px, 600px"
                 format="webp"
