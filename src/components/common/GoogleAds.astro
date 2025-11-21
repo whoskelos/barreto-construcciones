@@ -1,0 +1,94 @@
+---
+const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
+---
+
+{
+  GOOGLE_ADS_ID && (
+    <>
+      <div 
+        id="google-ads-config" 
+        data-ads-id={GOOGLE_ADS_ID} 
+        data-conversion-label={GOOGLE_ADS_CONVERSION_LABEL}
+        style="display:none;"
+      ></div>
+      <script>
+        // Función global para eventos generales (Remarketing, etc.)
+        // @ts-ignore
+        window.trackGoogleAdsEvent = function(eventName, params = {}) {
+          // @ts-ignore
+          if (typeof window.gtag === 'function') {
+             if (import.meta.env.DEV) {
+              console.log('Evento Google Ads:', eventName, params);
+            }
+            // @ts-ignore
+            window.gtag('event', eventName, params);
+          }
+        };
+
+        // Función global para conversiones
+        // @ts-ignore
+        window.triggerContactConversion = function() {
+          const config = document.getElementById('google-ads-config');
+          if (!config) return;
+          
+          const GOOGLE_ADS_ID = config.dataset.adsId;
+          const CONVERSION_LABEL = config.dataset.conversionLabel;
+
+          // @ts-ignore
+          if (GOOGLE_ADS_ID && CONVERSION_LABEL && typeof window.gtag === 'function') {
+            console.log('Disparando conversión de Google Ads:', `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`);
+            // @ts-ignore
+            window.gtag('event', 'conversion', {
+              'send_to': `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`
+            });
+          } else if (import.meta.env.DEV) {
+             console.log('Conversión no enviada: Faltan IDs o gtag no está listo');
+          }
+        };
+
+        function loadGoogleAds() {
+          const config = document.getElementById('google-ads-config');
+          if (!config) return;
+          
+          const GOOGLE_ADS_ID = config.dataset.adsId;
+          if (!GOOGLE_ADS_ID) return;
+
+          // Evitar cargar si ya está cargado
+          if (document.getElementById('google-ads-script')) return;
+
+          if (import.meta.env.DEV) {
+              console.log('Cargando Google Ads con Partytown...');
+          }
+
+          // Script principal de Gtag
+          const script = document.createElement('script');
+          script.id = 'google-ads-script';
+          script.type = 'text/partytown';
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+          document.head.appendChild(script);
+
+          // Script de configuración
+          const inlineScript = document.createElement('script');
+          inlineScript.type = 'text/partytown';
+          inlineScript.innerHTML = `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GOOGLE_ADS_ID}');
+          `;
+          document.head.appendChild(inlineScript);
+        }
+
+        // Escuchar evento de aceptación de cookies
+        document.addEventListener('cookie-consent:accepted', loadGoogleAds);
+        
+        // Verificar si ya se aceptó antes de que este script cargara
+        // @ts-ignore
+        if (window.cookieConsentAccepted) {
+            loadGoogleAds();
+        }
+      </script>
+    </>
+  )
+}
