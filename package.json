@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/vercel": "^9.0.1",
     "@fontsource-variable/roboto": "5.2.8",
     "@fontsource/source-sans-3": "^5.2.9",

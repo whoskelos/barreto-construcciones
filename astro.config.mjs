@@ -5,10 +5,12 @@ import tailwindcss from "@tailwindcss/vite";
 
 import vercel from "@astrojs/vercel";
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://barretoconstrucciones.es',
-  
+
   vite: {
       plugins: [tailwindcss()],
       ssr: {
@@ -52,4 +54,10 @@ export default defineConfig({
           enabled: false
       }
   }),
+
+  integrations: [partytown({
+    config: {
+      forward: ["dataLayer.push", "gtag"],
+    },
+  })],
 });
