@@ -35,7 +35,7 @@ Si las ha aceptado, no volveremos a preguntarle a menos que borre las cookies en
 El Titular muestra información sobre su Política de cookies en el banner de cookies accesible en todas las páginas del Sitio Web. El banner de cookies muestra información esencial sobre el tratamiento de datos y permite al Usuario realizar las siguientes acciones:
 
 * ACEPTAR o RECHAZAR la instalación de cookies, o retirar el consentimiento previamente otorgado.
-* Obtener información adicional en la página de [Política de Cookies](https://construcciones-barreto.c.wetopi.com/politica-de-cookies/).
+* Obtener información adicional en la página de [Política de Cookies](https://barreto-construcciones.vercel.app/legal/politica-de-cookies).
 
 Para restringir, bloquear o borrar las cookies de este Sitio Web (y las usada por terceros) puede hacerlo, en cualquier momento, modificando la configuración de su navegador. Tenga en cuenta que esta configuración es diferente en cada navegador.
 

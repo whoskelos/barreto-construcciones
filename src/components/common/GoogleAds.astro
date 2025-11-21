@@ -37,7 +37,9 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
 
           // @ts-ignore
           if (GOOGLE_ADS_ID && CONVERSION_LABEL && typeof window.gtag === 'function') {
-            console.log('Disparando conversión de Google Ads:', `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`);
+            if (import.meta.env.DEV) {
+              console.log('Disparando conversión de Google Ads:', `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`);
+            }
             // @ts-ignore
             window.gtag('event', 'conversion', {
               'send_to': `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`
