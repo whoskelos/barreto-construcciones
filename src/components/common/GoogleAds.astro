@@ -1,12 +1,52 @@
 ---
 const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
 ---
 
 {
   GOOGLE_ADS_ID && (
     <>
-      <div id="google-ads-config" data-ads-id={GOOGLE_ADS_ID} style="display:none;"></div>
+      <div 
+        id="google-ads-config" 
+        data-ads-id={GOOGLE_ADS_ID} 
+        data-conversion-label={GOOGLE_ADS_CONVERSION_LABEL}
+        style="display:none;"
+      ></div>
       <script>
+        // Función global para eventos generales (Remarketing, etc.)
+        // @ts-ignore
+        window.trackGoogleAdsEvent = function(eventName, params = {}) {
+          // @ts-ignore
+          if (typeof window.gtag === 'function') {
+             if (import.meta.env.DEV) {
+              console.log('Evento Google Ads:', eventName, params);
+            }
+            // @ts-ignore
+            window.gtag('event', eventName, params);
+          }
+        };
+
+        // Función global para conversiones
+        // @ts-ignore
+        window.triggerContactConversion = function() {
+          const config = document.getElementById('google-ads-config');
+          if (!config) return;
+          
+          const GOOGLE_ADS_ID = config.dataset.adsId;
+          const CONVERSION_LABEL = config.dataset.conversionLabel;
+
+          // @ts-ignore
+          if (GOOGLE_ADS_ID && CONVERSION_LABEL && typeof window.gtag === 'function') {
+            console.log('Disparando conversión de Google Ads:', `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`);
+            // @ts-ignore
+            window.gtag('event', 'conversion', {
+              'send_to': `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`
+            });
+          } else if (import.meta.env.DEV) {
+             console.log('Conversión no enviada: Faltan IDs o gtag no está listo');
+          }
+        };
+
         function loadGoogleAds() {
           const config = document.getElementById('google-ads-config');
           if (!config) return;

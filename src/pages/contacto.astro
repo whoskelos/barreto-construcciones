@@ -17,6 +17,8 @@ const { hero, form, info, map } = contactPage;
 
 // reCAPTCHA Site Key (pública, segura para exponer)
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+// Configuración de rastreo
+const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 'true';
 ---
 
 <Layout
@@ -184,7 +186,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
                             </button>
                         </form>
 
-                        <script define:vars={{ RECAPTCHA_SITE_KEY }}>
+                        <script define:vars={{ RECAPTCHA_SITE_KEY, TRACK_FORM_START }}>
                             const form = document.getElementById('contactForm');
                             const submitButton = document.getElementById('submitButton');
                             const buttonText = document.getElementById('buttonText');
@@ -194,6 +196,33 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
                             // Establecer timestamp cuando se carga la página
                             timestampField.value = Date.now().toString();
+
+                            // Rastrear inicio del formulario (para Remarketing)
+                            if (TRACK_FORM_START) {
+                                let formStarted = false;
+                                const formInputs = form.querySelectorAll('input, textarea');
+                                
+                                formInputs.forEach(input => {
+                                    // Cambiamos 'focus' por 'input' para detectar escritura real
+                                    input.addEventListener('input', () => {
+                                        if (!formStarted) {
+                                            // Verificar que realmente haya contenido (evitar espacios en blanco accidentales)
+                                            // @ts-ignore
+                                            if (input.value.trim().length > 0) {
+                                                formStarted = true;
+                                                // @ts-ignore
+                                                if (typeof window.trackGoogleAdsEvent === 'function') {
+                                                    // @ts-ignore
+                                                    window.trackGoogleAdsEvent('form_start', {
+                                                        'event_category': 'contact',
+                                                        'event_label': 'contact_page_form_interaction'
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                                });
+                            }
 
                             // Validación del lado del cliente
                             function validateForm() {
@@ -282,6 +311,11 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
                                         // Scroll suave al mensaje
                                         formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                                        // Disparar conversión de Google Ads si está disponible
+                                        if (typeof window.triggerContactConversion === 'function') {
+                                            window.triggerContactConversion();
+                                        }
                                     } else {
                                         // Mostrar mensaje de error
                                         formMessage.textContent = result.message || 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.';
