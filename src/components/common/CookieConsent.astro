@@ -236,11 +236,51 @@
         }
     }
 
+    function loadGoogleAds() {
+        // Evitar cargar si ya está cargado
+        if (document.getElementById('google-ads-script')) return;
+
+        // ID de Google Ads desde variable de entorno o placeholder
+        const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+
+        // Si no hay ID configurado, salir silenciosamente (para producción)
+        if (!GOOGLE_ADS_ID || GOOGLE_ADS_ID === 'YOUR_GOOGLE_ADS_ID') {
+            if (import.meta.env.DEV) {
+                console.warn('Google Ads ID no configurado. Ver documentación en docs/GOOGLE_ADS_SETUP.md');
+            }
+            return;
+        }
+
+        if (import.meta.env.DEV) {
+            console.log('Cargando Google Ads con Partytown...');
+        }
+
+        // Script principal de Gtag
+        const script = document.createElement('script');
+        script.id = 'google-ads-script';
+        script.type = 'text/partytown';
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+        document.head.appendChild(script);
+
+        // Script de configuración
+        const inlineScript = document.createElement('script');
+        inlineScript.type = 'text/partytown';
+        inlineScript.innerHTML = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+        `;
+        document.head.appendChild(inlineScript);
+    }
+
     function initCookieConsent() {
         const consent = getCookie(COOKIE_NAME);
         
         if (!consent) {
             showCookieBanner();
+        } else if (consent === 'accepted') {
+            loadGoogleAds();
         }
 
         const acceptBtn = document.getElementById('cookie-accept');
@@ -250,9 +290,7 @@
             acceptBtn.addEventListener('click', () => {
                 setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
                 hideCookieBanner();
-                
-                // Aquí se pueden activar las cookies de terceros si es necesario
-                // Por ejemplo, Google Analytics, etc.
+                loadGoogleAds();
             });
         }
 
