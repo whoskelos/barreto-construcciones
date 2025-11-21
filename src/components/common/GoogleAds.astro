@@ -1,0 +1,54 @@
+---
+const GOOGLE_ADS_ID = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+---
+
+{
+  GOOGLE_ADS_ID && (
+    <>
+      <div id="google-ads-config" data-ads-id={GOOGLE_ADS_ID} style="display:none;"></div>
+      <script>
+        function loadGoogleAds() {
+          const config = document.getElementById('google-ads-config');
+          if (!config) return;
+          
+          const GOOGLE_ADS_ID = config.dataset.adsId;
+          if (!GOOGLE_ADS_ID) return;
+
+          // Evitar cargar si ya está cargado
+          if (document.getElementById('google-ads-script')) return;
+
+          if (import.meta.env.DEV) {
+              console.log('Cargando Google Ads con Partytown...');
+          }
+
+          // Script principal de Gtag
+          const script = document.createElement('script');
+          script.id = 'google-ads-script';
+          script.type = 'text/partytown';
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+          document.head.appendChild(script);
+
+          // Script de configuración
+          const inlineScript = document.createElement('script');
+          inlineScript.type = 'text/partytown';
+          inlineScript.innerHTML = `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GOOGLE_ADS_ID}');
+          `;
+          document.head.appendChild(inlineScript);
+        }
+
+        // Escuchar evento de aceptación de cookies
+        document.addEventListener('cookie-consent:accepted', loadGoogleAds);
+        
+        // Verificar si ya se aceptó antes de que este script cargara
+        // @ts-ignore
+        if (window.cookieConsentAccepted) {
+            loadGoogleAds();
+        }
+      </script>
+    </>
+  )
+}

@@ -3,6 +3,7 @@ import Footer from "@components/sections/Footer.astro";
 import Header from "@components/sections/Header.astro";
 import LocalBusinessSchema from "@components/common/LocalBusinessSchema.astro";
 import CookieConsent from "@components/common/CookieConsent.astro";
+import GoogleAds from "@components/common/GoogleAds.astro";
 import { ClientRouter } from 'astro:transitions';
 
 // Fuentes para el logo
@@ -81,6 +82,9 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         <meta name="geo.placename" content="Madrid, Toledo" />
         <meta name="geo.position" content="40.416775;-3.703790" />
         <meta name="ICBM" content="40.416775, -3.703790" />
+        
+        <!-- Google Ads -->
+        <GoogleAds />
         
         <!-- Schema.org JSON-LD -->
         <script type="application/ld+json" set:html={JSON.stringify({

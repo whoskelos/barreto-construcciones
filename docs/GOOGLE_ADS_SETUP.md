@@ -23,6 +23,28 @@ No es necesario tocar el código. Solo necesitas añadir una variable de entorno
     ```
 3.  Reinicia el servidor (`pnpm dev`).
 
+## Estructura del Código (SOLID)
+
+La implementación se ha separado en dos componentes para mejorar la mantenibilidad:
+
+1.  **`src/components/common/CookieConsent.astro`**:
+    *   Gestiona exclusivamente la interfaz y lógica del consentimiento de cookies.
+    *   No contiene código de Google Ads.
+    *   Cuando el usuario acepta, emite un evento global `cookie-consent:accepted`.
+
+2.  **`src/components/common/GoogleAds.astro`**:
+    *   Contiene la lógica de carga de los scripts de Google.
+    *   Escucha el evento `cookie-consent:accepted` para inyectar los scripts.
+    *   Usa **Partytown** para la ejecución en segundo plano.
+
+## Sobre AMP (Accelerated Mobile Pages)
+
+Es posible que veas instrucciones de Google Ads sobre "Páginas AMP".
+
+*   **¿Qué es?**: Una tecnología antigua de Google para versiones móviles rápidas.
+*   **¿Me afecta?**: **NO**. Este proyecto usa **Astro**, una tecnología moderna que ya ofrece un rendimiento superior sin las restricciones de AMP.
+*   **Acción requerida**: Puedes ignorar completamente las instrucciones de Google sobre AMP.
+
 ## Características
 
 *   **Optimizado**: Usa **Partytown** para cargar los scripts en un hilo secundario, sin afectar la velocidad de la web.
