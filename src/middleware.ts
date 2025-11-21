@@ -35,7 +35,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // 5. Permissions-Policy - Restringe APIs del navegador
   response.headers.set(
     'Permissions-Policy',
-    'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+    'camera=(), microphone=(), geolocation=()'
   );
 
   // 6. X-XSS-Protection - Protección XSS legacy (para navegadores antiguos)
