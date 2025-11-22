@@ -1,11 +1,5 @@
 {
-  "asteriskNote": "* Los ítems con asterisco están sujetos a una única condición de que se contrate la reforma completa de la vivienda.",
   "features": [
-    {
-      "icon": "eye",
-      "description": "Visitamos tu espacio sin compromiso para evaluar el proyecto.",
-      "title": "1º Visita gratuita"
-    },
     {
       "icon": "check-circle",
       "description": "Ofrecemos presupuestos detallados sin ningún compromiso para que puedas tomar la mejor decisión.",
@@ -14,7 +8,7 @@
     {
       "icon": "file-check",
       "description": "Nos encargamos de toda la tramitación administrativa necesaria.",
-      "title": "Gestión de permisos y licencias *"
+      "title": "Gestión de permisos y licencias"
     },
     {
       "icon": "file-text",

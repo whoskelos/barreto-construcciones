@@ -1,5 +1,4 @@
 {
-  "asteriskNote": "* Los ítems con asterisco están sujetos a una única condición de que se contrate la reforma completa de la vivienda.",
   "features": [
     {
       "icon": "eye",
@@ -14,7 +13,7 @@
     {
       "icon": "file-check",
       "description": "Nos encargamos de toda la tramitación administrativa necesaria.",
-      "title": "Gestión de permisos y licencias *"
+      "title": "Gestión de permisos y licencias"
     },
     {
       "icon": "file-text",
@@ -24,7 +23,7 @@
     {
       "icon": "panels",
       "description": "Diseñamos la distribución óptima de tu espacio.",
-      "title": "Plano de distribución *"
+      "title": "Plano de distribución"
     },
     {
       "icon": "credit-card",
