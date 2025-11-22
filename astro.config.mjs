@@ -64,7 +64,7 @@ export default defineConfig({
 
   integrations: [partytown({
     config: {
-      forward: ["dataLayer.push", "gtag", "grecaptcha", "grecaptcha.ready", "grecaptcha.execute"],
+      forward: ["dataLayer.push", "gtag"],
     },
   })],
 });
