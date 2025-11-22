@@ -8,7 +8,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // 1. Content Security Policy (CSP) - Protección contra XSS
   const cspDirectives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://va.vercel-scripts.com https://cdn.vercel-insights.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://va.vercel-scripts.com https://cdn.vercel-insights.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: https: blob:",
     "font-src 'self' https://fonts.gstatic.com data:",
