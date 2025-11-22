@@ -1,0 +1,176 @@
+---
+interface Props {
+  title: string;
+  fields: {
+    nombre: { label: string; placeholder: string };
+    apellido: { label: string; placeholder: string };
+    email: { label: string; placeholder: string };
+    telefono: { label: string; placeholder: string };
+    asunto: { label: string; placeholder: string; hint: string };
+    mensaje: { label: string; placeholder: string };
+  };
+  privacidadLink: string;
+  submitButton: string;
+}
+
+const { title, fields, privacidadLink, submitButton } = Astro.props;
+---
+
+<div class="rounded-lg border border-neutral-200 bg-white shadow-sm p-6 md:p-8">
+  <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">
+    {title}
+  </h2>
+  <p class="text-base text-neutral-600 mb-8">
+    Los campos marcados con <span class="text-primary-600 font-semibold">*</span> son obligatorios
+  </p>
+  
+  <form id="contactForm" class="space-y-6" method="POST" action="/api/contact" role="form" aria-label="Formulario de contacto">
+    <!-- Estado del formulario -->
+    <div id="formMessage" class="hidden rounded-md p-4 text-sm" role="alert"></div>
+
+    <!-- Honeypot field -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+    
+    <!-- Timestamp -->
+    <input type="hidden" name="timestamp" id="timestamp" value="" />
+
+    <!-- Nombre y Apellido -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-2">
+        <label for="nombre" class="block text-sm font-semibold text-neutral-700">
+          {fields.nombre.label} <span class="text-primary-600">*</span>
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          required
+          class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder={fields.nombre.placeholder}
+        />
+      </div>
+      <div class="space-y-2">
+        <label for="apellido" class="block text-sm font-semibold text-neutral-700">
+          {fields.apellido.label} <span class="text-primary-600">*</span>
+        </label>
+        <input
+          type="text"
+          id="apellido"
+          name="apellido"
+          required
+          class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder={fields.apellido.placeholder}
+        />
+      </div>
+    </div>
+
+    <!-- Email y Teléfono -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-2">
+        <label for="email" class="block text-sm font-semibold text-neutral-700">
+          {fields.email.label}
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder={fields.email.placeholder}
+        />
+      </div>
+      <div class="space-y-2">
+        <label for="telefono" class="block text-sm font-semibold text-neutral-700">
+          {fields.telefono.label}
+        </label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder={fields.telefono.placeholder}
+        />
+      </div>
+    </div>
+
+    <!-- Asunto -->
+    <div class="space-y-2">
+      <label for="asunto" class="block text-sm font-semibold text-neutral-700">
+        {fields.asunto.label} <span class="text-primary-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="asunto"
+        name="asunto"
+        required
+        class="flex h-11 w-full rounded-md border border-neutral-300 bg-white px-4 py-2 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        placeholder={fields.asunto.placeholder}
+      />
+      <p class="text-sm text-neutral-600">{fields.asunto.hint}</p>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="space-y-2">
+      <label for="mensaje" class="block text-sm font-semibold text-neutral-700">
+        {fields.mensaje.label} <span class="text-primary-600">*</span>
+      </label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        required
+        rows="6"
+        class="flex min-h-[120px] w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-base ring-offset-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+        placeholder={fields.mensaje.placeholder}
+      ></textarea>
+    </div>
+
+    <!-- Política de privacidad -->
+    <div class="flex items-start gap-3">
+      <input
+        type="checkbox"
+        id="privacidad"
+        name="privacidad"
+        required
+        class="mt-0.5 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+      />
+      <label for="privacidad" class="text-sm text-neutral-600 leading-relaxed">
+        He leído y acepto la <a href="/legal/politica-de-privacidad" class="font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-4">{privacidadLink}</a> en la que se detalla el tratamiento de mis datos personales.
+      </label>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      id="submitButton"
+      class="inline-flex w-full items-center justify-center rounded-md bg-primary-600 px-6 py-3.5 text-base font-bold text-white ring-offset-white transition-colors hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 shadow-lg hover:shadow-xl"
+    >
+      <span id="buttonText">{submitButton}</span>
+      <svg id="loadingSpinner" class="hidden ml-2 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<style>
+  form {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    form {
+      animation: none;
+    }
+  }
+</style>

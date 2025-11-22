@@ -1,0 +1,100 @@
+---
+import Phone from "@assets/svg/phone.svg";
+import Mail from "@assets/svg/mail.svg";
+import Pin from "@assets/svg/pin.svg";
+
+interface Office {
+  delegation: string;
+  address: string;
+  city: string;
+  phone: string;
+  email: string;
+}
+
+interface Schedule {
+  title: string;
+  weekdays: string;
+  morningHour: string;
+  afternoonHour: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  offices: Office[];
+  schedule: Schedule;
+}
+
+const { title, subtitle, offices, schedule } = Astro.props;
+---
+
+<div class="lg:sticky lg:top-24 space-y-6">
+  <div>
+    <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">
+      {title}
+    </h2>
+    <p class="text-base text-neutral-600">
+      {subtitle}
+    </p>
+  </div>
+
+  <!-- Contact Cards -->
+  <div class="space-y-4">
+    {offices.map((office) => (
+      <div class="rounded-lg border border-primary-200 bg-linear-to-br from-primary-50 to-white p-6 shadow-sm hover:shadow-md transition-shadow">
+        <h3 class="text-base font-bold text-neutral-900 mb-4 uppercase tracking-wide">
+          {office.delegation}
+        </h3>
+        
+        <div class="space-y-3">
+          <!-- Dirección -->
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5">
+              <Pin class="w-5 h-5 text-primary-600" />
+            </div>
+            <div>
+              <p class="text-neutral-700">{office.address}</p>
+              <p class="text-neutral-700">{office.city}</p>
+            </div>
+          </div>
+
+          <!-- Teléfono -->
+          <div class="flex items-center gap-3">
+            <Phone class="w-5 h-5 text-primary-600" />
+            <a 
+              href={`tel:${office.phone}`}
+              class="text-neutral-700 hover:text-primary-600 transition-colors font-medium hover:underline underline-offset-4"
+            >
+              {office.phone}
+            </a>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-center gap-3">
+            <Mail class="w-5 h-5 text-primary-600" />
+            <a 
+              href={`mailto:${office.email}`}
+              class="text-neutral-700 hover:text-primary-600 transition-colors font-medium hover:underline underline-offset-4"
+            >
+              {office.email}
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Horario -->
+  <div class="rounded-lg border border-neutral-200 bg-neutral-900 p-6 shadow-sm">
+    <h3 class="text-base font-bold text-white mb-4">{schedule.title}</h3>
+    <div class="space-y-2">
+      <div class="flex justify-between items-center">
+        <span class="text-neutral-300">{schedule.weekdays}</span>
+        <div class="flex flex-col justify-between items-center">
+          <span class="font-semibold text-white">{schedule.morningHour}</span>
+          <span class="font-semibold text-white">{schedule.afternoonHour}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

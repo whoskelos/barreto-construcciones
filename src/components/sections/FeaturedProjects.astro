@@ -151,52 +151,66 @@ const row3 = shuffledProjects.filter((_, i) => i % 3 === 2);
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) return;
 
-        const { gsap } = await import("gsap");
-        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-        
-        gsap.registerPlugin(ScrollTrigger);
+        // Intersection Observer para cargar GSAP solo cuando sea visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(async (entry) => {
+                if (entry.isIntersecting) {
+                    // Desconectar observador para no volver a ejecutar
+                    observer.disconnect();
 
-        // Limpiar animaciones previas
-        ScrollTrigger.getAll().forEach(st => st.kill());
+                    // Importar dinámicamente GSAP
+                    const { gsap } = await import("gsap");
+                    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+                    
+                    gsap.registerPlugin(ScrollTrigger);
 
-        const tracks = [
-            { el: document.querySelector(".featured-track-1"), reverse: false },
-            { el: document.querySelector(".featured-track-2"), reverse: true },
-            { el: document.querySelector(".featured-track-3"), reverse: false }
-        ];
+                    // Limpiar animaciones previas
+                    ScrollTrigger.getAll().forEach(st => st.kill());
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: container,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1, // Suavizado aumentado para reducir vibraciones
-                invalidateOnRefresh: true,
-            },
+                    const tracks = [
+                        { el: document.querySelector(".featured-track-1"), reverse: false },
+                        { el: document.querySelector(".featured-track-2"), reverse: true },
+                        { el: document.querySelector(".featured-track-3"), reverse: false }
+                    ];
+
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: container,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: 1,
+                            invalidateOnRefresh: true,
+                        },
+                    });
+
+                    tracks.forEach(({ el, reverse }) => {
+                        if (!el || !(el instanceof HTMLElement)) return;
+                        
+                        const getScrollDist = () => {
+                            const parent = el.parentElement;
+                            if (!parent) return 0;
+                            return el.scrollWidth - parent.clientWidth;
+                        };
+
+                        tl.fromTo(el, 
+                            { 
+                                x: () => reverse ? -getScrollDist() : 0 
+                            },
+                            { 
+                                x: () => reverse ? 0 : -getScrollDist(), 
+                                ease: "none", 
+                                force3D: true 
+                            },
+                            0
+                        );
+                    });
+                }
+            });
+        }, {
+            rootMargin: "200px" // Cargar un poco antes de que entre en el viewport
         });
 
-        tracks.forEach(({ el, reverse }) => {
-            if (!el || !(el instanceof HTMLElement)) return;
-            
-            const getScrollDist = () => {
-                const parent = el.parentElement;
-                if (!parent) return 0;
-                // Calculamos la distancia necesaria para mostrar todo el contenido
-                return el.scrollWidth - parent.clientWidth;
-            };
-
-            tl.fromTo(el, 
-                { 
-                    x: () => reverse ? -getScrollDist() : 0 
-                },
-                { 
-                    x: () => reverse ? 0 : -getScrollDist(), 
-                    ease: "none", 
-                    force3D: true 
-                },
-                0
-            );
-        });
+        observer.observe(container);
     }
 
     // Inicializar en carga de página (compatible con view transitions)

@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="border-t border-neutral-200 bg-neutral-100 py-16" aria-labelledby="map-heading">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2 id="map-heading" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3 tracking-tight">{title}</h2>
+      <p class="text-base text-neutral-600">{subtitle}</p>
+    </div>
+    
+    <!-- Mapa de Google Maps -->
+    <div class="rounded-lg overflow-hidden border border-neutral-200 shadow-sm">
+      <div class="embed-map-responsive">
+        <div class="embed-map-container">
+          <iframe 
+            class="embed-map-frame" 
+            frameborder="0" 
+            scrolling="no" 
+            marginheight="0" 
+            marginwidth="0" 
+            src="https://maps.google.com/maps?width=1470&height=382&hl=en&q=barreto%20construcciones&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+            title="Ubicación de Barreto Construcciones"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Estilos para el mapa responsivo */
+  .embed-map-responsive {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    height: 0;
+    padding-bottom: 25.98639455782313%;
+  }
+  
+  .embed-map-container {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .embed-map-frame {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+</style>
