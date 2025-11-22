@@ -28,9 +28,9 @@ const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 
     canonical="/contacto"
 >
     <!-- Hero Section -->
-    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20" aria-labelledby="contact-hero-title">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center">
+    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20 before:absolute before:inset-0 before:bg-[url('../assets/img/contacto.webp')] before:bg-cover before:bg-center before:opacity-80 before:z-0" aria-labelledby="contact-hero-title">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center bg-white/30 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-xl border border-white/20">
                 <div class="inline-flex items-center rounded-full border border-primary-200 bg-white px-4 py-1.5 text-sm font-semibold mb-4">
                     <span class="text-primary-600">{hero.badge}</span>
                 </div>
