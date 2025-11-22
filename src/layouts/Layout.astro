@@ -213,7 +213,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         
         <!-- reCAPTCHA v3 -->
         {Astro.url.pathname === '/contacto' && (
-            <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} async defer></script>
+            <script type="text/partytown" src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}></script>
         )}
     </head>
     <body>
