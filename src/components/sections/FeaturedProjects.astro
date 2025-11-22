@@ -1,134 +1,30 @@
 ---
 import { Image } from "astro:assets";
-// Edificación
-import edificacion1 from "@assets/img/featured/edificacion/1-min.webp";
-import edificacion2 from "@assets/img/featured/edificacion/2-min.webp";
-import edificacion3 from "@assets/img/featured/edificacion/3-min.webp";
-import edificacion4 from "@assets/img/featured/edificacion/4-min.webp";
+import { getCollection } from "astro:content";
 
-// Mantenimiento
-import mantenimiento1 from "@assets/img/featured/mantenimiento/1-min.webp";
-import mantenimiento2 from "@assets/img/featured/mantenimiento/2-min.webp";
+// Obtener todos los proyectos de la colección
+const allProjects = await getCollection("projects");
 
-// Obra Civil
-import obraCivil1 from "@assets/img/featured/obra_civil/1-min.webp";
-import obraCivil2 from "@assets/img/featured/obra_civil/2-min.webp";
-import obraCivil3 from "@assets/img/featured/obra_civil/3-min.webp";
-import obraCivil4 from "@assets/img/featured/obra_civil/4-min.webp";
-import obraCivil5 from "@assets/img/featured/obra_civil/5-min.webp";
+// Función para mezclar el array aleatoriamente (Fisher-Yates shuffle)
+function shuffleArray<T>(array: T[]): T[] {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
 
-// Reformas
-import reformas1 from "@assets/img/featured/reformas/1-min.webp";
-import reformas2 from "@assets/img/featured/reformas/2-min.webp";
-import reformas3 from "@assets/img/featured/reformas/3-min.webp";
+// Mezclar proyectos para que varíen en cada build/render
+const shuffledProjects = shuffleArray(allProjects);
 
-// Rehabilitación
-import rehabilitacion1 from "@assets/img/featured/rehabilitacion/1-min.webp";
-import rehabilitacion2 from "@assets/img/featured/rehabilitacion/2-min.webp";
-import rehabilitacion3 from "@assets/img/featured/rehabilitacion/3-min.webp";
-import rehabilitacion4 from "@assets/img/featured/rehabilitacion/4-min.webp";
-
-const featuredProjects1 = [
-    {
-        title: "Edificación",
-        image: edificacion1,
-        description: "Edificación",
-    },
-    {
-        title: "Edificación",
-        image: edificacion2,
-        description: "Edificación",
-    },
-    {
-        title: "Edificación",
-        image: edificacion3,
-        description: "Edificación",
-    },
-    {
-        title: "Edificación",
-        image: edificacion4,
-        description: "Edificación",
-    },
-    {
-        title: "Mantenimiento",
-        image: mantenimiento1,
-        description: "Mantenimiento",
-    },
-    {
-        title: "Mantenimiento",
-        image: mantenimiento2,
-        description: "Mantenimiento",
-    },
-];
-
-const featuredProjects2 = [
-    {
-        title: "Obra Civil",
-        image: obraCivil1,
-        description: "Obra Civil",
-    },
-    {
-        title: "Obra Civil",
-        image: obraCivil2,
-        description: "Obra Civil",
-    },
-    {
-        title: "Obra Civil",
-        image: obraCivil3,
-        description: "Obra Civil",
-    },
-    {
-        title: "Obra Civil",
-        image: obraCivil4,
-        description: "Obra Civil",
-    },
-    {
-        title: "Obra Civil",
-        image: obraCivil5,
-        description: "Obra Civil",
-    },
-    {
-        title: "Reformas",
-        image: reformas1,
-        description: "Reformas",
-    },
-];
-
-const featuredProjects3 = [
-    {
-        title: "Reformas",
-        image: reformas2,
-        description: "Reformas",
-    },
-    {
-        title: "Reformas",
-        image: reformas3,
-        description: "Reformas",
-    },
-    {
-        title: "Rehabilitación",
-        image: rehabilitacion1,
-        description: "Rehabilitación",
-    },
-    {
-        title: "Rehabilitación",
-        image: rehabilitacion2,
-        description: "Rehabilitación",
-    },
-    {
-        title: "Rehabilitación",
-        image: rehabilitacion3,
-        description: "Rehabilitación",
-    },
-    {
-        title: "Rehabilitación",
-        image: rehabilitacion4,
-        description: "Rehabilitación",
-    },
-];
+// Distribuir proyectos en 3 filas
+const row1 = shuffledProjects.filter((_, i) => i % 3 === 0);
+const row2 = shuffledProjects.filter((_, i) => i % 3 === 1);
+const row3 = shuffledProjects.filter((_, i) => i % 3 === 2);
 ---
 
-<section class="bg-neutral-100 py-16 md:py-24">
+<section class="bg-neutral-100 py-16 md:py-24 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2
             class="text-3xl sm:text-4xl md:text-5xl text-neutral-900 font-bold mb-4"
@@ -140,91 +36,107 @@ const featuredProjects3 = [
             demuestran nuestra experiencia y compromiso con la excelencia.
         </p>
 
-        <div class="featured-projects-container space-y-4">
-            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
-                {
-                    featuredProjects1.map((project) => (
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={400}
-                                height={225}
-                                decoding="async"
-                                loading="lazy"
-                                quality={70}
-                                widths={[250, 300, 400]}
-                                sizes="(max-width: 768px) 250px, 300px"
-                                format="avif"
-                                class="featured-project featured-project-1 object-cover aspect-video rounded-md shrink-0"
-                            />
-                    ))
-                }
+        <div class="featured-projects-container space-y-6">
+            {/* Row 1 */}
+            <div class="featured-row-wrapper w-full overflow-hidden rounded-lg">
+                <div class="featured-track featured-track-1 flex gap-4 w-max min-w-full">
+                    {
+                        row1.map((project) => (
+                            <div class="relative shrink-0 rounded-lg overflow-hidden bg-neutral-200 aspect-video w-[280px] sm:w-[350px] md:w-[400px] group">
+                                <Image
+                                    src={project.data.image}
+                                    alt={project.data.obra}
+                                    width={400}
+                                    height={225}
+                                    decoding="async"
+                                    loading="lazy"
+                                    quality={70}
+                                    widths={[250, 400]}
+                                    sizes="(max-width: 768px) 250px, 300px"
+                                    format="avif"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <p class="text-white font-medium text-sm truncate">{project.data.obra}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
-                {
-                    featuredProjects2.map((project) => (
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={400}
-                                height={225}
-                                decoding="async"
-                                loading="lazy"
-                                quality={70}
-                                widths={[250, 300, 400]}
-                                sizes="(max-width: 768px) 250px, 300px"
-                                format="avif"
-                                class="featured-project featured-project-2 object-cover aspect-video rounded-md shrink-0"
-                            />
-                    ))
-                }
+
+            {/* Row 2 */}
+            <div class="featured-row-wrapper w-full overflow-hidden rounded-lg">
+                <div class="featured-track featured-track-2 flex gap-4 w-max min-w-full">
+                    {
+                        row2.map((project) => (
+                            <div class="relative shrink-0 rounded-lg overflow-hidden bg-neutral-200 aspect-video w-[280px] sm:w-[350px] md:w-[400px] group">
+                                <Image
+                                    src={project.data.image}
+                                    alt={project.data.obra}
+                                    width={400}
+                                    height={225}
+                                    decoding="async"
+                                    loading="lazy"
+                                    quality={70}
+                                    widths={[250, 400]}
+                                    sizes="(max-width: 768px) 250px, 300px"
+                                    format="avif"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <p class="text-white font-medium text-sm truncate">{project.data.obra}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-            <div class="featured-projects featured-row w-full flex gap-4 overflow-hidden rounded-md">
-                {
-                    featuredProjects3.map((project) => (
-                            <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={400}
-                                height={225}
-                                decoding="async"
-                                loading="lazy"
-                                quality={70}
-                                widths={[250, 300, 400]}
-                                sizes="(max-width: 768px) 250px, 300px"
-                                format="avif"
-                                class="featured-project featured-project-3 object-cover aspect-video rounded-md shrink-0"
-                            />
-                    ))
-                }
+
+            {/* Row 3 */}
+            <div class="featured-row-wrapper w-full overflow-hidden rounded-lg">
+                <div class="featured-track featured-track-3 flex gap-4 w-max min-w-full">
+                    {
+                        row3.map((project) => (
+                            <div class="relative shrink-0 rounded-lg overflow-hidden bg-neutral-200 aspect-video w-[280px] sm:w-[350px] md:w-[400px] group">
+                                <Image
+                                    src={project.data.image}
+                                    alt={project.data.obra}
+                                    width={400}
+                                    height={225}
+                                    decoding="async"
+                                    loading="lazy"
+                                    quality={70}
+                                    widths={[250, 400]}
+                                    sizes="(max-width: 768px) 250px, 300px"
+                                    format="avif"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <p class="text-white font-medium text-sm truncate">{project.data.obra}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-    .featured-projects-container {
-        contain: layout style paint;
-    }
-
-    .featured-row {
+    .featured-track {
         will-change: transform;
         transform: translateZ(0);
         backface-visibility: hidden;
-        perspective: 1000px;
-    }
-
-    .featured-project {
-        will-change: transform;
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        width: clamp(250px, 30vw, 400px);
+        /* Optimización para evitar parpadeos */
+        -webkit-font-smoothing: antialiased;
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .featured-project,
-        .featured-row {
+        .featured-track {
             will-change: auto;
+            transform: none !important;
         }
     }
 </style>
@@ -235,6 +147,10 @@ const featuredProjects3 = [
         
         if (!container) return;
 
+        // Respetar preferencia de movimiento reducido
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
         const { gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         
@@ -243,58 +159,46 @@ const featuredProjects3 = [
         // Limpiar animaciones previas
         ScrollTrigger.getAll().forEach(st => st.kill());
 
-        const projects = gsap.utils.toArray(".featured-project-1");
-        const projects2 = gsap.utils.toArray(".featured-project-2");
-        const projects3 = gsap.utils.toArray(".featured-project-3");
+        const tracks = [
+            { el: document.querySelector(".featured-track-1"), reverse: false },
+            { el: document.querySelector(".featured-track-2"), reverse: true },
+            { el: document.querySelector(".featured-track-3"), reverse: false }
+        ];
 
-        if (projects.length === 0 || projects2.length === 0 || projects3.length === 0) {
-            return;
-        }
-
-        // Establecer posiciones iniciales
-        gsap.set(projects, { x: 0, force3D: true });
-        gsap.set(projects2, { x: () => -100 * (projects2.length - 1) + "%", force3D: true });
-        gsap.set(projects3, { x: 0, force3D: true });
-
-        // Crear timeline con configuración optimizada
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: container,
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: 0.5,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1, // Suavizado aumentado para reducir vibraciones
                 invalidateOnRefresh: true,
             },
         });
 
-        // Animaciones usando x en lugar de xPercent para mejor rendimiento
-        tl.to(projects, {
-            x: () => -100 * (projects.length - 1) + "%",
-            ease: "none",
-            force3D: true,
-        }, 0)
-        .to(projects2, {
-            x: 0,
-            ease: "none",
-            force3D: true,
-        }, 0)
-        .to(projects3, {
-            x: () => -100 * (projects3.length - 1) + "%",
-            ease: "none",
-            force3D: true,
-        }, 0);
+        tracks.forEach(({ el, reverse }) => {
+            if (!el || !(el instanceof HTMLElement)) return;
+            
+            const getScrollDist = () => {
+                const parent = el.parentElement;
+                if (!parent) return 0;
+                // Calculamos la distancia necesaria para mostrar todo el contenido
+                return el.scrollWidth - parent.clientWidth;
+            };
+
+            tl.fromTo(el, 
+                { 
+                    x: () => reverse ? -getScrollDist() : 0 
+                },
+                { 
+                    x: () => reverse ? 0 : -getScrollDist(), 
+                    ease: "none", 
+                    force3D: true 
+                },
+                0
+            );
+        });
     }
 
     // Inicializar en carga de página (compatible con view transitions)
     document.addEventListener('astro:page-load', initFeaturedProjects);
-
-    // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible
-    document.addEventListener('visibilitychange', async () => {
-        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-        if (document.hidden) {
-            ScrollTrigger.getAll().forEach(st => st.disable());
-        } else {
-            ScrollTrigger.getAll().forEach(st => st.enable());
-        }
-    });
 </script>
