@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
+import ContactHeroImage from "@assets/img/contacto.webp";
 import Phone from "@assets/svg/phone.svg";
 import Mail from "@assets/svg/mail.svg";
 import Pin from "@assets/svg/pin.svg";
@@ -19,6 +22,13 @@ const { hero, form, info, map } = contactPage;
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 // Configuración de rastreo
 const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 'true';
+
+const blurImage = await getImage({
+    src: ContactHeroImage,
+    format: "webp",
+    width: 150,
+    quality: 50
+});
 ---
 
 <Layout
@@ -28,16 +38,39 @@ const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 
     canonical="/contacto"
 >
     <!-- Hero Section -->
-    <section class="relative border-b border-neutral-200 bg-linear-to-br from-primary-50 via-white to-neutral-50 py-16 md:py-20 before:absolute before:inset-0 before:bg-[url('../assets/img/contacto.webp')] before:bg-cover before:bg-center before:opacity-80 before:z-0" aria-labelledby="contact-hero-title">
+    <section class="relative border-b border-neutral-200 bg-neutral-900 py-16 md:py-20 overflow-hidden" aria-labelledby="contact-hero-title">
+        <div class="absolute inset-0">
+            {/* Low Res Placeholder */}
+            <img
+                src={blurImage.src}
+                alt=""
+                class="hero-image-anim absolute inset-0 w-full h-full object-cover brightness-[0.3] contrast-[1.1] blur-sm"
+                aria-hidden="true"
+            />
+
+            {/* High Res Image */}
+            <Image
+                src={ContactHeroImage}
+                alt="Oficinas de Barreto Construcciones"
+                class="hero-image-high hero-image-anim w-full h-full object-cover brightness-[0.3] contrast-[1.1] opacity-0 transition-opacity duration-1500 ease-out"
+                loading="eager"
+                fetchpriority="high"
+                quality={90}
+                widths={[640, 1024, 1536, 2048]}
+                sizes="100vw"
+                format="avif"
+            />
+        </div>
+
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center bg-white/30 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-xl border border-white/20">
-                <div class="inline-flex items-center rounded-full border border-primary-200 bg-white px-4 py-1.5 text-sm font-semibold mb-4">
-                    <span class="text-primary-600">{hero.badge}</span>
+            <div class="max-w-3xl mx-auto text-center bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-xl border border-white/20">
+                <div class="inline-flex items-center rounded-full border border-primary-200/30 bg-white/90 px-4 py-1.5 text-sm font-semibold mb-4">
+                    <span class="text-primary-700">{hero.badge}</span>
                 </div>
-                <h1 id="contact-hero-title" class="text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 mb-6 tracking-tight">
+                <h1 id="contact-hero-title" class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
                     {hero.title}
                 </h1>
-                <p class="text-xl text-neutral-600 leading-relaxed">
+                <p class="text-xl text-neutral-100 leading-relaxed">
                     {hero.subtitle}
                 </p>
             </div>
@@ -497,5 +530,38 @@ const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 
         form {
             animation: none;
         }
+        .hero-image-anim {
+            animation: none;
+            transform: none;
+        }
+    }
+
+    .hero-image-anim {
+        animation: subtleScale 15s alternate infinite ease-in-out;
+    }
+
+    @keyframes subtleScale {
+        0% { transform: scale(1.05); }
+        100% { transform: scale(1.15); }
     }
 </style>
+
+<script>
+    function initHeroImageLoad() {
+        const images = document.querySelectorAll('.hero-image-high');
+        images.forEach((img) => {
+            if (img instanceof HTMLImageElement) {
+                if (img.complete) {
+                    img.classList.remove('opacity-0');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.remove('opacity-0');
+                    });
+                }
+            }
+        });
+    }
+
+    document.addEventListener('astro:page-load', initHeroImageLoad);
+    initHeroImageLoad();
+</script>
