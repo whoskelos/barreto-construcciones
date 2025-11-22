@@ -13,14 +13,15 @@ const { HeroImage, title, nameTransition } = Astro.props;
 <section
     class="relative h-[300px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-neutral-900"
 >
-    <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-black">
         <Image
             transition:name={`img-${nameTransition}`}
             src={HeroImage}
             alt="Foto tomando medidas en obra civil"
-            class="w-full h-full object-cover brightness-[0.4] contrast-[1.1]"
+            class="w-full h-full object-cover opacity-30"
             loading="eager"
-            quality={90}
+            fetchpriority="high"
+            quality={80}
             widths={[640, 768, 1024, 1280, 1536]}
             sizes="100vw"
             format="avif"
@@ -32,7 +33,7 @@ const { HeroImage, title, nameTransition } = Astro.props;
     >
         <div class="max-w-3xl">
             <p
-                class="text-accent text-base sm:text-lg md:text-xl text-primary-300 font-semibold uppercase tracking-wider mb-3 md:mb-4"
+                class="text-base sm:text-lg md:text-xl text-primary-500 font-semibold uppercase tracking-wider mb-3 md:mb-4"
             >
                 Barreto Infraestructuras
             </p>

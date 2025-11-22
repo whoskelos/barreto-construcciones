@@ -41,19 +41,19 @@ const slides = [
         <div class="embla__container h-full flex">
             {
                 slides.map((slide, index) => (
-                    <div class="embla__slide relative min-w-0 flex-[0_0_100%]">
+                    <div class="embla__slide relative min-w-0 flex-[0_0_100%] bg-black">
                         <Image
                             src={slide.image}
                             alt={slide.alt}
-                            class="object-cover w-full h-full brightness-[0.5] contrast-[1.1]"
+                            class="object-cover w-full h-full opacity-30"
                             loading={index === 0 ? "eager" : "lazy"}
                             decoding={index === 0 ? "sync" : "async"}
-                            quality={90}
+                            fetchpriority={index === 0 ? "high" : "auto"}
+                            quality={80}
                             widths={[640, 768, 1024, 1280, 1536, 1920]}
                             sizes="100vw"
                             format="avif"
                         />
-                        <div class="absolute inset-0 bg-linear-to-r from-black/40 via-black/20 to-transparent" />
                     </div>
                 ))
             }
@@ -124,16 +124,23 @@ const slides = [
 </style>
 
 <script>
-    import EmblaCarousel from "embla-carousel";
-    import Autoplay from "embla-carousel-autoplay";
-
     function initCarousel() {
         const emblaNode = document.querySelector(".embla");
-        const options = { loop: true };
-        const plugins = [Autoplay({ delay: 2000 })];
         if (emblaNode instanceof HTMLElement) {
-            window.requestAnimationFrame(() => {
-                const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+            // Importación dinámica para reducir el bundle inicial
+            Promise.all([
+                import("embla-carousel"),
+                import("embla-carousel-autoplay")
+            ]).then(([EmblaCarouselModule, AutoplayModule]) => {
+                const EmblaCarousel = EmblaCarouselModule.default;
+                const Autoplay = AutoplayModule.default;
+                
+                const options = { loop: true };
+                const plugins = [Autoplay({ delay: 2000 })];
+                
+                window.requestAnimationFrame(() => {
+                    EmblaCarousel(emblaNode, options, plugins);
+                });
             });
         }
     }
