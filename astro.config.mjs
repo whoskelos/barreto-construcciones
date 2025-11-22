@@ -4,8 +4,11 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 import vercel from "@astrojs/vercel";
+import node from "@astrojs/node";
 
 import partytown from '@astrojs/partytown';
+
+const isVercel = process.env.VERCEL === '1';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,14 +17,14 @@ export default defineConfig({
   vite: {
       plugins: [tailwindcss()],
       ssr: {
-          external: ['sharp']
+          // Sharp es necesario en Node, no debe ser externo si usamos el adaptador de Node
+          external: isVercel ? ['sharp'] : []
       },
       build: {
           cssMinify: 'lightningcss',
           rollupOptions: {
               output: {
                   manualChunks: {
-                      'carousel': ['embla-carousel', 'embla-carousel-autoplay'],
                       'animations': ['gsap'],
                   }
               }
@@ -31,7 +34,7 @@ export default defineConfig({
 
   image: {
       // Usar sharp para optimización de imágenes en producción
-      // Vercel lo incluye por defecto
+      // Vercel lo incluye por defecto, en Node usamos sharp instalado
       domains: ['barretoconstrucciones.es'],
       remotePatterns: [{ protocol: 'https' }],
   },
@@ -49,11 +52,15 @@ export default defineConfig({
 
   output: 'server',
 
-  adapter: vercel({
-      webAnalytics: {
-          enabled: false
-      }
-  }),
+  adapter: isVercel 
+    ? vercel({
+        webAnalytics: {
+            enabled: false
+        }
+      })
+    : node({
+        mode: 'standalone'
+      }),
 
   integrations: [partytown({
     config: {

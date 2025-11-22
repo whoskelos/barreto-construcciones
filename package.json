@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.1",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/vercel": "^9.0.1",
     "@fontsource-variable/roboto": "5.2.8",
@@ -19,8 +20,6 @@
     "@midudev/tailwind-animations": "^0.2.0",
     "@tailwindcss/vite": "4.1.17",
     "astro": "^5.15.9",
-    "embla-carousel": "8.6.0",
-    "embla-carousel-autoplay": "8.6.0",
     "gsap": "^3.13.0",
     "resend": "^6.4.2",
     "tailwindcss": "4.1.17",
