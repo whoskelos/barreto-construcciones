@@ -106,7 +106,8 @@
       "schedule": {
         "title": "Horario de atención",
         "weekdays": "Lunes - Viernes:",
-        "hours": "8:00 - 20:00"
+        "morningHour": "9:00 - 14:00",
+        "afternoonHour": "15:00 - 18:00"
       }
     },
     "map": {

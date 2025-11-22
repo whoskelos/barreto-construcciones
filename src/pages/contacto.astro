@@ -405,7 +405,10 @@ const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 
                             <div class="space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-neutral-300">{info.schedule.weekdays}</span>
-                                    <span class="font-semibold text-white">{info.schedule.hours}</span>
+                                    <div class="flex flex-col justify-between items-center">
+                                        <span class="font-semibold text-white">{info.schedule.morningHour}</span>
+                                        <span class="font-semibold text-white">{info.schedule.afternoonHour}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
