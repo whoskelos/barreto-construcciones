@@ -2,7 +2,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_astro/
 
 # Crawl-delay para ser amigable con los servidores
 Crawl-delay: 1

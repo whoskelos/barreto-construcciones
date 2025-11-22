@@ -230,15 +230,15 @@ const featuredProjects3 = [
 </style>
 
 <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    
-    gsap.registerPlugin(ScrollTrigger);
-
-    function initFeaturedProjects() {
+    async function initFeaturedProjects() {
         const container = document.querySelector(".featured-projects-container");
         
         if (!container) return;
+
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        
+        gsap.registerPlugin(ScrollTrigger);
 
         // Limpiar animaciones previas
         ScrollTrigger.getAll().forEach(st => st.kill());
@@ -289,7 +289,8 @@ const featuredProjects3 = [
     document.addEventListener('astro:page-load', initFeaturedProjects);
 
     // Optimización: Pausar ScrollTrigger cuando la pestaña no está visible
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener('visibilitychange', async () => {
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         if (document.hidden) {
             ScrollTrigger.getAll().forEach(st => st.disable());
         } else {

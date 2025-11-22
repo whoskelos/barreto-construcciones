@@ -9,6 +9,7 @@ import { ClientRouter } from 'astro:transitions';
 // Fuentes para el logo
 import "@fontsource/source-sans-3/600.css";
 import "@fontsource/source-sans-3/500.css";
+import "@fontsource-variable/roboto";
 
 // reCAPTCHA Site Key (pública, segura para exponer)
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
@@ -55,9 +56,6 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/logo.webp" />
-        
-        <!-- Preconnect para fuentes -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content={ogType} />
