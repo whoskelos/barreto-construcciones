@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 import heroImage1 from "@assets/img/carousel/edificacion.webp";
 import heroImage2 from "@assets/img/carousel/obra_civil.webp";
@@ -34,34 +35,64 @@ const slides = [
         alt: "Mantenimiento y pintura deposito industrial",
     },
 ];
+
+const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
+    const blurImage = await getImage({
+        src: slide.image,
+        format: "webp",
+        width: 150,
+        quality: 50
+    });
+    return {
+        ...slide,
+        blurImage: blurImage.src
+    };
+}));
 ---
 
 <section class="relative w-full h-[70dvh] overflow-hidden bg-neutral-900" role="region" aria-label="Banner principal con carrusel de proyectos">
-    <div class="embla h-full">
-        <div class="embla__container h-full flex">
-            {
-                slides.map((slide, index) => (
-                    <div class="embla__slide relative min-w-0 flex-[0_0_100%] bg-black">
+    <!-- Carousel Viewport -->
+    <div class="carousel-viewport absolute inset-0 w-full h-full">
+        {
+            slidesWithBlur.map((slide, index) => {
+                // Restamos 1.2s (4% de 30s) extra para que la primera imagen empiece ya posicionada (fase estática)
+                // y no veamos la animación de entrada al cargar la página.
+                const delay = (index * 6) - 30 - 1.2;
+                return (
+                    <div 
+                        class="carousel-slide absolute inset-0 w-full h-full"
+                        style={`animation-delay: ${delay}s;`}
+                    >
+                        {/* Low Res Placeholder */}
+                        <img
+                            src={slide.blurImage}
+                            alt=""
+                            class="carousel-image absolute inset-0 w-full h-full object-cover brightness-[0.3] contrast-[1.1] blur-sm"
+                            aria-hidden="true"
+                        />
+                        
+                        {/* High Res Image */}
                         <Image
                             src={slide.image}
                             alt={slide.alt}
-                            class="object-cover w-full h-full opacity-30"
+                            class="carousel-image-high carousel-image relative w-full h-full object-cover brightness-[0.3] contrast-[1.1] opacity-0 transition-opacity duration-1200 ease-out"
                             loading={index === 0 ? "eager" : "lazy"}
-                            decoding={index === 0 ? "sync" : "async"}
-                            fetchpriority={index === 0 ? "high" : "auto"}
+                            decoding="async"
                             quality={80}
-                            widths={[640, 768, 1024, 1280, 1536, 1920, 2560, 3840]}
+                            widths={[640, 1024, 1536, 2048]}
                             sizes="100vw"
                             format="avif"
                         />
                     </div>
-                ))
-            }
-        </div>
+                );
+            })
+        }
     </div>
-    <div class="absolute inset-0 flex items-center">
+
+    <!-- Static Content Overlay -->
+    <div class="absolute inset-0 flex items-center z-20 pointer-events-none">
         <div class="container mx-auto px-4 sm:px-8 lg:px-8">
-            <div class="max-w-3xl hero-content">
+            <div class="max-w-3xl hero-content pointer-events-auto">
                 <h1
                     class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-50 leading-tight mb-6 sm:mb-0 tracking-tight"
                 >
@@ -81,6 +112,65 @@ const slides = [
 </section>
 
 <style>
+    :root {
+        --total-time: 30s;
+    }
+
+    .carousel-viewport {
+        contain: paint layout;
+    }
+
+    .carousel-slide {
+        will-change: transform;
+        transform: translate3d(100%, 0, 0);
+        animation: carouselCycle var(--total-time) linear infinite;
+        backface-visibility: hidden;
+        z-index: 1;
+    }
+
+    .carousel-image {
+        animation: subtleScale 15s alternate infinite ease-in-out;
+    }
+
+    @keyframes carouselCycle {
+        /* FASE 1: ENTRADA (Slide In) */
+        0% {
+            transform: translate3d(100%, 0, 0);
+            z-index: 10;
+        }
+        4% {
+            transform: translate3d(0, 0, 0);
+            z-index: 10;
+        }
+        
+        /* FASE 2: LECTURA (Static) */
+        20% {
+            transform: translate3d(0, 0, 0);
+            z-index: 10;
+        }
+
+        /* FASE 3: SALIDA (Slide Out) */
+        24% {
+            transform: translate3d(-100%, 0, 0);
+            z-index: 10;
+        }
+
+        /* FASE 4: RESET */
+        24.01% {
+            transform: translate3d(100%, 0, 0);
+            z-index: -1;
+        }
+        100% {
+            transform: translate3d(100%, 0, 0);
+            z-index: -1;
+        }
+    }
+
+    @keyframes subtleScale {
+        0% { transform: scale(1.05); }
+        100% { transform: scale(1.15); }
+    }
+
     /* Animación suave para el contenido del hero */
     .hero-content {
         animation: fadeInUp 1.2s ease-out 0.4s forwards;
@@ -98,17 +188,6 @@ const slides = [
         }
     }
 
-    /* Transición suave para el cambio de slides */
-    .embla__slide {
-        transition: opacity 0.8s ease-out;
-    }
-
-    /* Mejora la transición de las imágenes */
-    .embla__slide img {
-        transition: filter 0.8s ease-out;
-    }
-
-    /* Respeto por preferencias de animación reducida */
     @media (prefers-reduced-motion: reduce) {
         .hero-content {
             animation: none;
@@ -116,35 +195,42 @@ const slides = [
             transform: none;
         }
         
-        .embla__slide,
-        .embla__slide img {
-            transition: none;
+        .carousel-slide,
+        .carousel-image {
+            animation: none;
+            transform: none;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+        }
+        
+        .carousel-slide:first-child {
+            opacity: 1;
         }
     }
 </style>
 
 <script>
-    function initCarousel() {
-        const emblaNode = document.querySelector(".embla");
-        if (emblaNode instanceof HTMLElement) {
-            // Importación dinámica para reducir el bundle inicial
-            Promise.all([
-                import("embla-carousel"),
-                import("embla-carousel-autoplay")
-            ]).then(([EmblaCarouselModule, AutoplayModule]) => {
-                const EmblaCarousel = EmblaCarouselModule.default;
-                const Autoplay = AutoplayModule.default;
-                
-                const options = { loop: true };
-                const plugins = [Autoplay({ delay: 2000 })];
-                
-                window.requestAnimationFrame(() => {
-                    EmblaCarousel(emblaNode, options, plugins);
-                });
-            });
-        }
+    function initImageLoad() {
+        const images = document.querySelectorAll('.carousel-image-high');
+        images.forEach((img) => {
+            if (img instanceof HTMLImageElement) {
+                if (img.complete) {
+                    img.classList.remove('opacity-0');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.remove('opacity-0');
+                    });
+                }
+            }
+        });
     }
 
-    // Inicializar en carga de página (compatible con view transitions)
-    document.addEventListener('astro:page-load', initCarousel);
+    // Ejecutar en carga inicial y navegaciones
+    document.addEventListener('astro:page-load', initImageLoad);
+    // Ejecutar inmediatamente por si acaso (para la primera carga)
+    initImageLoad();
 </script>
