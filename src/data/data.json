@@ -88,7 +88,7 @@
         },
         "asunto": {
           "label": "Asunto",
-          "placeholder": "Presupuesto para reforma integral",
+          "placeholder": "Presupuesto para proyecto",
           "hint": "Ej: Presupuesto para reforma integral, construcción de nave industrial..."
         },
         "mensaje": {
