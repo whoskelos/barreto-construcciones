@@ -50,7 +50,12 @@ const animationStyles = {
     <img
         src={blurImage.src}
         alt=""
-        class={`absolute inset-0 w-full h-full object-${objectFit} ${brightness} ${contrast} blur-sm animate-subtle-scale`}
+        class={`absolute inset-0 w-full h-full object-${objectFit} object-center ${brightness} ${contrast} blur-sm animate-subtle-scale`}
+        style={{
+            "--hero-scale-start": (scaleStart * 1.02).toString(),
+            "--hero-scale-end": (scaleEnd * 1.02).toString(),
+        }}
+        draggable="false"
         aria-hidden="true"
     />
 
@@ -59,13 +64,14 @@ const animationStyles = {
         src={src}
         alt={alt}
         transition:name={transitionName}
-        class={`hero-image-high absolute inset-0 w-full h-full object-${objectFit} ${brightness} ${contrast} opacity-0 transition-opacity ${duration} ease-out animate-subtle-scale ${className}`}
+        class={`hero-image-high absolute inset-0 w-full h-full object-${objectFit} object-center ${brightness} ${contrast} opacity-0 transition-opacity ${duration} ease-out animate-subtle-scale ${className}`}
         loading={loading}
         fetchpriority={priority ? "high" : "auto"}
         quality={80}
         widths={[640, 1024, 1536, 2048]}
         sizes="100vw"
         format="avif"
+        draggable="false"
     />
 </div>
 
