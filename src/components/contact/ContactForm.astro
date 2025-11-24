@@ -24,7 +24,7 @@ const { title, fields, privacidadLink, submitButton } = Astro.props;
     Los campos marcados con <span class="text-primary-600 font-semibold">*</span> son obligatorios
   </p>
   
-  <form id="contactForm" class="space-y-6" method="POST" action="/api/contact" role="form" aria-label="Formulario de contacto">
+  <form id="contactForm" class="space-y-6 animate-fade-in-up" method="POST" action="/api/contact" role="form" aria-label="Formulario de contacto">
     <!-- Estado del formulario -->
     <div id="formMessage" class="hidden rounded-md p-4 text-sm" role="alert"></div>
 
@@ -133,7 +133,7 @@ const { title, fields, privacidadLink, submitButton } = Astro.props;
         class="mt-0.5 h-4 w-4 rounded border-neutral-300 text-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
       />
       <label for="privacidad" class="text-sm text-neutral-600 leading-relaxed">
-        He leído y acepto la <a href="/legal/politica-de-privacidad" class="font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-4">{privacidadLink}</a> en la que se detalla el tratamiento de mis datos personales.
+        He leído y acepto la <a href="/legal/politica-de-privacidad/" class="font-semibold text-primary-600 hover:text-primary-700 underline underline-offset-4">{privacidadLink}</a> en la que se detalla el tratamiento de mis datos personales.
       </label>
     </div>
 
@@ -153,21 +153,6 @@ const { title, fields, privacidadLink, submitButton } = Astro.props;
 </div>
 
 <style>
-  form {
-    animation: fadeInUp 0.6s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     form {
       animation: none;
