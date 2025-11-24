@@ -12,7 +12,6 @@ Este proyecto está construido sobre un stack tecnológico moderno y eficiente:
 - **[Tailwind CSS 4](https://tailwindcss.com/):** Framework de utilidad para estilos rápidos y responsivos.
 - **[TypeScript](https://www.typescriptlang.org/):** Superset de JavaScript para un código más robusto y seguro.
 - **[GSAP](https://greensock.com/gsap/):** Librería líder para animaciones web de alto rendimiento.
-- **[Embla Carousel](https://www.embla-carousel.com/):** Carrusel ligero y flexible.
 - **[Resend](https://resend.com/):** API para el envío de correos electrónicos (Formulario de contacto).
 - **[Vercel](https://vercel.com/):** Plataforma de despliegue y hosting (SSR Adapter).
 
