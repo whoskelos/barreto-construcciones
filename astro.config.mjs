@@ -8,11 +8,14 @@ import node from "@astrojs/node";
 
 import partytown from '@astrojs/partytown';
 
+import sitemap from '@astrojs/sitemap';
+
 const isVercel = process.env.VERCEL === '1';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://barretoconstrucciones.es',
+  trailingSlash: 'always',
 
   vite: {
       plugins: [tailwindcss()],
@@ -66,5 +69,5 @@ export default defineConfig({
     config: {
       forward: ["dataLayer.push", "gtag"],
     },
-  })],
+  }), sitemap()],
 });
