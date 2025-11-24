@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import { getImage } from "astro:assets";
+import HeroImage from "@components/ui/HeroImage.astro";
 
 import heroImage1 from "@assets/img/carousel/edificacion.webp";
 import heroImage2 from "@assets/img/carousel/obra_civil.webp";
@@ -35,26 +34,13 @@ const slides = [
         alt: "Mantenimiento y pintura deposito industrial",
     },
 ];
-
-const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
-    const blurImage = await getImage({
-        src: slide.image,
-        format: "webp",
-        width: 150,
-        quality: 50
-    });
-    return {
-        ...slide,
-        blurImage: blurImage.src
-    };
-}));
 ---
 
 <section class="relative w-full h-[70dvh] overflow-hidden bg-neutral-900" role="region" aria-label="Banner principal con carrusel de proyectos">
     <!-- Carousel Viewport -->
     <div class="carousel-viewport absolute inset-0 w-full h-full">
         {
-            slidesWithBlur.map((slide, index) => {
+            slides.map((slide, index) => {
                 // Restamos 1.2s (4% de 30s) extra para que la primera imagen empiece ya posicionada (fase estática)
                 // y no veamos la animación de entrada al cargar la página.
                 const delay = (index * 6) - 30 - 1.2;
@@ -63,25 +49,12 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
                         class="carousel-slide absolute inset-0 w-full h-full"
                         style={`animation-delay: ${delay}s;`}
                     >
-                        {/* Low Res Placeholder */}
-                        <img
-                            src={slide.blurImage}
-                            alt=""
-                            class="carousel-image absolute inset-0 w-full h-full object-cover brightness-[0.3] contrast-[1.1] blur-sm"
-                            aria-hidden="true"
-                        />
-                        
-                        {/* High Res Image */}
-                        <Image
+                        <HeroImage
                             src={slide.image}
                             alt={slide.alt}
-                            class="carousel-image-high carousel-image relative w-full h-full object-cover brightness-[0.3] contrast-[1.1] opacity-0 transition-opacity duration-1200 ease-out"
                             loading={index === 0 ? "eager" : "lazy"}
-                            decoding="async"
-                            quality={80}
-                            widths={[640, 1024, 1536, 2048]}
-                            sizes="100vw"
-                            format="avif"
+                            priority={index === 0}
+                            duration="duration-1200"
                         />
                     </div>
                 );
@@ -92,7 +65,7 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
     <!-- Static Content Overlay -->
     <div class="absolute inset-0 flex items-center z-20 pointer-events-none">
         <div class="container mx-auto px-4 sm:px-8 lg:px-8">
-            <div class="max-w-3xl hero-content pointer-events-auto">
+            <div class="max-w-3xl hero-content pointer-events-auto animate-fade-in-up opacity-0">
                 <h1
                     class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-50 leading-tight mb-6 sm:mb-0 tracking-tight"
                 >
@@ -126,10 +99,6 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
         animation: carouselCycle var(--total-time) linear infinite;
         backface-visibility: hidden;
         z-index: 1;
-    }
-
-    .carousel-image {
-        animation: subtleScale 15s alternate infinite ease-in-out;
     }
 
     @keyframes carouselCycle {
@@ -166,28 +135,6 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
         }
     }
 
-    @keyframes subtleScale {
-        0% { transform: scale(1.05); }
-        100% { transform: scale(1.15); }
-    }
-
-    /* Animación suave para el contenido del hero */
-    .hero-content {
-        animation: fadeInUp 1.2s ease-out 0.4s forwards;
-        opacity: 0;
-    }
-
-    @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     @media (prefers-reduced-motion: reduce) {
         .hero-content {
             animation: none;
@@ -195,8 +142,7 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
             transform: none;
         }
         
-        .carousel-slide,
-        .carousel-image {
+        .carousel-slide {
             animation: none;
             transform: none;
         }
@@ -212,25 +158,3 @@ const slidesWithBlur = await Promise.all(slides.map(async (slide) => {
         }
     }
 </style>
-
-<script>
-    function initImageLoad() {
-        const images = document.querySelectorAll('.carousel-image-high');
-        images.forEach((img) => {
-            if (img instanceof HTMLImageElement) {
-                if (img.complete) {
-                    img.classList.remove('opacity-0');
-                } else {
-                    img.addEventListener('load', () => {
-                        img.classList.remove('opacity-0');
-                    });
-                }
-            }
-        });
-    }
-
-    // Ejecutar en carga inicial y navegaciones
-    document.addEventListener('astro:page-load', initImageLoad);
-    // Ejecutar inmediatamente por si acaso (para la primera carga)
-    initImageLoad();
-</script>

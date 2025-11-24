@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import { getImage } from "astro:assets";
+import HeroImage from "@components/ui/HeroImage.astro";
 
 interface Props {
     HeroImage: ImageMetadata;
@@ -9,45 +8,24 @@ interface Props {
     alt?: string;
 }
 
-const { HeroImage, title, nameTransition, alt = "" } = Astro.props;
-
-const blurImage = await getImage({
-    src: HeroImage,
-    format: "webp",
-    width: 150,
-    quality: 50
-});
+const { HeroImage: heroImage, title, nameTransition, alt = "" } = Astro.props;
 ---
 
 <section
     class="relative h-[300px] md:h-[40vh] md:min-h-[400px] flex items-center justify-center overflow-hidden bg-neutral-900"
 >
     <div class="absolute inset-0">
-        {/* Low Res Placeholder */}
-        <img
-            src={blurImage.src}
-            alt=""
-            class="hero-image-anim absolute inset-0 w-full h-full object-cover brightness-[0.3] contrast-[1.1] blur-sm"
-            aria-hidden="true"
-        />
-
-        {/* High Res Image */}
-        <Image
-            transition:name={`img-${nameTransition}`}
-            src={HeroImage}
+        <HeroImage
+            src={heroImage}
             alt={alt}
-            class="hero-image-high hero-image-anim w-full h-full object-cover brightness-[0.3] contrast-[1.1] opacity-0 transition-opacity duration-1500 ease-out"
+            transitionName={`img-${nameTransition}`}
             loading="eager"
-            fetchpriority="high"
-            quality={80}
-            widths={[640, 1024, 1536, 2048]}
-            sizes="100vw"
-            format="avif"
+            priority={true}
         />
     </div>
 
     <div
-        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start hero-content"
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-start hero-content animate-fade-in-up opacity-0"
     >
         <div class="max-w-3xl">
             <p
@@ -65,32 +43,6 @@ const blurImage = await getImage({
 </section>
 
 <style>
-    /* Animación suave para el contenido del hero */
-    .hero-content {
-        animation: fadeInUp 1s ease-out 0.3s forwards;
-        opacity: 0;
-    }
-
-    .hero-image-anim {
-        animation: subtleScale 15s alternate infinite ease-in-out;
-    }
-
-    @keyframes subtleScale {
-        0% { transform: scale(1.05); }
-        100% { transform: scale(1.15); }
-    }
-
-    @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     /* Mejora la transición de la imagen */
     img {
         transition: filter 0.5s ease-out;
@@ -105,23 +57,3 @@ const blurImage = await getImage({
         }
     }
 </style>
-
-<script>
-    function initHeroImageLoad() {
-        const images = document.querySelectorAll('.hero-image-high');
-        images.forEach((img) => {
-            if (img instanceof HTMLImageElement) {
-                if (img.complete) {
-                    img.classList.remove('opacity-0');
-                } else {
-                    img.addEventListener('load', () => {
-                        img.classList.remove('opacity-0');
-                    });
-                }
-            }
-        });
-    }
-
-    document.addEventListener('astro:page-load', initHeroImageLoad);
-    initHeroImageLoad();
-</script>

@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
+
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+    class?: string;
+    loading?: "eager" | "lazy";
+    priority?: boolean;
+    transitionName?: string;
+    objectFit?: "cover" | "contain" | "fill";
+    brightness?: string;
+    contrast?: string;
+    duration?: string;
+    scaleStart?: number;
+    scaleEnd?: number;
+}
+
+const { 
+    src, 
+    alt, 
+    class: className = "", 
+    loading = "lazy", 
+    priority = false, 
+    transitionName,
+    objectFit = "cover",
+    brightness = "brightness-40",
+    contrast = "contrast-[1.1]",
+    duration = "duration-1500",
+    scaleStart = 1.05,
+    scaleEnd = 1.15
+} = Astro.props;
+
+const blurImage = await getImage({
+    src: src,
+    format: "webp",
+    width: 150,
+    quality: 50
+});
+
+const animationStyles = {
+    "--hero-scale-start": scaleStart.toString(),
+    "--hero-scale-end": scaleEnd.toString(),
+};
+---
+
+<div class="relative w-full h-full overflow-hidden" style={animationStyles}>
+    {/* Low Res Placeholder */}
+    <img
+        src={blurImage.src}
+        alt=""
+        class={`absolute inset-0 w-full h-full object-${objectFit} ${brightness} ${contrast} blur-sm animate-subtle-scale`}
+        aria-hidden="true"
+    />
+
+    {/* High Res Image */}
+    <Image
+        src={src}
+        alt={alt}
+        transition:name={transitionName}
+        class={`hero-image-high absolute inset-0 w-full h-full object-${objectFit} ${brightness} ${contrast} opacity-0 transition-opacity ${duration} ease-out animate-subtle-scale ${className}`}
+        loading={loading}
+        fetchpriority={priority ? "high" : "auto"}
+        quality={80}
+        widths={[640, 1024, 1536, 2048]}
+        sizes="100vw"
+        format="avif"
+    />
+</div>
+
+<script>
+    function initHeroImages() {
+        const images = document.querySelectorAll('.hero-image-high');
+        images.forEach((img) => {
+            if (img instanceof HTMLImageElement) {
+                if (img.complete) {
+                    img.classList.remove('opacity-0');
+                } else {
+                    img.addEventListener('load', () => {
+                        img.classList.remove('opacity-0');
+                    });
+                }
+            }
+        });
+    }
+
+    document.addEventListener('astro:page-load', initHeroImages);
+    // Run immediately for initial load
+    initHeroImages();
+</script>

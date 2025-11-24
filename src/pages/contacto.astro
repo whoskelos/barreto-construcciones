@@ -2,7 +2,7 @@
 export const prerender = true;
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import { getImage } from "astro:assets";
+import HeroImage from "@components/ui/HeroImage.astro";
 import ContactHeroImage from "@assets/img/contacto.webp";
 import data from "@data";
 
@@ -22,43 +22,25 @@ const { hero, form, info, map } = contactPage;
 
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 const TRACK_FORM_START = import.meta.env.PUBLIC_GOOGLE_ADS_TRACK_FORM_START === 'true';
-
-const blurImage = await getImage({
-    src: ContactHeroImage,
-    format: "webp",
-    width: 150,
-    quality: 50
-});
 ---
 
 <Layout
     title="Contacto - Solicita tu presupuesto | Barreto Construcciones"
     description="Contacta con Barreto Construcciones. Estamos en Madrid y Toledo. Solicita tu presupuesto sin compromiso para tu proyecto de construcción o rehabilitación."
     keywords="contacto barreto construcciones, presupuesto construcción, contacto Madrid Toledo, solicitar presupuesto obra"
-    canonical="/contacto"
+    canonical="/contacto/"
 >
     <!-- Hero Section -->
     <section class="relative border-b border-neutral-200 bg-neutral-900 py-16 md:py-20 overflow-hidden" aria-labelledby="contact-hero-title">
         <div class="absolute inset-0">
-            {/* Low Res Placeholder */}
-            <img
-                src={blurImage.src}
-                alt=""
-                class="hero-image-anim absolute inset-0 w-full h-full object-cover brightness-[0.3] contrast-[1.1] blur-sm"
-                aria-hidden="true"
-            />
-
-            {/* High Res Image */}
-            <Image
+            <HeroImage
                 src={ContactHeroImage}
                 alt="Oficinas de Barreto Construcciones"
-                class="hero-image-high hero-image-anim w-full h-full object-cover brightness-[0.5] contrast-[1.1] opacity-0 transition-opacity duration-1500 ease-out"
                 loading="eager"
-                fetchpriority="high"
-                quality={90}
-                widths={[640, 1024, 1536, 2048]}
-                sizes="100vw"
-                format="avif"
+                priority={true}
+                objectFit="cover"
+                brightness="brightness-[0.5]"
+                scaleEnd={1.1}
             />
         </div>
 
@@ -152,25 +134,6 @@ const blurImage = await getImage({
             initContactForm(siteKey, trackStart);
         }
     }
-
-    // Hero Image Animation
-    function initHeroImageLoad() {
-        const images = document.querySelectorAll('.hero-image-high');
-        images.forEach((img) => {
-            if (img instanceof HTMLImageElement) {
-                if (img.complete) {
-                    img.classList.remove('opacity-0');
-                } else {
-                    img.addEventListener('load', () => {
-                        img.classList.remove('opacity-0');
-                    });
-                }
-            }
-        });
-    }
-
-    document.addEventListener('astro:page-load', initHeroImageLoad);
-    initHeroImageLoad();
 </script>
 
 <!-- Hidden element to pass env vars to script -->
@@ -180,21 +143,3 @@ const blurImage = await getImage({
     data-track-start={TRACK_FORM_START.toString()} 
     class="hidden"
 ></div>
-
-<style>
-    .hero-image-anim {
-        animation: subtleScale 15s alternate infinite ease-in-out;
-    }
-
-    @keyframes subtleScale {
-        0% { transform: scale(1.05); }
-        100% { transform: scale(1.1); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .hero-image-anim {
-            animation: none;
-            transform: none;
-        }
-    }
-</style>
