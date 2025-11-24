@@ -12,13 +12,14 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
         data-conversion-label={GOOGLE_ADS_CONVERSION_LABEL}
         style="display:none;"
       ></div>
-      <script>
+      <script is:inline define:vars={{ isDev: import.meta.env.DEV }}>
         // Función global para eventos generales (Remarketing, etc.)
         // @ts-ignore
         window.trackGoogleAdsEvent = function(eventName, params = {}) {
           // @ts-ignore
           if (typeof window.gtag === 'function') {
-             if (import.meta.env.DEV) {
+             // @ts-ignore
+             if (isDev) {
               console.log('Evento Google Ads:', eventName, params);
             }
             // @ts-ignore
@@ -37,15 +38,19 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
 
           // @ts-ignore
           if (GOOGLE_ADS_ID && CONVERSION_LABEL && typeof window.gtag === 'function') {
-            if (import.meta.env.DEV) {
+            // @ts-ignore
+            if (isDev) {
               console.log('Disparando conversión de Google Ads:', `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`);
             }
             // @ts-ignore
             window.gtag('event', 'conversion', {
               'send_to': `${GOOGLE_ADS_ID}/${CONVERSION_LABEL}`
             });
-          } else if (import.meta.env.DEV) {
-             console.log('Conversión no enviada: Faltan IDs o gtag no está listo');
+          } else {
+             // @ts-ignore
+             if (isDev) {
+                console.log('Conversión no enviada: Faltan IDs o gtag no está listo');
+             }
           }
         };
 
@@ -56,7 +61,8 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
             
             // @ts-ignore
             if (typeof window.gtag === 'function') {
-                if (import.meta.env.DEV) {
+                // @ts-ignore
+                if (isDev) {
                     console.log('Google Ads: Enviando page_view para', window.location.pathname);
                 }
                 // @ts-ignore
@@ -74,13 +80,11 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           const GOOGLE_ADS_ID = config.dataset.adsId;
           if (!GOOGLE_ADS_ID) return;
 
-          // Si ya está cargado, solo trackeamos la vista
-          if (document.getElementById('google-ads-script')) {
-              trackPageView();
-              return;
-          }
+          // Evitar cargar si ya está cargado
+          if (document.getElementById('google-ads-script')) return;
 
-          if (import.meta.env.DEV) {
+          // @ts-ignore
+          if (isDev) {
               console.log('Cargando Google Ads con Partytown...');
           }
 
@@ -91,36 +95,36 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
           document.head.appendChild(script);
 
-          // Script de configuración inicial
+          // Script de configuración inicial (SIN config, solo js date)
           const inlineScript = document.createElement('script');
           inlineScript.type = 'text/partytown';
           inlineScript.innerHTML = `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${GOOGLE_ADS_ID}');
           `;
           document.head.appendChild(inlineScript);
         }
 
         // Manejo de eventos
-        document.addEventListener('cookie-consent:accepted', loadGoogleAds);
+        document.addEventListener('cookie-consent:accepted', () => {
+            loadGoogleAds();
+            // Esperar un poco a que partytown procese, o confiar en que gtag encolará
+            setTimeout(trackPageView, 100); 
+        });
         
-        // En navegaciones subsiguientes con ClientRouter
+        // En navegaciones subsiguientes con ClientRouter Y carga inicial
         document.addEventListener('astro:page-load', () => {
             // @ts-ignore
             if (window.cookieConsentAccepted || document.getElementById('google-ads-script')) {
+                // Si ya tenemos script, trackeamos. 
+                // Si acabamos de cargar la página (initial load), loadGoogleAds se habrá llamado abajo
+                // pero NO habrá mandado config. Así que aquí mandamos config.
                 trackPageView();
-            } else {
-                // Verificar si ya se aceptó antes (caso borde)
-                // @ts-ignore
-                if (window.cookieConsentAccepted) {
-                    loadGoogleAds();
-                }
             }
         });
         
-        // Carga inicial si ya hay consentimiento
+        // Carga inicial del script si ya hay consentimiento (pero NO trackea pageview, eso lo hace astro:page-load)
         // @ts-ignore
         if (window.cookieConsentAccepted) {
             loadGoogleAds();
