@@ -32,9 +32,14 @@ const {
     canonical = Astro.url.pathname
 } = Astro.props;
 
-const siteUrl = "https://barretoconstrucciones.es";
+const siteUrl = Astro.site ? Astro.site.toString() : "https://barretoconstrucciones.es";
 const canonicalURL = new URL(canonical, siteUrl).href;
 const fullOgImage = new URL(ogImage, siteUrl).href;
+
+const isProduction = Astro.url.host === 'barretoconstrucciones.es';
+const robotsContent = isProduction 
+    ? "index, follow, max-image-preview:large" 
+    : "noindex, nofollow";
 ---
 
 <!doctype html>
@@ -50,7 +55,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="author" content="Barreto Construcciones" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="robots" content={robotsContent} />
         <link rel="canonical" href={canonicalURL} />
         
         <!-- Favicon -->
@@ -102,7 +107,12 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
                     "addressLocality": "Yuncos",
                     "addressRegion": "Toledo",
                     "postalCode": "45210",
-                    "addressCountry": "ES"
+                    "addressCountry": "ES",
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "40.087",
+                        "longitude": "-3.873"
+                    }
                 },
                 {
                     "@type": "PostalAddress",
@@ -110,7 +120,12 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
                     "addressLocality": "Getafe",
                     "addressRegion": "Madrid",
                     "postalCode": "28906",
-                    "addressCountry": "ES"
+                    "addressCountry": "ES",
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "40.305",
+                        "longitude": "-3.725"
+                    }
                 }
             ],
             "areaServed": [
