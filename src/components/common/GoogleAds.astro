@@ -49,6 +49,24 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           }
         };
 
+        function trackPageView() {
+            const config = document.getElementById('google-ads-config');
+            if (!config) return;
+            const GOOGLE_ADS_ID = config.dataset.adsId;
+            
+            // @ts-ignore
+            if (typeof window.gtag === 'function') {
+                if (import.meta.env.DEV) {
+                    console.log('Google Ads: Enviando page_view para', window.location.pathname);
+                }
+                // @ts-ignore
+                window.gtag('config', GOOGLE_ADS_ID, {
+                    'page_path': window.location.pathname,
+                    'page_title': document.title
+                });
+            }
+        }
+
         function loadGoogleAds() {
           const config = document.getElementById('google-ads-config');
           if (!config) return;
@@ -56,8 +74,11 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           const GOOGLE_ADS_ID = config.dataset.adsId;
           if (!GOOGLE_ADS_ID) return;
 
-          // Evitar cargar si ya está cargado
-          if (document.getElementById('google-ads-script')) return;
+          // Si ya está cargado, solo trackeamos la vista
+          if (document.getElementById('google-ads-script')) {
+              trackPageView();
+              return;
+          }
 
           if (import.meta.env.DEV) {
               console.log('Cargando Google Ads con Partytown...');
@@ -70,7 +91,7 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
           document.head.appendChild(script);
 
-          // Script de configuración
+          // Script de configuración inicial
           const inlineScript = document.createElement('script');
           inlineScript.type = 'text/partytown';
           inlineScript.innerHTML = `
@@ -82,10 +103,24 @@ const GOOGLE_ADS_CONVERSION_LABEL = import.meta.env.PUBLIC_GOOGLE_ADS_CONVERSION
           document.head.appendChild(inlineScript);
         }
 
-        // Escuchar evento de aceptación de cookies
+        // Manejo de eventos
         document.addEventListener('cookie-consent:accepted', loadGoogleAds);
         
-        // Verificar si ya se aceptó antes de que este script cargara
+        // En navegaciones subsiguientes con ClientRouter
+        document.addEventListener('astro:page-load', () => {
+            // @ts-ignore
+            if (window.cookieConsentAccepted || document.getElementById('google-ads-script')) {
+                trackPageView();
+            } else {
+                // Verificar si ya se aceptó antes (caso borde)
+                // @ts-ignore
+                if (window.cookieConsentAccepted) {
+                    loadGoogleAds();
+                }
+            }
+        });
+        
+        // Carga inicial si ya hay consentimiento
         // @ts-ignore
         if (window.cookieConsentAccepted) {
             loadGoogleAds();
