@@ -45,34 +45,38 @@ const animationStyles = {
 };
 ---
 
-<div class="relative w-full h-full overflow-hidden" style={animationStyles}>
-    {/* Low Res Placeholder */}
-    <img
-        src={blurImage.src}
-        alt=""
-        class={`absolute inset-0 w-full h-full object-${objectFit} object-center ${brightness} ${contrast} blur-sm animate-subtle-scale`}
-        style={{
-            "--hero-scale-start": (scaleStart * 1.02).toString(),
-            "--hero-scale-end": (scaleEnd * 1.02).toString(),
-        }}
-        draggable="false"
-        aria-hidden="true"
-    />
+<div class="relative w-full h-full overflow-hidden bg-neutral-900" style={{...animationStyles, clipPath: 'inset(0)'}}>
+    {/* Low Res Placeholder - Wrapped & Scaled Up to hide blur edges */}
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <img
+            src={blurImage.src}
+            alt=""
+            class={`w-full h-full object-${objectFit} object-center ${brightness} ${contrast} blur-md animate-subtle-scale`}
+            style={{
+                "--hero-scale-start": (scaleStart * 1.1).toString(),
+                "--hero-scale-end": (scaleEnd * 1.1).toString(),
+            }}
+            draggable="false"
+            aria-hidden="true"
+        />
+    </div>
 
-    {/* High Res Image */}
-    <Image
-        src={src}
-        alt={alt}
-        transition:name={transitionName}
-        class={`hero-image-high absolute inset-0 w-full h-full object-${objectFit} object-center ${brightness} ${contrast} opacity-0 transition-opacity ${duration} ease-out animate-subtle-scale ${className}`}
-        loading={loading}
-        fetchpriority={priority ? "high" : "auto"}
-        quality={80}
-        widths={[640, 1024, 1536, 2048]}
-        sizes="100vw"
-        format="avif"
-        draggable="false"
-    />
+    {/* High Res Image - Wrapped */}
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <Image
+            src={src}
+            alt={alt}
+            transition:name={transitionName}
+            class={`hero-image-high w-full h-full object-${objectFit} object-center ${brightness} ${contrast} opacity-0 transition-opacity ${duration} ease-out animate-subtle-scale ${className}`}
+            loading={loading}
+            fetchpriority={priority ? "high" : "auto"}
+            quality={80}
+            widths={[640, 1024, 1536, 2048]}
+            sizes="100vw"
+            format="avif"
+            draggable="false"
+        />
+    </div>
 </div>
 
 <script>
