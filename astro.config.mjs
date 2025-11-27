@@ -15,7 +15,7 @@ const isVercel = process.env.VERCEL === '1';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://barretoconstrucciones.es',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
 
   vite: {
       plugins: [tailwindcss()],
