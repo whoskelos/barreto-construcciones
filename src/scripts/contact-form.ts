@@ -137,7 +137,7 @@ export function initContactForm(recaptchaSiteKey: string, trackFormStart: boolea
 
       if (buttonText) buttonText.textContent = 'Enviando...';
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/contact/', {
         method: 'POST',
         body: formData,
       });

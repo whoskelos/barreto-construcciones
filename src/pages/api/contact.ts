@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
-import { 
-  contactFormSchema, 
-  checkRateLimit, 
-  containsSpam, 
-  verifyRecaptcha 
+import {
+  contactFormSchema,
+  checkRateLimit,
+  containsSpam,
+  verifyRecaptcha
 } from '../../lib/security';
-import { sendContactEmail } from '../../lib/email';
+import { sendContactEmail, sendAutoResponseEmail } from '../../lib/email';
 
 export const prerender = false;
 
@@ -20,9 +20,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     // 2. Rate Limiting
     const ip = clientAddress || 'unknown';
     if (!checkRateLimit(ip)) {
-      return new Response(JSON.stringify({ 
-        success: false, 
-        message: 'Demasiadas solicitudes. Por favor, espera un momento antes de intentar de nuevo.' 
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Demasiadas solicitudes. Por favor, espera un momento antes de intentar de nuevo.'
       }), { status: 429, headers: { 'Retry-After': '60' } });
     }
 
@@ -84,7 +84,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       }
 
       const { success, score } = await verifyRecaptcha(token, import.meta.env.RECAPTCHA_SECRET_KEY);
-      
+
       if (!success || (score !== undefined && score < 0.5)) {
         console.warn('reCAPTCHA failed:', { success, score, ip });
         return new Response(JSON.stringify({ success: false, message: 'No hemos podido verificar que eres humano.' }), { status: 400 });
@@ -97,8 +97,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return new Response(JSON.stringify({ success: false, message: 'Hubo un error al enviar tu mensaje.' }), { status: 500 });
     }
 
-    return new Response(JSON.stringify({ 
-      success: true, 
+    // 11. Send Auto-response (Fire and forget)
+    if (validData.email) {
+      sendAutoResponseEmail(validData).catch(err => {
+        console.error('Failed to send auto-response:', err);
+      });
+    }
+
+    return new Response(JSON.stringify({
+      success: true,
       message: '¡Mensaje enviado correctamente! Te responderemos lo antes posible.',
       emailId: emailResult.id
     }), { status: 200 });
