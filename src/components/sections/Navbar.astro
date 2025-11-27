@@ -33,7 +33,7 @@ const dynamicMenu: MenuItem[] = menu.map(item => {
             link: item.link,
             submenu: sortedServices.map(service => ({
                 name: service.data.title,
-                link: `/areas-de-negocio/${service.id}`
+                link: `/areas-de-negocio/${service.id}/`
             }))
         };
     }

@@ -6,15 +6,15 @@
     },
     {
       "name": "Áreas de negocio",
-      "link": "/areas-de-negocio"
+      "link": "/areas-de-negocio/"
     },
     {
       "name": "Proyectos",
-      "link": "/proyectos"
+      "link": "/proyectos/"
     },
     {
       "name": "Contacto",
-      "link": "/contacto"
+      "link": "/contacto/"
     }
   ],
   "contact": [
@@ -46,19 +46,19 @@
   "legal": [
     {
       "name": "Política de Privacidad",
-      "url": "/legal/politica-de-privacidad"
+      "url": "/legal/politica-de-privacidad/"
     },
     {
       "name": "Aviso Legal",
-      "url": "/legal/aviso-legal"
+      "url": "/legal/aviso-legal/"
     },
     {
       "name": "FAQs",
-      "url": "/preguntas-frecuentes"
+      "url": "/preguntas-frecuentes/"
     },
     {
       "name": "Política de Cookies",
-      "url": "/legal/politica-de-cookies"
+      "url": "/legal/politica-de-cookies/"
     }
   ],
   "contactPage": {
